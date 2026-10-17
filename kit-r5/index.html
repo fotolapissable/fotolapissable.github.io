@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kit R5 · fotolapissable</title>
+<meta name="description" content="Canon R5 sul campo: ottiche RF, calcolatore tubi di prolunga e Raynox, simulatore di scatto e preset fotocamera.">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="/analytics.js" data-id="G-NN6FP74TCW" data-app="kit-r5" defer></script>
+<style>
+:root{
+  --amber:#C8813A;--amber-l:#E8A05A;--bg:#0c0c0c;--bg2:#131313;--bg3:#1a1a1a;--line:#262626;
+  --text:#d8d0c8;--dim:#7d766f;--white:#f0ece6;--ok:#4fae7d;--warn:#d69a2d;--bad:#d9564f;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;
+  --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.55;min-height:100vh;padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:20;background:rgba(12,12,12,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:12px}
+header svg{width:34px;height:34px;flex-shrink:0}
+.brand b{display:block;color:var(--white);font-size:15px;letter-spacing:.06em}
+.brand span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber)}
+#installBtn{margin-left:auto;display:none;background:var(--amber);color:#111;border:0;border-radius:3px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(16,16,16,.97);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs button{background:none;border:0;color:var(--dim);padding:9px 4px 10px;font-size:10.5px;letter-spacing:.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit}
+nav.tabs button .ic{font-size:18px;line-height:1}
+nav.tabs button.on{color:var(--amber)}
+main{max-width:980px;margin:0 auto;padding:16px}
+section.tab{display:none}section.tab.on{display:block}
+h2{font-size:20px;color:var(--white);font-weight:600;margin:6px 0 4px}
+.lead{color:var(--dim);font-size:13px;margin-bottom:14px}
+h3{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:600;margin:20px 0 10px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px;margin-bottom:12px}
+.grid{display:grid;gap:12px}
+@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+.lens-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.lens-h b{color:var(--white);font-size:16px}
+.tag{display:inline-block;font-size:10px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--line);color:var(--dim);border-radius:20px;padding:2px 8px;margin:2px 4px 2px 0}
+.tag.a{border-color:var(--amber);color:var(--amber)}
+.specs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 12px;margin:10px 0;font-size:12px}
+.specs div span{display:block;color:var(--dim);font-size:10px;letter-spacing:1px;text-transform:uppercase}
+.specs div b{color:var(--white);font-family:var(--mono);font-weight:500}
+details{border-top:1px solid var(--line);margin-top:8px}
+details summary{cursor:pointer;padding:9px 0 5px;color:var(--amber-l);font-size:13px;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+ ";font-family:var(--mono)}
+details[open] summary::before{content:"– "}
+table.kv{width:100%;border-collapse:collapse;font-size:12.5px}
+table.kv td{padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+table.kv td:first-child{color:var(--dim);width:42%}
+table.kv td:last-child{color:var(--white);font-family:var(--mono);font-size:12px}
+ul.tips{list-style:none;margin-top:8px}
+ul.tips li{position:relative;padding-left:16px;margin:5px 0;font-size:13px}
+ul.tips li::before{content:"→";position:absolute;left:0;color:var(--amber);font-size:11px;top:1px}
+.callout{border-left:2px solid var(--amber);background:rgba(200,129,58,.07);padding:10px 12px;font-size:12.5px;margin:10px 0;border-radius:0 4px 4px 0}
+.callout.w{border-color:var(--warn);background:rgba(214,154,45,.08)}
+.seg{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.seg button{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:4px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+.seg button.on{background:var(--amber);border-color:var(--amber);color:#111;font-weight:600}
+.seg button.rec{border-color:var(--ok)}
+.ctl{margin-bottom:12px}
+.ctl-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.ctl-h span{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+.ctl-h b{font-family:var(--mono);color:var(--white);font-weight:500}
+input[type=range]{width:100%;accent-color:var(--amber);height:28px}
+.out{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:560px){.out{grid-template-columns:repeat(3,1fr)}}
+.o{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:9px 10px}
+.o span{display:block;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+.o b{display:block;font-family:var(--mono);font-size:17px;color:var(--white);font-weight:500;margin-top:2px}
+.o small{color:var(--dim);font-size:11px}
+.o.hl b{color:var(--amber)}
+.fb{display:flex;gap:10px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:9px;margin-bottom:8px}
+.fb canvas{border-radius:4px;flex-shrink:0}
+.fb-i{flex:1;min-width:0}
+.fb-t{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.fb-t span{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+.badge{font-size:11px;font-weight:600;padding:1px 8px;border-radius:20px}
+.badge.g{background:rgba(79,174,125,.16);color:var(--ok)}.badge.w{background:rgba(214,154,45,.16);color:var(--warn)}.badge.d{background:rgba(217,86,79,.16);color:var(--bad)}
+.fb-s{font-size:12px;color:var(--dim);margin:3px 0 5px}
+.meter{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:3px;transition:width .3s,background .3s}
+.score{display:flex;gap:12px;align-items:flex-start;background:var(--bg3);border-radius:6px;padding:12px;border-left:3px solid var(--line);margin-top:10px}
+.ring{position:relative;width:48px;height:48px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);color:var(--white)}
+.score p{font-size:12.5px}
+.score strong{color:var(--white)}
+.preset-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.preset-h .em{font-size:22px}
+.preset-h b{color:var(--white);font-size:15px;display:block}
+.preset-h small{color:var(--dim);font-size:12px}
+.check{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;cursor:pointer}
+.check input{accent-color:var(--amber);margin-top:3px;width:16px;height:16px;flex-shrink:0}
+.check.done span{color:var(--dim);text-decoration:line-through}
+footer{text-align:center;color:var(--dim);font-size:11px;letter-spacing:1px;padding:24px 16px}
+footer a{color:var(--amber);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <svg viewBox="0 0 60 60" aria-hidden="true"><g transform="translate(30,30)" fill="none" stroke="#C8813A" stroke-width="2"><ellipse rx="25" ry="8.5"/><ellipse rx="25" ry="8.5" transform="rotate(60)"/><ellipse rx="25" ry="8.5" transform="rotate(120)"/></g><g fill="#C8813A"><circle cx="55" cy="30" r="2.2"/><circle cx="5" cy="30" r="2.2"/><circle cx="30" cy="30" r="4.2"/></g></svg>
+  <div class="brand"><b>Kit R5</b><span>fotolapissable</span></div>
+  <button id="installBtn">Installa</button>
+</header>
+
+<main>
+
+<!-- ═════════ OTTICHE ═════════ -->
+<section class="tab on" id="t-ottiche">
+  <h2>Ottiche RF</h2>
+  <p class="lead">Dati, uso tipico e impostazioni di partenza su Canon EOS R5 per ciascun obiettivo.</p>
+  <div class="grid g2" id="lensList"></div>
+  <div class="callout w">Distanze minime e ingrandimenti sono i valori dichiarati da Canon; dove indicato “≈” sono arrotondati. La distanza di messa a fuoco si misura dal piano sensore, non dalla lente frontale.</div>
+</section>
+
+<!-- ═════════ TUBI & MACRO ═════════ -->
+<section class="tab" id="t-tubi">
+  <h2>Calcolatore tubi & Raynox</h2>
+  <p class="lead">Scegli obiettivo e accessorio: ottieni ingrandimento, distanza di lavoro, campo inquadrato, PdC e diaframma effettivo. Stima ottica a lente sottile — ottima per decidere sul campo, verifica sempre dal mirino.</p>
+
+  <div class="card">
+    <div class="ctl"><div class="ctl-h"><span>Obiettivo</span></div><div class="seg" id="segLens"></div></div>
+    <div class="ctl"><div class="ctl-h"><span>Accessorio</span></div><div class="seg" id="segAcc"></div></div>
+    <div class="ctl"><div class="ctl-h"><span>Diaframma impostato</span><b id="vAp">f/8</b></div><input type="range" id="slAp" min="0" max="6" value="2"></div>
+    <div class="ctl"><div class="ctl-h"><span>Ghiera di messa a fuoco</span><b id="vFoc">minima</b></div><input type="range" id="slFoc" min="0" max="100" value="0"><div class="lead" style="margin:2px 0 0;font-size:11px">sinistra = distanza minima (max ingrandimento) · destra = infinito</div></div>
+    <div class="ctl"><div class="ctl-h"><span>Modalità ritaglio 1.6×</span></div><div class="seg" id="segCrop"></div></div>
+  </div>
+
+  <div class="out" id="tubeOut"></div>
+  <div id="tubeNotes"></div>
+  <div class="card" style="margin-top:12px">
+    <h3 style="margin-top:0">Confronto rapido</h3>
+    <div style="overflow-x:auto"><table class="kv" id="cmpTable"></table></div>
+  </div>
+</section>
+
+<!-- ═════════ SIMULATORE ═════════ -->
+<section class="tab" id="t-sim">
+  <h2>Simulatore di scatto</h2>
+  <p class="lead">Insetti in volo o posati: muovi i parametri e guarda movimento, PdC e rumore. L’ingrandimento arriva dal calcolatore tubi (<span id="simSetup" style="color:var(--amber)"></span>).</p>
+  <div class="grid g2">
+    <div class="card">
+      <div class="ctl"><div class="ctl-h"><span>Soggetto</span></div><div class="seg" id="segSubj"></div></div>
+      <div class="ctl"><div class="ctl-h"><span>Tempo</span><b id="vSh"></b></div><input type="range" id="slSh" min="0" max="17" value="13"></div>
+      <div class="ctl"><div class="ctl-h"><span>Diaframma</span><b id="vAp2"></b></div><input type="range" id="slAp2" min="0" max="6" value="2"></div>
+      <div class="ctl"><div class="ctl-h"><span>ISO</span><b id="vIso"></b></div><input type="range" id="slIso" min="0" max="7" value="3"></div>
+      <div class="ctl"><div class="ctl-h"><span>Modo AF</span></div><div class="seg" id="segAF"></div><div class="lead" id="afDesc" style="margin:6px 0 0;font-size:12px"></div></div>
+      <div class="ctl"><div class="ctl-h"><span>Otturatore / raffica</span></div><div class="seg" id="segDrive"></div><div class="lead" id="drDesc" style="margin:6px 0 0;font-size:12px"></div></div>
+    </div>
+    <div>
+      <div class="fb"><canvas id="cvMo" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span>Congelamento</span><em class="badge" id="bMo"></em></div><div class="fb-s" id="sMo"></div><div class="meter"><i id="mMo"></i></div></div></div>
+      <div class="fb"><canvas id="cvDof" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span>Profondità di campo</span><em class="badge" id="bDof"></em></div><div class="fb-s" id="sDof"></div><div class="meter"><i id="mDof"></i></div></div></div>
+      <div class="fb"><canvas id="cvNr" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span>Rumore R5</span><em class="badge" id="bNr"></em></div><div class="fb-s" id="sNr"></div><div class="meter"><i id="mNr"></i></div></div></div>
+      <div class="score" id="scoreBox">
+        <div class="ring"><svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#262626" stroke-width="4"/><circle id="ringFill" cx="24" cy="24" r="20" fill="none" stroke="#4fae7d" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.66" stroke-dashoffset="125.66"/></svg><b id="scoreN">0</b></div>
+        <p id="scoreTxt"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ PRESET R5 ═════════ -->
+<section class="tab" id="t-preset">
+  <h2>Preset fotocamera</h2>
+  <p class="lead">Configurazioni pronte per scenario. Spunta la checklist mentre imposti la R5 (si azzera da sola dopo 12 ore).</p>
+  <div class="seg" id="segPreset" style="margin-bottom:12px"></div>
+  <div class="card" id="presetBox"></div>
+  <div class="card">
+    <h3 style="margin-top:0">Configurazione base sempre attiva</h3>
+    <table class="kv">
+      <tr><td>Messa a fuoco</td><td>Back Button Focus: mezza pressione = solo esposizione · AF-ON = esposizione + AF</td></tr>
+      <tr><td>Personalizza pulsanti</td><td>C.Fn pag. 5</td></tr>
+      <tr><td>Focus bracketing</td><td>Menu AF (richiede otturatore elettronico)</td></tr>
+      <tr><td>Peaking</td><td>Menu AF pag. 4–5 · Rosso, sensibilità Bassa</td></tr>
+      <tr><td>Formato</td><td>RAW (CR3), mai C-RAW per stock e stampa</td></tr>
+      <tr><td>Stabilizzazione</td><td>Ottica con IS + IBIS coordinati automaticamente; su ottiche senza IS solo IBIS (menu)</td></tr>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<nav class="tabs" id="tabs">
+  <button data-t="t-ottiche" class="on"><span class="ic">◎</span>Ottiche</button>
+  <button data-t="t-tubi"><span class="ic">⊕</span>Tubi & macro</button>
+  <button data-t="t-sim"><span class="ic">◐</span>Simulatore</button>
+  <button data-t="t-preset"><span class="ic">☰</span>Preset R5</button>
+</nav>
+
+<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a></footer>
+
+<script>
+/* ════════ DATI OTTICHE ════════ */
+const LENSES=[
+ {id:'1435',name:'RF 14-35mm f/4 L IS USM',tags:['Paesaggio','Architettura','Notturno','Street'],
+  specs:{Focale:'14–35 mm',Apertura:'f/4 costante',Stabilizzatore:'Sì (+ IBIS)',MFD:'0,20 m',Ingrandimento:'0,38× (35 mm)',Filtro:'77 mm'},
+  uses:[['Paesaggio Etna/costa','f/8–f/11 · ISO 100 · treppiede · IS off su treppiede'],['Notturno / Via Lattea','14 mm · f/4 · 10–15 s · ISO 3200–6400'],['Architettura','f/8 · livella elettronica ON · correzione Upright in LrC'],['Street ampio','f/8 · Auto ISO min 1/250 · iperfocale ~1,5 m a 14 mm']],
+  tips:['Sostituisce RF 16 mm e RF 35 mm: correzione profilo ottico ON in LrC','Sweet spot nitidezza f/8; oltre f/11 diffrazione visibile a 45 MP','A 35 mm e MFD fa un “quasi-macro” 0,38× ambientato: fiori con paesaggio dietro']},
+ {id:'50',name:'RF 50mm f/1.8 STM',tags:['Ritratto','Street','Notturno urbano','Macro con tubi'],
+  specs:{Focale:'50 mm',Apertura:'f/1.8',Stabilizzatore:'No (solo IBIS)',MFD:'0,30 m',Ingrandimento:'0,25×',Filtro:'43 mm'},
+  uses:[['Ritratto','f/2–f/2.8 · Servo + rilevamento occhi'],['Street','f/5.6 · Auto ISO min 1/250 · otturatore elettronico silenzioso'],['Notturno urbano','f/1.8–f/2.2 · ISO 1600–3200'],['Macro economico','con tubo 13 mm ≈0,5×, con 31 mm ≈0,85× (vedi calcolatore)']],
+  tips:['Senza IS ottico: verifica IBIS attivo nel menu','Più nitido da f/2.8; a f/1.8 vignettatura → correzione profilo','Con tubi la distanza di lavoro diventa pochi cm: ottimo per fiori, meno per insetti']},
+ {id:'24240',name:'RF 24-240mm f/4-6.3 IS USM',tags:['Viaggio','Macro con tubi','Tuttofare'],
+  specs:{Focale:'24–240 mm',Apertura:'f/4–6.3',Stabilizzatore:'Sì, 5 stop (+ IBIS)',MFD:'0,50 m (240 mm)',Ingrandimento:'0,26× (240 mm)',Filtro:'72 mm'},
+  uses:[['Macro insetti con tubo 13 mm','240 mm · f/8 · 1/640 min · ritaglio 1.6×'],['Fiori a distanza','240 mm · f/6.3–8 · sfondo morbido'],['Viaggio','Av · f/8 · Auto ISO'],['Fauna occasionale','240 mm · Servo · 1/1000']],
+  tips:['Distorsione forte a 24 mm: profilo ottico sempre ON','A 240 mm l’apertura massima è f/6.3: f/8 è il compromesso migliore','Con il Raynox DCR-250 arriva oltre 1:1 a 240 mm (vedi calcolatore)']},
+ {id:'100400',name:'RF 100-400mm f/5.6-8 IS USM',tags:['Fauna Etna','Tele-macro','Uccelli'],
+  specs:{Focale:'100–400 mm',Apertura:'f/5.6–8',Stabilizzatore:'Sì, 5,5 stop (+ IBIS)',MFD:'0,88 m (200) · ≈1,05 m (400)',Ingrandimento:'0,41× (400 mm)',Filtro:'67 mm'},
+  uses:[['Fauna (volpi, lucertole, asini)','400 mm · f/8 · 1/1000 · Servo · rilevamento animali'],['Tele-macro insetti diffidenti','400 mm + tubo 13/18 mm · f/8–9 · 1/800'],['Uccelli in volo','1/2000 · Caso A · otturatore meccanico H+ 12 fps'],['Paesaggio compresso Etna','200–400 mm · f/8–11 · treppiede']],
+  tips:['Già 0,41× nativo a ~1 m: il tubo serve ad avvicinare e salire verso 0,5×','f/8 a 400 mm è l’apertura massima: tubo + f/8 = f/11–12 effettivo, alza ISO','Il Raynox DCR-250 (attacco 52–67 mm) entra sul filtro da 67 mm: >3× ma distanza di lavoro ~12 cm']}
+];
+
+/* ════════ OTTICHE: render ════════ */
+function renderLenses(){
+  const el=document.getElementById('lensList');
+  el.innerHTML=LENSES.map(l=>`
+   <div class="card">
+    <div class="lens-h"><b>${l.name}</b></div>
+    <div>${l.tags.map((t,i)=>`<span class="tag ${i==0?'a':''}">${t}</span>`).join('')}</div>
+    <div class="specs">${Object.entries(l.specs).map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>
+    <details><summary>Impostazioni per uso</summary><table class="kv">${l.uses.map(u=>`<tr><td>${u[0]}</td><td>${u[1]}</td></tr>`).join('')}</table></details>
+    <details><summary>Note sul campo</summary><ul class="tips">${l.tips.map(t=>`<li>${t}</li>`).join('')}</ul></details>
+   </div>`).join('');
+}
+
+/* ════════ CALCOLATORE TUBI ════════
+   Modello lente sottile.
+   f_close = D_mfd / (2 + m + 1/m)  → focale efficace a distanza minima (ottiche a fuoco interno)
+   tubo e: m_near = m_max + e/f_close ; m_far = e/f
+   distanza sensore-soggetto D = f·(2 + m + 1/m)
+   Raynox DCR-250: +8 diottrie (f=125 mm): a infinito m = f/125, distanza dalla lente ≈125 mm
+*/
+const CALC_LENS=[
+ {id:'24240',l:'RF 24-240 @240',f:240,N0:6.3,D:500,m:0.26},
+ {id:'100400',l:'RF 100-400 @400',f:400,N0:8,D:1050,m:0.41},
+ {id:'50',l:'RF 50 f/1.8',f:50,N0:1.8,D:300,m:0.25}
+];
+const ACC=[
+ {id:'0',l:'Nessuno',e:0},{id:'13',l:'Tubo 13 mm',e:13},{id:'18',l:'Tubo 18 mm',e:18},
+ {id:'31',l:'13 + 18 mm',e:31},{id:'ray',l:'Raynox DCR-250',ray:true}
+];
+const APS=[1.8,2.8,4,5.6,6.3,7.1,8,9,10,11,13,16];
+const S={lens:'24240',acc:'13',crop:true,subj:'fly',af:'4',drive:'H+'};
+try{Object.assign(S,JSON.parse(localStorage.getItem('kitr5')||'{}'))}catch(e){}
+function save(){try{localStorage.setItem('kitr5',JSON.stringify(S))}catch(e){}}
+
+function apList(){const L=CALC_LENS.find(x=>x.id===S.lens);return APS.filter(a=>a>=L.N0-0.01)}
+
+function optics(focT){
+  const L=CALC_LENS.find(x=>x.id===S.lens), A=ACC.find(x=>x.id===S.acc);
+  const fClose=L.D/(2+L.m+1/L.m);
+  let mNear,mFar,DNear,DFar,wd=null;
+  if(A.ray){
+    // Raynox DCR-250 (+8 D, f=125 mm). Con l'obiettivo a infinito m = f/125 e il soggetto a ~125 mm dalla lente.
+    // Ghiera verso la minima: sulle ottiche a fuoco interno la focale efficace cala → m ≈ m_max + f_close/125.
+    mFar=L.f/125; mNear=L.m+fClose/125;
+    const uL=0.8*L.D; wd=[125*uL/(125+uL),125];
+  }else if(A.e===0){
+    mNear=L.m; mFar=0; DNear=L.D; DFar=Infinity;
+  }else{
+    mNear=L.m+A.e/fClose; mFar=A.e/L.f;
+    DNear=fClose*(2+mNear+1/mNear); DFar=L.f*(2+mFar+1/mFar);
+  }
+  const t=focT/100;
+  let m,D,fT=fClose+(L.f-fClose)*t;
+  if(A.ray){ m=Math.exp(Math.log(mNear)+(Math.log(mFar)-Math.log(mNear))*t); D=null; }
+  else if(A.e===0){ m=t>=0.999?0:Math.exp(Math.log(mNear)+(Math.log(0.01)-Math.log(mNear))*t); D=m>0?fT*(2+m+1/m):Infinity; }
+  else { m=Math.exp(Math.log(mNear)+(Math.log(mFar)-Math.log(mNear))*t); D=fT*(2+m+1/m); }
+  let wdNow=null; if(A.ray) wdNow=wd[0]+(wd[1]-wd[0])*t;
+  return {L,A,m,D,mNear,mFar,DNear,DFar,wdNow};
+}
+const C_COC=0.019; // mm, criterio severo per 45 MP
+function dof(N,m){return m<=0?Infinity:2*C_COC*N*(1+m)/(m*m)}
+function fmtD(mm){if(mm==null)return'—';if(!isFinite(mm))return'∞';return mm>=995?(mm/1000).toFixed(2).replace('.',',')+' m':Math.round(mm/10)+' cm'}
+function fmtMM(x){if(!isFinite(x))return'∞';return x<1?x.toFixed(2).replace('.',',')+' mm':x<10?x.toFixed(1).replace('.',',')+' mm':Math.round(x)+' mm'}
+function nStd(n){const s=[2.8,3.2,3.5,4,4.5,5,5.6,6.3,7.1,8,9,10,11,13,14,16,18,20,22,25,29,32];return s.reduce((a,b)=>Math.abs(b-n)<Math.abs(a-n)?b:a)}
+
+function seg(id,items,cur,cb,rec){
+  const el=document.getElementById(id);
+  el.innerHTML=items.map(i=>`<button data-v="${i.id}" class="${i.id===cur?'on':''} ${i.id===rec?'rec':''}">${i.l}</button>`).join('');
+  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);save();updAll()});
+}
+
+function updTubi(){
+  seg('segLens',CALC_LENS,S.lens,v=>{S.lens=v});
+  seg('segAcc',ACC,S.acc,v=>{S.acc=v});
+  seg('segCrop',[{id:'1',l:'Attivo'},{id:'0',l:'Pieno formato'}],S.crop?'1':'0',v=>{S.crop=v==='1'});
+  const aps=apList(); const slAp=document.getElementById('slAp');
+  slAp.max=aps.length-1; if(+slAp.value>aps.length-1) slAp.value=aps.length-1;
+  const N=aps[+slAp.value]; document.getElementById('vAp').textContent='f/'+N;
+  const focT=+document.getElementById('slFoc').value;
+  document.getElementById('vFoc').textContent=focT==0?'minima':focT==100?'infinito':focT+'%';
+  const o=optics(focT); const m=o.m;
+  const Neff=N*(1+m); const lost=2*Math.log2(1+m);
+  const sensW=S.crop?22.5:36, sensH=S.crop?15:24;
+  const d=dof(N,m);
+  const airy=1.34*Neff; // µm
+  const cards=[
+   ['Ingrandimento',m>0?m.toFixed(2).replace('.',',')+'×':'—',S.crop?'equiv. ritaglio '+(m*1.6).toFixed(2).replace('.',',')+'×':'1:1 = 1,00×',true],
+   [o.A.ray?'Distanza lente–soggetto':'Distanza dal sensore',o.A.ray?Math.round(o.wdNow)+' mm':fmtD(o.D),o.A.ray?'misurata dalla lente Raynox':'range '+fmtD(o.DNear)+' → '+fmtD(o.DFar)],
+   ['Campo inquadrato',m>0?fmtMM(sensW/m)+' × '+fmtMM(sensH/m):'—',S.crop?'ritaglio 1.6× (17 MP)':'pieno formato (45 MP)'],
+   ['Profondità di campo',fmtMM(d),'CdC 0,019 mm (45 MP)'],
+   ['Diaframma effettivo','f/'+nStd(Neff),lost>0.05?'−'+lost.toFixed(1).replace('.',',')+' stop di luce':'nessuna perdita'],
+   ['Diffrazione',Neff>=16?'Forte':Neff>=11?'Visibile':'Trascurabile','Airy '+airy.toFixed(1).replace('.',',')+' µm · pixel 4,4 µm']
+  ];
+  document.getElementById('tubeOut').innerHTML=cards.map(c=>`<div class="o ${c[3]?'hl':''}"><span>${c[0]}</span><b>${c[1]}</b><small>${c[2]}</small></div>`).join('');
+  const notes=[];
+  if(o.A.ray&&S.lens==='50') notes.push('Raynox su 50 mm: guadagno modesto e distanza di lavoro minima. Meglio i tubi.');
+  if(o.A.ray&&S.lens==='100400') notes.push('Raynox sul 100-400 a 400 mm: >3×, PdC sotto il decimo di mm. Solo soggetti fermi, flash o focus bracketing.');
+  if(o.A.ray&&o.mFar>o.mNear) notes.push('Su questo zoom a fuoco interno il Raynox rende di più con la ghiera <strong>a infinito</strong>: ≈'+o.mFar.toFixed(2).replace('.',',')+'×. Ruotando verso la minima la focale efficace cala e l’ingrandimento scende (stima).');
+  if(o.A.ray) notes.push('Il Raynox lavora su distanza di lavoro quasi fissa (~10–13 cm): la ghiera di fuoco cambia poco, si mette a fuoco avanzando/arretrando.');
+  if(!o.A.ray&&o.A.e>0&&S.lens==='100400') notes.push('Tele-macro: tieni la ghiera verso la distanza minima. Verso infinito il tubo fa guadagnare poco (≈'+(o.mFar).toFixed(2).replace('.',',')+'×) ma permette soggetti a diversi metri.');
+  if(!o.A.ray&&o.A.e>0&&S.lens==='24240') notes.push('Con il tubo non si mette più a fuoco all’infinito: oltre ~'+fmtD(o.DFar)+' tutto è sfocato.');
+  if(Neff>=11) notes.push('Diaframma effettivo f/'+nStd(Neff)+': la diffrazione ammorbidisce i 45 MP. Se puoi, apri di uno stop e usa il focus bracketing.');
+  if(S.lens==='50'&&o.A.e>0) notes.push('Sul 50 mm i tubi danno molto ingrandimento ma la distanza scende a pochi cm: rischio di ombra dell’obiettivo sul soggetto, usa il Godox iM30.');
+  document.getElementById('tubeNotes').innerHTML=notes.map(n=>`<div class="callout">${n}</div>`).join('');
+  // confronto
+  const rows=ACC.map(a=>{const sv=S.acc;S.acc=a.id;let near=optics(0);if(a.ray){const far=optics(100);if(far.m>near.m)near=far}S.acc=sv;
+    const dist=a.ray?Math.round(near.wdNow)+' mm*':fmtD(near.D);
+    return `<tr><td>${a.l}</td><td>${near.m.toFixed(2).replace('.',',')}× · ${dist} · PdC ${fmtMM(dof(8,near.m))}</td></tr>`}).join('');
+  document.getElementById('cmpTable').innerHTML=`<tr><td style="color:var(--amber)">${CALC_LENS.find(x=>x.id===S.lens).l} · a distanza minima</td><td style="color:var(--dim)">ingrand. · distanza · PdC a f/8</td></tr>`+rows+`<tr><td colspan="2" style="color:var(--dim);font-family:inherit;font-size:11px">* distanza dalla lente Raynox</td></tr>`;
+  return o;
+}
+
+/* ════════ SIMULATORE ════════ */
+const SH=[100,125,160,200,250,320,400,500,640,800,1000,1250,1600,2000,2500,3200,4000,8000];
+const ISO=[100,200,400,800,1600,3200,6400,12800];
+const SUBJ=[{id:'fly',l:'Insetto in volo'},{id:'perch',l:'Insetto posato'},{id:'flower',l:'Fiore / statico'}];
+const AF=[
+ {id:'one',l:'One-Shot',d:'Singolo punto + BBF. Per soggetti fermi e focus bracketing.'},
+ {id:'A',l:'Servo · Caso A',d:'La R5 adatta automaticamente il tracking. Buon default in volo.'},
+ {id:'1',l:'Caso 1',d:'Impostazione versatile multiuso.'},
+ {id:'2',l:'Caso 2',d:'Continua a inseguire ignorando ostacoli: utile tra steli ed erba.'},
+ {id:'3',l:'Caso 3',d:'Aggancia subito soggetti che entrano nel punto AF.'},
+ {id:'4',l:'Caso 4',d:'Soggetti che accelerano/frenano di colpo: il più adatto agli insetti in volo.'}
+];
+const DRIVE=[
+ {id:'1',l:'Singolo',d:'Un solo fotogramma: bene per soggetti fermi.'},
+ {id:'H',l:'Mecc. H 8 fps',d:'Otturatore meccanico, nessuna distorsione, flash utilizzabile.'},
+ {id:'H+',l:'Mecc. H+ 12 fps',d:'Meccanico/prima tendina elettronica: niente rolling shutter sulle ali, flash OK. Scelta consigliata in volo.'},
+ {id:'E',l:'Elettr. 20 fps',d:'Più fotogrammi ma lettura sensore lenta: ali e battito distorti (rolling shutter). Flash non utilizzabile.'}
+];
+function recFor(subj){return subj==='fly'?{af:'4',dr:'H+',sh:2000}:subj==='perch'?{af:'one',dr:'H',sh:640}:{af:'one',dr:'1',sh:250}}
+
+function setM(id,pct,c){const e=document.getElementById(id);e.style.width=Math.max(2,pct)+'%';e.style.background={g:'#4fae7d',w:'#d69a2d',d:'#d9564f'}[c]}
+function setB(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className='badge '+c}
+
+function drawBee(x,cx,cy,s){
+  x.fillStyle='rgba(190,225,255,.28)';x.strokeStyle='rgba(160,200,240,.55)';x.lineWidth=.6;
+  [[-10,-5,-.25],[10,-5,.25]].forEach(([dx,dy,a])=>{x.beginPath();x.ellipse(cx+dx*s,cy+dy*s,9*s,4.5*s,a,0,7);x.fill();x.stroke()});
+  x.fillStyle='#f0b500';x.beginPath();x.ellipse(cx,cy+s,4.5*s,9*s,0,0,7);x.fill();
+  x.fillStyle='#1a1500';x.beginPath();x.ellipse(cx,cy+3*s,2.8*s,3.5*s,0,0,7);x.fill();
+  x.fillStyle='#d49010';x.beginPath();x.arc(cx,cy-8*s,3*s,0,7);x.fill();
+}
+function bg(x,c1,c2){const g=x.createLinearGradient(0,0,84,60);g.addColorStop(0,c1);g.addColorStop(1,c2);x.fillStyle=g;x.fillRect(0,0,84,60);
+  [[12,44,5],[66,12,7],[40,54,4]].forEach(([a,b,r])=>{x.globalAlpha=.4;x.fillStyle='#2a4a1a';x.beginPath();x.arc(a,b,r,0,7);x.fill()});x.globalAlpha=1}
+function drawMotion(den,s,speed){const x=document.getElementById('cvMo').getContext('2d');x.clearRect(0,0,84,60);bg(x,'#121a0c','#1e2c12');
+  const tr=Math.max(0,Math.round((12-Math.log2(den/100)*1.9)*speed));
+  for(let t=tr;t>0;t--){x.globalAlpha=.12/Math.sqrt(t);drawBee(x,42-t*2.2,30,s)}x.globalAlpha=1;drawBee(x,42,30,s)}
+function drawDof(d,s){const x=document.getElementById('cvDof').getContext('2d');x.clearRect(0,0,84,60);bg(x,'#0e1808','#16220c');
+  x.strokeStyle='rgba(70,130,40,.5)';x.lineWidth=1.5;x.beginPath();x.moveTo(42,60);x.lineTo(42,24);x.stroke();
+  for(let p=0;p<6;p++){const a=p*Math.PI/3;x.fillStyle='#c03828';x.beginPath();x.ellipse(42+Math.cos(a)*8,24+Math.sin(a)*8,3.5,2.5,a,0,7);x.fill()}
+  x.fillStyle='#e8a020';x.beginPath();x.arc(42,24,4.5,0,7);x.fill();drawBee(x,64,22,Math.max(.3,s*.8));
+  const b=Math.max(1.5,Math.min(56,d*3.2)),y=24-b/2;x.fillStyle='rgba(79,174,125,.14)';x.fillRect(0,y,84,b);
+  x.strokeStyle='rgba(79,174,125,.75)';x.setLineDash([3,2]);x.strokeRect(-1,y,86,b);x.setLineDash([])}
+function drawNoise(iso){const x=document.getElementById('cvNr').getContext('2d');x.clearRect(0,0,84,60);bg(x,'#1e2e10','#18240c');
+  const lvl=Math.min(1,Math.log2(iso/100)/7);if(lvl>.02){const id=x.getImageData(0,0,84,60),d=id.data;
+  for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*lvl*180,c=Math.random()<lvl*.35?(Math.random()-.5)*90:0;d[i]+=n+c;d[i+1]+=n;d[i+2]+=n-c}x.putImageData(id,0,0)}}
+
+function updSim(o){
+  seg('segSubj',SUBJ,S.subj,v=>{S.subj=v;const r=recFor(v);S.af=r.af;S.drive=r.dr;document.getElementById('slSh').value=SH.indexOf(r.sh)});
+  const r=recFor(S.subj);
+  seg('segAF',AF,S.af,v=>{S.af=v},r.af);
+  seg('segDrive',DRIVE,S.drive,v=>{S.drive=v},r.dr);
+  document.getElementById('afDesc').textContent=AF.find(a=>a.id===S.af).d;
+  document.getElementById('drDesc').textContent=DRIVE.find(a=>a.id===S.drive).d;
+  const aps=apList();const sl=document.getElementById('slAp2');sl.max=aps.length-1;if(+sl.value>aps.length-1)sl.value=aps.length-1;
+  const den=SH[+document.getElementById('slSh').value],N=aps[+sl.value],iso=ISO[+document.getElementById('slIso').value];
+  document.getElementById('vSh').textContent='1/'+den+' s';document.getElementById('vAp2').textContent='f/'+N;document.getElementById('vIso').textContent=iso;
+  const m=Math.max(0.03,o.m);
+  document.getElementById('simSetup').textContent=o.L.l+' · '+o.A.l+' · '+m.toFixed(2).replace('.',',')+'×';
+  // velocità richiesta: cresce con ingrandimento e tipo soggetto
+  const speed=S.subj==='fly'?1:S.subj==='perch'?0.45:0.2;
+  const need=(S.subj==='fly'?2000:S.subj==='perch'?640:200)*Math.max(.6,Math.min(1.6,m/0.35));
+  const ratio=den/need;
+  let ms,ml,mt;
+  if(ratio>=2){ms=100;ml='Perfetto';mt='Movimento completamente congelato'}
+  else if(ratio>=1){ms=85;ml='Ottimo';mt='Nitido, micro-mosso solo sulle ali'}
+  else if(ratio>=.6){ms=58;ml='Al limite';mt='Mosso visibile alle massime dimensioni'}
+  else if(ratio>=.3){ms=30;ml='Mosso';mt='Serve almeno 1/'+Math.round(need/10)*10}
+  else{ms=8;ml='Inutilizzabile';mt='Serve almeno 1/'+Math.round(need/10)*10}
+  const mc=ms>70?'g':ms>40?'w':'d';setB('bMo',ml,mc);document.getElementById('sMo').textContent=mt;setM('mMo',ms,mc);
+  drawMotion(den/ (need/2000),Math.max(.4,Math.min(1,m/.5)),speed);
+  // PdC
+  const d=dof(N,m),Neff=N*(1+m);let ds,dt;
+  if(Neff>=16){ds=40;dt='Diffrazione forte (f/'+nStd(Neff)+' effettivo)'}
+  else if(d<1){ds=28;dt='Critica: molti scatti fuori fuoco, usa focus bracketing'}
+  else if(d<2){ds=55;dt='Stretta: serve tecnica precisa'}
+  else if(d<6){ds=80;dt='Buona per insetti interi'}
+  else{ds=90;dt='Ampia: grande margine'}
+  if(Neff>=11&&Neff<16){ds=Math.min(ds,62);dt+=' · diffrazione visibile'}
+  const dc=ds>65?'g':ds>45?'w':'d';setB('bDof',fmtMM(d),dc);document.getElementById('sDof').textContent=dt;setM('mDof',ds,dc);
+  drawDof(d,Math.max(.3,Math.min(1,m/.5)));
+  // rumore
+  let ns,nl,nt;
+  if(iso<=400){ns=4;nl='Impercettibile';nt='Qualità piena per stock'}
+  else if(iso<=800){ns=10;nl='Minimo';nt='Ottimo per stock'}
+  else if(iso<=1600){ns=22;nl='Lieve';nt='Ok stock, LrC Denoise se serve'}
+  else if(iso<=3200){ns=42;nl='Moderato';nt='DxO PureRAW 6 · DeepPRIME XD3S'}
+  else if(iso<=6400){ns=65;nl='Marcato';nt='PureRAW 6 obbligatorio prima di LrC'}
+  else{ns=85;nl='Forte';nt='Solo se indispensabile'}
+  const nc=ns<20?'g':ns<50?'w':'d';setB('bNr',nl,nc);document.getElementById('sNr').textContent=nt;setM('mNr',ns,nc);drawNoise(iso);
+  // punteggio
+  const afQ={fly:{one:20,A:85,'1':60,'2':70,'3':72,'4':100},perch:{one:100,A:70,'1':65,'2':60,'3':60,'4':60},flower:{one:100,A:50,'1':55,'2':50,'3':50,'4':50}}[S.subj][S.af];
+  const drQ={fly:{'1':15,H:60,'H+':100,E:65},perch:{'1':70,H:100,'H+':90,E:75},flower:{'1':100,H:90,'H+':80,E:85}}[S.subj][S.drive];
+  const tot=Math.round(ms*.35+(100-ns*.85)*.2+ds*.2+afQ*.15+drQ*.1);
+  document.getElementById('scoreN').textContent=tot;
+  const col=tot>=75?'#4fae7d':tot>=50?'#d69a2d':'#d9564f';
+  const rf=document.getElementById('ringFill');rf.style.strokeDashoffset=125.66*(1-tot/100);rf.style.stroke=col;
+  document.getElementById('scoreBox').style.borderLeftColor=col;
+  const tips=[];
+  if(ms<70)tips.push('Porta il tempo ad <strong>almeno 1/'+(Math.ceil(need/100)*100)+'</strong>');
+  if(N<7.1&&S.subj!=='flower')tips.push('Chiudi a <strong>f/8</strong>: più PdC sul corpo dell’insetto');
+  if(Neff>=11)tips.push('Diaframma effettivo f/'+nStd(Neff)+': <strong>non chiudere oltre f/8</strong> con tubi');
+  if(iso>=3200)tips.push('ISO '+iso+': passa i RAW in <strong>PureRAW 6</strong> prima di LrC');
+  if(S.af!==r.af)tips.push('AF consigliato: <strong>'+AF.find(a=>a.id===r.af).l+'</strong>');
+  if(S.drive==='E'&&S.subj==='fly')tips.push('<strong>Rolling shutter</strong> con elettronico: le ali escono deformate');
+  if(S.drive!==r.dr&&!(S.drive==='E'&&S.subj==='fly'))tips.push('Raffica consigliata: <strong>'+DRIVE.find(a=>a.id===r.dr).l+'</strong>');
+  if(S.subj==='flower'&&S.af==='one')tips.push('Per la PdC estesa: <strong>focus bracketing 7 scatti, passo 1</strong> (otturatore elettronico)');
+  document.getElementById('scoreTxt').innerHTML=tot>=85&&tips.length<=1?'<strong>Configurazione ottimale ✓</strong> '+tips.join(' · '):tips.join(' · ')||'Parametri nella norma.';
+}
+
+/* ════════ PRESET ════════ */
+const PRESETS=[
+ {id:'macro',k:'Macro tubi',em:'🐝',t:'Macro insetti con tubi (a mano)',s:'RF 24-240 @240 + tubo 13 mm · oppure 100-400 + tubo',
+  rows:[['Modo','M + ISO Auto (max 3200)'],['Tempo / diaframma','1/640 minimo · f/8'],['Area AF','Punto singolo · One-Shot + BBF'],['Ritaglio','1.6× attivo'],['Otturatore','Elettronico (obbligatorio per bracketing)'],['Focus bracketing','7 scatti · incremento 1 · Esposizione uniforme OFF'],['MF elettronico','One-Shot → attiva ingrandimento'],['Peaking','Rosso · Bassa']],
+  tips:['ISO Auto si blocca quando premi AF-ON in One-Shot','Il bracketing scatta tutta la serie con una sola pressione, a prescindere dalla raffica','Sviluppa prima i RAW, esporta TIFF 16 bit, poi stacking (Photoshop o Luminar Neo)']},
+ {id:'volo',k:'Volo',em:'🦋',t:'Insetti in volo',s:'RF 24-240 @240 o 100-400 @400 · distanza ≥1 m',
+  rows:[['Modo','M + ISO Auto (max 6400)'],['Tempo / diaframma','1/2000–1/2500 · f/8'],['AF','Servo · Caso 4 (o A) · Zona flessibile piccola'],['Rilevamento','Animali · Occhi ON'],['Raffica','H+ 12 fps meccanico (no rolling shutter)'],['Ritaglio','1.6× opzionale per AF più fitto'],['Pre-focus','Metti a fuoco sul fiore, attendi l’arrivo']],
+  tips:['Evita i 20 fps elettronici: le ali si deformano','Luce laterale dietro il soggetto = ali traslucide','Con ISO > 3200 PureRAW 6 prima della selezione']},
+ {id:'fauna',k:'Fauna',em:'🦊',t:'Fauna Etna',s:'RF 100-400 · lucertole, volpi, asini, mucche',
+  rows:[['Modo','Av f/8 o M + ISO Auto (max 6400)'],['Tempo','1/1000 animali fermi · 1/2000 in movimento'],['AF','Servo · Caso A · Tutto il frame con tracking'],['Rilevamento','Animali · Occhi ON'],['Raffica','H+ 12 fps meccanico'],['Stabilizzatore','IS ottico ON (coordinato con IBIS)'],['Esposizione','Valutativa · +1/3 su pelo scuro, −1/3 su soggetti chiari']],
+  tips:['Lucertole: tubo 13 mm + 400 mm, ti avvicini a ~1 m senza spaventarle','Serie coerente “Fauna Etna” per il portfolio']},
+ {id:'paes',k:'Paesaggio',em:'🌋',t:'Paesaggio Etna / costa',s:'RF 14-35 · RF 100-400 per compressioni',
+  rows:[['Modo','Av · f/8–f/11 · ISO 100'],['Supporto','Treppiede · IS OFF su treppiede · autoscatto 2 s'],['Esposizione','ETTR: istogramma a destra senza clipping'],['Bracketing','AEB ±2 EV (otturatore meccanico o prima tendina, NON elettronico)'],['AF','One-Shot · punto singolo a 1/3 della scena'],['Livella','Elettronica ON']],
+  tips:['Fumo e cenere dell’Etna: Dehaze in LrC, non in fotocamera','Mare mosso: 1/2–2 s per acqua setosa (filtro ND)']},
+ {id:'notte',k:'Notturno',em:'✨',t:'Notturno / Via Lattea',s:'RF 14-35 @14 · f/4',
+  rows:[['Modo','M · f/4 · 10–15 s · ISO 3200–6400'],['Fuoco','MF con ingrandimento ×10 su stella luminosa'],['Riduzione rumore lunga esposizione','OFF (si fa in PureRAW)'],['Bilanciamento bianco','3800–4200 K'],['Autoscatto','2 s o telecomando'],['IBIS','OFF su treppiede']],
+  tips:['Regola NPF: a 14 mm su R5 circa 12–13 s per stelle puntiformi','Eruzione notturna: abbassa a ISO 800–1600 e 2–4 s per non bruciare la lava']},
+ {id:'street',k:'Street',em:'🏙',t:'Street / ritratto',s:'RF 50 f/1.8 STM · RF 14-35',
+  rows:[['Modo','Av · f/5.6 (street) · f/2–2.8 (ritratto)'],['ISO','Auto · tempo minimo 1/250'],['AF','Servo · Rilevamento persone · Occhi ON'],['Otturatore','Elettronico silenzioso (luce naturale)'],['Raffica','H 8 fps'],['Notte','f/1.8–2.2 · ISO fino a 6400']],
+  tips:['50 mm senza IS ottico: IBIS attivo','B&N: scatta in colore RAW, converti in LrC']}
+];
+function chkKey(){return 'kitr5chk_'+S.preset}
+function updPreset(){
+  S.preset=S.preset||'macro';
+  seg('segPreset',PRESETS.map(p=>({id:p.id,l:p.em+' '+p.k})),S.preset,v=>{S.preset=v});
+  const p=PRESETS.find(x=>x.id===S.preset);
+  let done={};try{const raw=JSON.parse(localStorage.getItem(chkKey())||'{}');if(Date.now()-(raw.ts||0)<12*3600e3)done=raw.d||{}}catch(e){}
+  document.getElementById('presetBox').innerHTML=`<div class="preset-h"><span class="em">${p.em}</span><div><b>${p.t}</b><small>${p.s}</small></div></div>`+
+   p.rows.map((r,i)=>`<label class="check ${done[i]?'done':''}"><input type="checkbox" data-i="${i}" ${done[i]?'checked':''}><span><b style="color:var(--dim);font-weight:500">${r[0]}:</b> ${r[1]}</span></label>`).join('')+
+   `<ul class="tips">${p.tips.map(t=>`<li>${t}</li>`).join('')}</ul>`;
+  document.querySelectorAll('#presetBox input').forEach(c=>c.onchange=()=>{done[c.dataset.i]=c.checked;c.parentElement.classList.toggle('done',c.checked);try{localStorage.setItem(chkKey(),JSON.stringify({ts:Date.now(),d:done}))}catch(e){}});
+}
+
+/* ════════ GLUE ════════ */
+function updAll(){const o=updTubi();updSim(o);updPreset()}
+['slAp','slFoc','slSh','slAp2','slIso'].forEach(id=>document.getElementById(id).addEventListener('input',updAll));
+document.getElementById('slAp').addEventListener('input',()=>{document.getElementById('slAp2').value=document.getElementById('slAp').value;updAll()});
+document.getElementById('slAp2').addEventListener('input',()=>{document.getElementById('slAp').value=document.getElementById('slAp2').value;updAll()});
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+  scrollTo(0,0);try{localStorage.setItem('kitr5tab',b.dataset.t)}catch(e){}
+});
+try{const t=localStorage.getItem('kitr5tab');if(t){const b=document.querySelector(`#tabs button[data-t="${t}"]`);b&&b.click()}}catch(e){}
+renderLenses();updAll();
+
+/* PWA */
+let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;const b=document.getElementById('installBtn');b.style.display='block';b.onclick=async()=>{dp.prompt();await dp.userChoice;b.style.display='none'}});
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+</script>
+</body>
+</html>
