@@ -60,6 +60,7 @@ ul.tips{list-style:none;margin-top:8px}
 ul.tips li{position:relative;padding-left:16px;margin:5px 0;font-size:13px}
 ul.tips li::before{content:"→";position:absolute;left:0;color:var(--amber);font-size:11px;top:1px}
 ul.tips strong,.callout strong{color:var(--amber-l)}
+ul.tips a{color:var(--amber)}
 .callout{border-left:2px solid var(--amber);background:rgba(200,129,58,.07);padding:10px 12px;font-size:12.5px;margin:10px 0;border-radius:0 4px 4px 0}
 .callout.w{border-color:var(--warn);background:rgba(214,154,45,.08)}
 .callout.d{border-color:var(--bad);background:rgba(217,86,79,.08)}
@@ -217,7 +218,7 @@ footer a{color:var(--amber);text-decoration:none}
   <button data-t="t-preset"><span class="ic">☰</span><span data-en="Presets">Preset</span></button>
 </nav>
 
-<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a> · <a href="https://apps.fotolapissable.it/kit-sviluppo/">Kit Sviluppo</a></footer>
+<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a> · <a href="https://apps.fotolapissable.it/kit-sviluppo/">Kit Sviluppo</a> · <a href="https://apps.fotolapissable.it/Golden-hour-planner/">Golden Hour</a></footer>
 
 <script>
 /* ════════ LINGUA ════════ */
@@ -507,10 +508,10 @@ const PRESETS=[
   tips:[{it:'Lucertole: tubo 13 mm + 400 mm, ti avvicini a ~1 m',en:'Lizards: 13 mm tube + 400 mm, get to ~1 m'},{it:'Serie coerente “Fauna Etna” per il portfolio',en:'Consistent “Etna wildlife” series for the portfolio'}]},
  {id:'paes',k:{it:'Paesaggio',en:'Landscape'},em:'🌋',t:{it:'Paesaggio Etna / costa',en:'Etna / coast landscape'},s:{it:'RF 14-35 · RF 100-400 per compressioni',en:'RF 14-35 · RF 100-400 for compression'},
   rows:[[{it:'Modo',en:'Mode'},'Av · f/8–f/11 · ISO 100'],[{it:'Supporto',en:'Support'},{it:'Treppiede · IS OFF · autoscatto 2 s',en:'Tripod · IS OFF · 2 s self-timer'}],[{it:'Fuoco',en:'Focus'},{it:'Iperfocale (scheda Notte·Flash)',en:'Hyperfocal (Night·Flash tab)'}],[{it:'Esposizione',en:'Exposure'},{it:'ETTR senza clipping',en:'ETTR without clipping'}],[{it:'Bracketing',en:'Bracketing'},{it:'AEB ±2 EV (meccanico o prima tendina, NON elettronico)',en:'AEB ±2 EV (mechanical or first curtain, NOT electronic)'}],[{it:'Livella',en:'Level'},{it:'Elettronica ON',en:'Electronic ON'}]],
-  tips:[{it:'Fumo e cenere dell’Etna: Dehaze in LrC, non in fotocamera',en:'Etna smoke and ash: Dehaze in LrC, not in camera'},{it:'Mare: 1/2–2 s per acqua setosa (filtro ND)',en:'Sea: 1/2–2 s for silky water (ND filter)'}]},
+  tips:[{it:'Fumo e cenere dell’Etna: Dehaze in LrC, non in fotocamera',en:'Etna smoke and ash: Dehaze in LrC, not in camera'},{it:'Mare: 1/2–2 s per acqua setosa (filtro ND)',en:'Sea: 1/2–2 s for silky water (ND filter)'},{it:'Ora dorata e ora blu per la tua posizione: <a href=\'https://apps.fotolapissable.it/Golden-hour-planner/\' target=\'_blank\' rel=\'noopener\'>Golden Hour Planner ↗</a>',en:'Golden and blue hour for your location: <a href=\'https://apps.fotolapissable.it/Golden-hour-planner/\' target=\'_blank\' rel=\'noopener\'>Golden Hour Planner ↗</a>'}]},
  {id:'notte',k:{it:'Notturno',en:'Night'},em:'✨',t:{it:'Notturno / Via Lattea',en:'Night / Milky Way'},s:{it:'RF 14-35 @14 · f/4',en:'RF 14-35 @14 · f/4'},
   rows:[[{it:'Modo',en:'Mode'},{it:'M · f/4 · tempo NPF (≈19 s; rigoroso ≈10 s) · ISO 3200–6400',en:'M · f/4 · NPF time (≈19 s; strict ≈10 s) · ISO 3200–6400'}],[{it:'Fuoco',en:'Focus'},{it:'MF con ingrandimento ×10 su stella luminosa',en:'MF with ×10 magnification on a bright star'}],[{it:'NR lunghe esposizioni',en:'Long exposure NR'},{it:'OFF (si fa in PureRAW)',en:'OFF (done in PureRAW)'}],[{it:'Bilanciamento bianco',en:'White balance'},'3800–4200 K'],[{it:'Scatto',en:'Release'},{it:'Autoscatto 2 s o telecomando',en:'2 s self-timer or remote'}],['IBIS',{it:'OFF su treppiede',en:'OFF on tripod'}]],
-  tips:[{it:'Calcola il tempo esatto nella scheda Notte·Flash',en:'Work out the exact time in the Night·Flash tab'},{it:'Eruzione notturna: ISO 800–1600 e 2–4 s per non bruciare la lava',en:'Night eruption: ISO 800–1600 and 2–4 s to avoid blowing out the lava'}]},
+  tips:[{it:'Calcola il tempo esatto nella scheda Notte·Flash',en:'Work out the exact time in the Night·Flash tab'},{it:'Fine dell’ora blu e buio astronomico: <a href=\'https://apps.fotolapissable.it/Golden-hour-planner/\' target=\'_blank\' rel=\'noopener\'>Golden Hour Planner ↗</a>',en:'End of blue hour and astronomical darkness: <a href=\'https://apps.fotolapissable.it/Golden-hour-planner/\' target=\'_blank\' rel=\'noopener\'>Golden Hour Planner ↗</a>'},{it:'Eruzione notturna: ISO 800–1600 e 2–4 s per non bruciare la lava',en:'Night eruption: ISO 800–1600 and 2–4 s to avoid blowing out the lava'}]},
  {id:'street',k:'Street',em:'🏙',t:{it:'Street / ritratto',en:'Street / portrait'},s:'RF 50 f/1.8 STM · RF 14-35',
   rows:[[{it:'Modo',en:'Mode'},{it:'Av · f/5.6 street · f/2–2.8 ritratto',en:'Av · f/5.6 street · f/2–2.8 portrait'}],['ISO',{it:'Auto · tempo minimo 1/250',en:'Auto · minimum shutter 1/250'}],['AF',{it:'Servo · persone · Occhi ON',en:'Servo · people · Eyes ON'}],[{it:'Otturatore',en:'Shutter'},{it:'Elettronico silenzioso (luce naturale)',en:'Silent electronic (natural light)'}],[{it:'Raffica',en:'Drive'},'H 8 fps'],[{it:'Notte',en:'Night'},{it:'f/1.8–2.2 · ISO fino a 6400',en:'f/1.8–2.2 · ISO up to 6400'}]],
   tips:[{it:'50 mm senza IS ottico: IBIS attivo',en:'50 mm has no optical IS: IBIS on'},{it:'B&N: scatta a colori in RAW, converti in LrC',en:'B&W: shoot colour RAW, convert in LrC'}]}
