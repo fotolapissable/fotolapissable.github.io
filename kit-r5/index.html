@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kit R5 · fotolapissable</title>
-<meta name="description" content="Canon R5 sul campo: ottiche RF, calcolatore tubi di prolunga e Raynox, simulatore di scatto e preset fotocamera.">
+<meta name="description" content="Canon R5 sul campo: ottiche RF, calcolatore tubi di prolunga e Raynox, simulatore di scatto, calcoli notturni, flash e preset fotocamera.">
 <meta name="theme-color" content="#0c0c0c">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -26,9 +26,11 @@ header{position:sticky;top:0;z-index:20;background:rgba(12,12,12,.94);backdrop-f
 header svg{width:34px;height:34px;flex-shrink:0}
 .brand b{display:block;color:var(--white);font-size:15px;letter-spacing:.06em}
 .brand span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber)}
-#installBtn{margin-left:auto;display:none;background:var(--amber);color:#111;border:0;border-radius:3px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(16,16,16,.97);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
-nav.tabs button{background:none;border:0;color:var(--dim);padding:9px 4px 10px;font-size:10.5px;letter-spacing:.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit}
+.hbtns{margin-left:auto;display:flex;gap:6px}
+#installBtn{display:none;background:var(--amber);color:#111;border:0;border-radius:3px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+#langBtn{background:transparent;color:var(--amber);border:1px solid var(--amber);border-radius:3px;padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--mono)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(16,16,16,.97);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs button{background:none;border:0;color:var(--dim);padding:9px 2px 10px;font-size:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit}
 nav.tabs button .ic{font-size:18px;line-height:1}
 nav.tabs button.on{color:var(--amber)}
 main{max-width:980px;margin:0 auto;padding:16px}
@@ -38,8 +40,7 @@ h2{font-size:20px;color:var(--white);font-weight:600;margin:6px 0 4px}
 h3{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:600;margin:20px 0 10px}
 .card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px;margin-bottom:12px}
 .grid{display:grid;gap:12px}
-@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
-.lens-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}}
 .lens-h b{color:var(--white);font-size:16px}
 .tag{display:inline-block;font-size:10px;letter-spacing:1px;text-transform:uppercase;border:1px solid var(--line);color:var(--dim);border-radius:20px;padding:2px 8px;margin:2px 4px 2px 0}
 .tag.a{border-color:var(--amber);color:var(--amber)}
@@ -58,8 +59,11 @@ table.kv td:last-child{color:var(--white);font-family:var(--mono);font-size:12px
 ul.tips{list-style:none;margin-top:8px}
 ul.tips li{position:relative;padding-left:16px;margin:5px 0;font-size:13px}
 ul.tips li::before{content:"→";position:absolute;left:0;color:var(--amber);font-size:11px;top:1px}
+ul.tips strong,.callout strong{color:var(--amber-l)}
 .callout{border-left:2px solid var(--amber);background:rgba(200,129,58,.07);padding:10px 12px;font-size:12.5px;margin:10px 0;border-radius:0 4px 4px 0}
 .callout.w{border-color:var(--warn);background:rgba(214,154,45,.08)}
+.callout.d{border-color:var(--bad);background:rgba(217,86,79,.08)}
+.callout a{color:var(--amber)}
 .seg{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
 .seg button{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:4px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit}
 .seg button.on{background:var(--amber);border-color:var(--amber);color:#111;font-weight:600}
@@ -68,6 +72,7 @@ ul.tips li::before{content:"→";position:absolute;left:0;color:var(--amber);fon
 .ctl-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
 .ctl-h span{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
 .ctl-h b{font-family:var(--mono);color:var(--white);font-weight:500}
+.hint{color:var(--dim);font-size:11px;margin-top:2px}
 input[type=range]{width:100%;accent-color:var(--amber);height:28px}
 .out{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 @media(min-width:560px){.out{grid-template-columns:repeat(3,1fr)}}
@@ -81,7 +86,7 @@ input[type=range]{width:100%;accent-color:var(--amber);height:28px}
 .fb-i{flex:1;min-width:0}
 .fb-t{display:flex;justify-content:space-between;align-items:center;gap:6px}
 .fb-t span{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
-.badge{font-size:11px;font-weight:600;padding:1px 8px;border-radius:20px}
+.badge{font-size:11px;font-weight:600;padding:1px 8px;border-radius:20px;font-style:normal}
 .badge.g{background:rgba(79,174,125,.16);color:var(--ok)}.badge.w{background:rgba(214,154,45,.16);color:var(--warn)}.badge.d{background:rgba(217,86,79,.16);color:var(--bad)}
 .fb-s{font-size:12px;color:var(--dim);margin:3px 0 5px}
 .meter{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
@@ -99,6 +104,7 @@ input[type=range]{width:100%;accent-color:var(--amber);height:28px}
 .check{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;cursor:pointer}
 .check input{accent-color:var(--amber);margin-top:3px;width:16px;height:16px;flex-shrink:0}
 .check.done span{color:var(--dim);text-decoration:line-through}
+.check em{color:var(--dim);font-style:normal}
 footer{text-align:center;color:var(--dim);font-size:11px;letter-spacing:1px;padding:24px 16px}
 footer a{color:var(--amber);text-decoration:none}
 </style>
@@ -108,57 +114,56 @@ footer a{color:var(--amber);text-decoration:none}
 <header>
   <svg viewBox="0 0 60 60" aria-hidden="true"><g transform="translate(30,30)" fill="none" stroke="#C8813A" stroke-width="2"><ellipse rx="25" ry="8.5"/><ellipse rx="25" ry="8.5" transform="rotate(60)"/><ellipse rx="25" ry="8.5" transform="rotate(120)"/></g><g fill="#C8813A"><circle cx="55" cy="30" r="2.2"/><circle cx="5" cy="30" r="2.2"/><circle cx="30" cy="30" r="4.2"/></g></svg>
   <div class="brand"><b>Kit R5</b><span>fotolapissable</span></div>
-  <button id="installBtn">Installa</button>
+  <div class="hbtns"><button id="installBtn" data-en="Install">Installa</button><button id="langBtn" aria-label="Language">EN</button></div>
 </header>
 
 <main>
 
 <!-- ═════════ OTTICHE ═════════ -->
 <section class="tab on" id="t-ottiche">
-  <h2>Ottiche RF</h2>
-  <p class="lead">Dati, uso tipico e impostazioni di partenza su Canon EOS R5 per ciascun obiettivo.</p>
+  <h2 data-en="RF lenses">Ottiche RF</h2>
+  <p class="lead" data-en="Specs, typical use and starting settings on the Canon EOS R5 for each lens.">Dati, uso tipico e impostazioni di partenza su Canon EOS R5 per ciascun obiettivo.</p>
   <div class="grid g2" id="lensList"></div>
-  <div class="callout w">Distanze minime e ingrandimenti sono i valori dichiarati da Canon; dove indicato “≈” sono arrotondati. La distanza di messa a fuoco si misura dal piano sensore, non dalla lente frontale.</div>
+  <div class="callout w" data-en="Minimum focus distances and magnifications are Canon's published values; those marked “≈” are rounded. Focus distance is measured from the sensor plane (⦵ mark on the body), not from the front element.">Distanze minime e ingrandimenti sono i valori dichiarati da Canon; quelli con “≈” sono arrotondati. La distanza di messa a fuoco si misura dal piano sensore (segno ⦵ sul corpo), non dalla lente frontale.</div>
 </section>
 
 <!-- ═════════ TUBI & MACRO ═════════ -->
 <section class="tab" id="t-tubi">
-  <h2>Calcolatore tubi & Raynox</h2>
-  <p class="lead">Scegli obiettivo e accessorio: ottieni ingrandimento, distanza di lavoro, campo inquadrato, PdC e diaframma effettivo. Stima ottica a lente sottile — ottima per decidere sul campo, verifica sempre dal mirino.</p>
-
+  <h2 data-en="Extension tube & Raynox calculator">Calcolatore tubi & Raynox</h2>
+  <p class="lead" data-en="Pick lens and accessory: get magnification, working distance, field of view, depth of field and effective aperture. Thin-lens estimate — great for deciding in the field, always check in the viewfinder.">Scegli obiettivo e accessorio: ottieni ingrandimento, distanza di lavoro, campo inquadrato, PdC e diaframma effettivo. Stima ottica a lente sottile — ottima per decidere sul campo, verifica sempre dal mirino.</p>
   <div class="card">
-    <div class="ctl"><div class="ctl-h"><span>Obiettivo</span></div><div class="seg" id="segLens"></div></div>
-    <div class="ctl"><div class="ctl-h"><span>Accessorio</span></div><div class="seg" id="segAcc"></div></div>
-    <div class="ctl"><div class="ctl-h"><span>Diaframma impostato</span><b id="vAp">f/8</b></div><input type="range" id="slAp" min="0" max="6" value="2"></div>
-    <div class="ctl"><div class="ctl-h"><span>Ghiera di messa a fuoco</span><b id="vFoc">minima</b></div><input type="range" id="slFoc" min="0" max="100" value="0"><div class="lead" style="margin:2px 0 0;font-size:11px">sinistra = distanza minima (max ingrandimento) · destra = infinito</div></div>
-    <div class="ctl"><div class="ctl-h"><span>Modalità ritaglio 1.6×</span></div><div class="seg" id="segCrop"></div></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Lens">Obiettivo</span></div><div class="seg" id="segLens"></div></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Accessory">Accessorio</span></div><div class="seg" id="segAcc"></div></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Set aperture">Diaframma impostato</span><b id="vAp">f/8</b></div><input type="range" id="slAp" min="0" max="6" value="2"></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Focus ring">Ghiera di messa a fuoco</span><b id="vFoc"></b></div><input type="range" id="slFoc" min="0" max="100" value="0"><div class="hint" data-en="left = minimum distance (max magnification) · right = infinity">sinistra = distanza minima (max ingrandimento) · destra = infinito</div></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="1.6× crop mode">Modalità ritaglio 1.6×</span></div><div class="seg" id="segCrop"></div></div>
   </div>
-
   <div class="out" id="tubeOut"></div>
   <div id="tubeNotes"></div>
   <div class="card" style="margin-top:12px">
-    <h3 style="margin-top:0">Confronto rapido</h3>
+    <h3 style="margin-top:0" data-en="Quick comparison">Confronto rapido</h3>
     <div style="overflow-x:auto"><table class="kv" id="cmpTable"></table></div>
   </div>
 </section>
 
 <!-- ═════════ SIMULATORE ═════════ -->
 <section class="tab" id="t-sim">
-  <h2>Simulatore di scatto</h2>
-  <p class="lead">Insetti in volo o posati: muovi i parametri e guarda movimento, PdC e rumore. L’ingrandimento arriva dal calcolatore tubi (<span id="simSetup" style="color:var(--amber)"></span>).</p>
+  <h2 data-en="Shooting simulator">Simulatore di scatto</h2>
+  <p class="lead"><span data-en="Insects in flight or perched: move the settings and watch motion, DoF and noise. Magnification comes from the tube calculator">Insetti in volo o posati: muovi i parametri e guarda movimento, PdC e rumore. L’ingrandimento arriva dal calcolatore tubi</span> (<span id="simSetup" style="color:var(--amber)"></span>).</p>
   <div class="grid g2">
     <div class="card">
-      <div class="ctl"><div class="ctl-h"><span>Soggetto</span></div><div class="seg" id="segSubj"></div></div>
-      <div class="ctl"><div class="ctl-h"><span>Tempo</span><b id="vSh"></b></div><input type="range" id="slSh" min="0" max="17" value="13"></div>
-      <div class="ctl"><div class="ctl-h"><span>Diaframma</span><b id="vAp2"></b></div><input type="range" id="slAp2" min="0" max="6" value="2"></div>
+      <div class="ctl"><div class="ctl-h"><span data-en="Subject">Soggetto</span></div><div class="seg" id="segSubj"></div></div>
+      <div class="ctl"><div class="ctl-h"><span data-en="Shutter speed">Tempo</span><b id="vSh"></b></div><input type="range" id="slSh" min="0" max="17" value="13"></div>
+      <div class="ctl"><div class="ctl-h"><span data-en="Aperture">Diaframma</span><b id="vAp2"></b></div><input type="range" id="slAp2" min="0" max="6" value="2"></div>
       <div class="ctl"><div class="ctl-h"><span>ISO</span><b id="vIso"></b></div><input type="range" id="slIso" min="0" max="7" value="3"></div>
-      <div class="ctl"><div class="ctl-h"><span>Modo AF</span></div><div class="seg" id="segAF"></div><div class="lead" id="afDesc" style="margin:6px 0 0;font-size:12px"></div></div>
-      <div class="ctl"><div class="ctl-h"><span>Otturatore / raffica</span></div><div class="seg" id="segDrive"></div><div class="lead" id="drDesc" style="margin:6px 0 0;font-size:12px"></div></div>
+      <div class="ctl"><div class="ctl-h"><span data-en="AF mode">Modo AF</span></div><div class="seg" id="segAF"></div><div class="hint" id="afDesc" style="font-size:12px;margin-top:6px"></div></div>
+      <div class="ctl"><div class="ctl-h"><span data-en="Shutter / burst">Otturatore / raffica</span></div><div class="seg" id="segDrive"></div><div class="hint" id="drDesc" style="font-size:12px;margin-top:6px"></div></div>
+      <div class="ctl"><div class="ctl-h"><span>Flash</span></div><div class="seg" id="segFlash"></div></div>
     </div>
     <div>
-      <div class="fb"><canvas id="cvMo" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span>Congelamento</span><em class="badge" id="bMo"></em></div><div class="fb-s" id="sMo"></div><div class="meter"><i id="mMo"></i></div></div></div>
-      <div class="fb"><canvas id="cvDof" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span>Profondità di campo</span><em class="badge" id="bDof"></em></div><div class="fb-s" id="sDof"></div><div class="meter"><i id="mDof"></i></div></div></div>
-      <div class="fb"><canvas id="cvNr" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span>Rumore R5</span><em class="badge" id="bNr"></em></div><div class="fb-s" id="sNr"></div><div class="meter"><i id="mNr"></i></div></div></div>
+      <div class="fb"><canvas id="cvMo" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span data-en="Motion freeze">Congelamento</span><em class="badge" id="bMo"></em></div><div class="fb-s" id="sMo"></div><div class="meter"><i id="mMo"></i></div></div></div>
+      <div class="fb"><canvas id="cvDof" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span data-en="Depth of field">Profondità di campo</span><em class="badge" id="bDof"></em></div><div class="fb-s" id="sDof"></div><div class="meter"><i id="mDof"></i></div></div></div>
+      <div class="fb"><canvas id="cvNr" width="84" height="60"></canvas><div class="fb-i"><div class="fb-t"><span data-en="R5 noise">Rumore R5</span><em class="badge" id="bNr"></em></div><div class="fb-s" id="sNr"></div><div class="meter"><i id="mNr"></i></div></div></div>
       <div class="score" id="scoreBox">
         <div class="ring"><svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="#262626" stroke-width="4"/><circle id="ringFill" cx="24" cy="24" r="20" fill="none" stroke="#4fae7d" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.66" stroke-dashoffset="125.66"/></svg><b id="scoreN">0</b></div>
         <p id="scoreTxt"></p>
@@ -167,192 +172,196 @@ footer a{color:var(--amber);text-decoration:none}
   </div>
 </section>
 
+<!-- ═════════ NOTTE & FLASH ═════════ -->
+<section class="tab" id="t-tools">
+  <h2 data-en="Night & flash">Notte & flash</h2>
+  <p class="lead" data-en="Star exposure time and hyperfocal distance for the RF 14-35, plus flash use on the R5.">Tempo massimo per stelle puntiformi e iperfocale per l’RF 14-35, più l’uso del flash sulla R5.</p>
+
+  <div class="card">
+    <h3 style="margin-top:0" data-en="Stars without trails · NPF rule">Stelle senza scie · regola NPF</h3>
+    <div class="ctl"><div class="ctl-h"><span data-en="Focal length">Focale</span><b id="vNf"></b></div><input type="range" id="slNf" min="14" max="35" value="14"></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Aperture">Diaframma</span><b id="vNa"></b></div><input type="range" id="slNa" min="0" max="3" value="0"></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Sky area">Zona di cielo</span></div><div class="seg" id="segDec"></div></div>
+    <div class="out" id="npfOut"></div>
+    <div class="callout" data-en="NPF is calibrated on the R5's 4.39 µm pixel. For a 100% crop or a large print, use the “strict” value; for web and A3 the NPF value is fine. Stars near the celestial pole (north) move less and tolerate longer times.">L’NPF è calcolata sul pixel della R5 (4,39 µm). Per crop al 100% o stampe grandi usa il valore “rigoroso”; per web e A3 va bene il valore NPF. Le stelle vicine al polo celeste (nord) si muovono meno e tollerano tempi più lunghi.</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0" data-en="Hyperfocal distance · RF 14-35">Iperfocale · RF 14-35</h3>
+    <div class="ctl"><div class="ctl-h"><span data-en="Focal length">Focale</span><b id="vHf"></b></div><input type="range" id="slHf" min="14" max="35" value="14"></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Aperture">Diaframma</span><b id="vHa"></b></div><input type="range" id="slHa" min="0" max="4" value="2"></div>
+    <div class="ctl"><div class="ctl-h"><span data-en="Sharpness criterion">Criterio di nitidezza</span></div><div class="seg" id="segCoc"></div></div>
+    <div class="out" id="hypOut"></div>
+    <div class="hint" style="margin-top:8px" data-en="Focus at the hyperfocal distance: everything from half that distance to infinity is acceptably sharp. Use MF with the R5 focus distance guide, or focus on an object at that distance.">Metti a fuoco all’iperfocale: è nitido tutto da metà di quella distanza fino all’infinito. Usa MF con la guida distanza della R5, oppure fuoco su un oggetto a quella distanza.</div>
+  </div>
+
+  <div class="card" id="flashBox"></div>
+</section>
+
 <!-- ═════════ PRESET R5 ═════════ -->
 <section class="tab" id="t-preset">
-  <h2>Preset fotocamera</h2>
-  <p class="lead">Configurazioni pronte per scenario. Spunta la checklist mentre imposti la R5 (si azzera da sola dopo 12 ore).</p>
+  <h2 data-en="Camera presets">Preset fotocamera</h2>
+  <p class="lead" data-en="Ready-made setups by scenario. Tick the checklist while setting up the R5 (it resets itself after 12 hours).">Configurazioni pronte per scenario. Spunta la checklist mentre imposti la R5 (si azzera da sola dopo 12 ore).</p>
   <div class="seg" id="segPreset" style="margin-bottom:12px"></div>
   <div class="card" id="presetBox"></div>
-  <div class="card">
-    <h3 style="margin-top:0">Configurazione base sempre attiva</h3>
-    <table class="kv">
-      <tr><td>Messa a fuoco</td><td>Back Button Focus: mezza pressione = solo esposizione · AF-ON = esposizione + AF</td></tr>
-      <tr><td>Personalizza pulsanti</td><td>C.Fn pag. 5</td></tr>
-      <tr><td>Focus bracketing</td><td>Menu AF (richiede otturatore elettronico)</td></tr>
-      <tr><td>Peaking</td><td>Menu AF pag. 4–5 · Rosso, sensibilità Bassa</td></tr>
-      <tr><td>Formato</td><td>RAW (CR3), mai C-RAW per stock e stampa</td></tr>
-      <tr><td>Stabilizzazione</td><td>Ottica con IS + IBIS coordinati automaticamente; su ottiche senza IS solo IBIS (menu)</td></tr>
-    </table>
-  </div>
+  <div class="card" id="baseBox"></div>
 </section>
 
 </main>
 
 <nav class="tabs" id="tabs">
-  <button data-t="t-ottiche" class="on"><span class="ic">◎</span>Ottiche</button>
-  <button data-t="t-tubi"><span class="ic">⊕</span>Tubi & macro</button>
-  <button data-t="t-sim"><span class="ic">◐</span>Simulatore</button>
-  <button data-t="t-preset"><span class="ic">☰</span>Preset R5</button>
+  <button data-t="t-ottiche" class="on"><span class="ic">◎</span><span data-en="Lenses">Ottiche</span></button>
+  <button data-t="t-tubi"><span class="ic">⊕</span><span data-en="Macro">Tubi</span></button>
+  <button data-t="t-sim"><span class="ic">◐</span><span data-en="Simulator">Simulatore</span></button>
+  <button data-t="t-tools"><span class="ic">✦</span><span data-en="Night·Flash">Notte·Flash</span></button>
+  <button data-t="t-preset"><span class="ic">☰</span><span data-en="Presets">Preset</span></button>
 </nav>
 
-<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a></footer>
+<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a> · <a href="https://apps.fotolapissable.it/kit-sviluppo/">Kit Sviluppo</a></footer>
 
 <script>
+/* ════════ LINGUA ════════ */
+let LANG='it';
+try{LANG=localStorage.getItem('fl_lang')||((navigator.language||'it').toLowerCase().startsWith('it')?'it':'en')}catch(e){}
+const T=o=>o==null?'':typeof o==='string'?o:(o[LANG]??o.it);
+const nf=(x,d)=>{const s=x.toFixed(d);return LANG==='it'?s.replace('.',','):s};
+function applyStatic(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-en]').forEach(el=>{if(el.dataset.it===undefined)el.dataset.it=el.innerHTML;el.innerHTML=LANG==='en'?el.dataset.en:el.dataset.it});
+  document.getElementById('langBtn').textContent=LANG==='it'?'EN':'IT';
+}
+document.getElementById('langBtn').onclick=()=>{LANG=LANG==='it'?'en':'it';try{localStorage.setItem('fl_lang',LANG)}catch(e){}applyStatic();renderAll()};
+
 /* ════════ DATI OTTICHE ════════ */
 const LENSES=[
- {id:'1435',name:'RF 14-35mm f/4 L IS USM',tags:['Paesaggio','Architettura','Notturno','Street'],
-  specs:{Focale:'14–35 mm',Apertura:'f/4 costante',Stabilizzatore:'Sì (+ IBIS)',MFD:'0,20 m',Ingrandimento:'0,38× (35 mm)',Filtro:'77 mm'},
-  uses:[['Paesaggio Etna/costa','f/8–f/11 · ISO 100 · treppiede · IS off su treppiede'],['Notturno / Via Lattea','14 mm · f/4 · 10–15 s · ISO 3200–6400'],['Architettura','f/8 · livella elettronica ON · correzione Upright in LrC'],['Street ampio','f/8 · Auto ISO min 1/250 · iperfocale ~1,5 m a 14 mm']],
-  tips:['Sostituisce RF 16 mm e RF 35 mm: correzione profilo ottico ON in LrC','Sweet spot nitidezza f/8; oltre f/11 diffrazione visibile a 45 MP','A 35 mm e MFD fa un “quasi-macro” 0,38× ambientato: fiori con paesaggio dietro']},
- {id:'50',name:'RF 50mm f/1.8 STM',tags:['Ritratto','Street','Notturno urbano','Macro con tubi'],
-  specs:{Focale:'50 mm',Apertura:'f/1.8',Stabilizzatore:'No (solo IBIS)',MFD:'0,30 m',Ingrandimento:'0,25×',Filtro:'43 mm'},
-  uses:[['Ritratto','f/2–f/2.8 · Servo + rilevamento occhi'],['Street','f/5.6 · Auto ISO min 1/250 · otturatore elettronico silenzioso'],['Notturno urbano','f/1.8–f/2.2 · ISO 1600–3200'],['Macro economico','con tubo 13 mm ≈0,5×, con 31 mm ≈0,85× (vedi calcolatore)']],
-  tips:['Senza IS ottico: verifica IBIS attivo nel menu','Più nitido da f/2.8; a f/1.8 vignettatura → correzione profilo','Con tubi la distanza di lavoro diventa pochi cm: ottimo per fiori, meno per insetti']},
- {id:'24240',name:'RF 24-240mm f/4-6.3 IS USM',tags:['Viaggio','Macro con tubi','Tuttofare'],
-  specs:{Focale:'24–240 mm',Apertura:'f/4–6.3',Stabilizzatore:'Sì, 5 stop (+ IBIS)',MFD:'0,50 m (240 mm)',Ingrandimento:'0,26× (240 mm)',Filtro:'72 mm'},
-  uses:[['Macro insetti con tubo 13 mm','240 mm · f/8 · 1/640 min · ritaglio 1.6×'],['Fiori a distanza','240 mm · f/6.3–8 · sfondo morbido'],['Viaggio','Av · f/8 · Auto ISO'],['Fauna occasionale','240 mm · Servo · 1/1000']],
-  tips:['Distorsione forte a 24 mm: profilo ottico sempre ON','A 240 mm l’apertura massima è f/6.3: f/8 è il compromesso migliore','Con il Raynox DCR-250 arriva oltre 1:1 a 240 mm (vedi calcolatore)']},
- {id:'100400',name:'RF 100-400mm f/5.6-8 IS USM',tags:['Fauna Etna','Tele-macro','Uccelli'],
-  specs:{Focale:'100–400 mm',Apertura:'f/5.6–8',Stabilizzatore:'Sì, 5,5 stop (+ IBIS)',MFD:'0,88 m (200) · ≈1,05 m (400)',Ingrandimento:'0,41× (400 mm)',Filtro:'67 mm'},
-  uses:[['Fauna (volpi, lucertole, asini)','400 mm · f/8 · 1/1000 · Servo · rilevamento animali'],['Tele-macro insetti diffidenti','400 mm + tubo 13/18 mm · f/8–9 · 1/800'],['Uccelli in volo','1/2000 · Caso A · otturatore meccanico H+ 12 fps'],['Paesaggio compresso Etna','200–400 mm · f/8–11 · treppiede']],
-  tips:['Già 0,41× nativo a ~1 m: il tubo serve ad avvicinare e salire verso 0,5×','f/8 a 400 mm è l’apertura massima: tubo + f/8 = f/11–12 effettivo, alza ISO','Il Raynox DCR-250 (attacco 52–67 mm) entra sul filtro da 67 mm: >3× ma distanza di lavoro ~12 cm']}
+ {name:'RF 14-35mm f/4 L IS USM',tags:[{it:'Paesaggio',en:'Landscape'},{it:'Architettura',en:'Architecture'},{it:'Notturno',en:'Night sky'},'Street'],
+  specs:[[{it:'Focale',en:'Focal length'},'14–35 mm'],[{it:'Apertura',en:'Aperture'},{it:'f/4 costante',en:'constant f/4'}],[{it:'Stabilizzatore',en:'Stabiliser'},{it:'Sì (+ IBIS)',en:'Yes (+ IBIS)'}],[{it:'Distanza min.',en:'Min. focus'},{it:'0,20 m',en:'0.20 m'}],[{it:'Ingrandimento',en:'Magnification'},{it:'0,38× (35 mm)',en:'0.38× (35 mm)'}],[{it:'Filtro',en:'Filter'},'77 mm']],
+  uses:[[{it:'Paesaggio Etna/costa',en:'Etna/coast landscape'},{it:'f/8–f/11 · ISO 100 · treppiede · IS off su treppiede',en:'f/8–f/11 · ISO 100 · tripod · IS off on tripod'}],[{it:'Notturno / Via Lattea',en:'Night / Milky Way'},{it:'14 mm · f/4 · tempo da scheda Notte · ISO 3200–6400',en:'14 mm · f/4 · time from Night tab · ISO 3200–6400'}],[{it:'Architettura',en:'Architecture'},{it:'f/8 · livella elettronica ON · Upright in LrC',en:'f/8 · electronic level ON · Upright in LrC'}],[{it:'Street ampio',en:'Wide street'},{it:'f/8 · Auto ISO min 1/250 · iperfocale ~0,8 m a 14 mm',en:'f/8 · Auto ISO min 1/250 · hyperfocal ~0.8 m at 14 mm'}]],
+  tips:[{it:'Sostituisce RF 16 mm e RF 35 mm: profilo ottico ON in LrC',en:'Replaces RF 16 mm and RF 35 mm: lens profile ON in LrC'},{it:'Sweet spot f/8; oltre f/11 diffrazione visibile a 45 MP',en:'Sweet spot f/8; beyond f/11 diffraction shows at 45 MP'},{it:'A 35 mm e distanza minima: “quasi-macro” 0,38× ambientato, fiori con paesaggio dietro',en:'At 35 mm and minimum distance: 0.38× environmental close-up, flowers with landscape behind'}]},
+ {name:'RF 50mm f/1.8 STM',tags:[{it:'Ritratto',en:'Portrait'},'Street',{it:'Notturno urbano',en:'Urban night'},{it:'Macro con tubi',en:'Macro with tubes'}],
+  specs:[[{it:'Focale',en:'Focal length'},'50 mm'],[{it:'Apertura',en:'Aperture'},'f/1.8'],[{it:'Stabilizzatore',en:'Stabiliser'},{it:'No (solo IBIS)',en:'No (IBIS only)'}],[{it:'Distanza min.',en:'Min. focus'},{it:'0,30 m',en:'0.30 m'}],[{it:'Ingrandimento',en:'Magnification'},{it:'0,25×',en:'0.25×'}],[{it:'Filtro',en:'Filter'},'43 mm']],
+  uses:[[{it:'Ritratto',en:'Portrait'},{it:'f/2–f/2.8 · Servo + rilevamento occhi',en:'f/2–f/2.8 · Servo + eye detection'}],['Street',{it:'f/5.6 · Auto ISO min 1/250 · otturatore elettronico silenzioso',en:'f/5.6 · Auto ISO min 1/250 · silent electronic shutter'}],[{it:'Notturno urbano',en:'Urban night'},{it:'f/1.8–f/2.2 · ISO 1600–3200',en:'f/1.8–f/2.2 · ISO 1600–3200'}],[{it:'Macro economico',en:'Budget macro'},{it:'tubo 13 mm ≈0,5×, 13+18 mm ≈0,9× (vedi calcolatore)',en:'13 mm tube ≈0.5×, 13+18 mm ≈0.9× (see calculator)'}]],
+  tips:[{it:'Senza IS ottico: verifica IBIS attivo nel menu',en:'No optical IS: make sure IBIS is on in the menu'},{it:'Più nitido da f/2.8; a f/1.8 vignettatura → profilo ottico',en:'Sharpest from f/2.8; vignetting at f/1.8 → lens profile'},{it:'Con tubi la distanza di lavoro diventa pochi cm: ottimo per fiori, meno per insetti',en:'With tubes the working distance drops to a few cm: great for flowers, less so for insects'}]},
+ {name:'RF 24-240mm f/4-6.3 IS USM',tags:[{it:'Viaggio',en:'Travel'},{it:'Macro con tubi',en:'Macro with tubes'},{it:'Tuttofare',en:'All-round'}],
+  specs:[[{it:'Focale',en:'Focal length'},'24–240 mm'],[{it:'Apertura',en:'Aperture'},'f/4–6.3'],[{it:'Stabilizzatore',en:'Stabiliser'},{it:'Sì, 5 stop (+ IBIS)',en:'Yes, 5 stops (+ IBIS)'}],[{it:'Distanza min.',en:'Min. focus'},{it:'0,50 m (240 mm)',en:'0.50 m (240 mm)'}],[{it:'Ingrandimento',en:'Magnification'},{it:'0,26× (240 mm)',en:'0.26× (240 mm)'}],[{it:'Filtro',en:'Filter'},'72 mm']],
+  uses:[[{it:'Macro insetti con tubo 13 mm',en:'Insect macro with 13 mm tube'},{it:'240 mm · f/8 · 1/640 min · ritaglio 1.6×',en:'240 mm · f/8 · 1/640 min · 1.6× crop'}],[{it:'Fiori a distanza',en:'Flowers from a distance'},{it:'240 mm · f/6.3–8 · sfondo morbido',en:'240 mm · f/6.3–8 · soft background'}],[{it:'Viaggio',en:'Travel'},'Av · f/8 · Auto ISO'],[{it:'Fauna occasionale',en:'Occasional wildlife'},{it:'240 mm · Servo · 1/1000',en:'240 mm · Servo · 1/1000'}]],
+  tips:[{it:'Distorsione forte a 24 mm: profilo ottico sempre ON',en:'Strong distortion at 24 mm: lens profile always ON'},{it:'A 240 mm l’apertura massima è f/6.3: f/8 è il compromesso migliore',en:'At 240 mm max aperture is f/6.3: f/8 is the best compromise'},{it:'Con il Raynox DCR-250 supera 1:1 a 240 mm (vedi calcolatore)',en:'With the Raynox DCR-250 it goes beyond 1:1 at 240 mm (see calculator)'}]},
+ {name:'RF 100-400mm f/5.6-8 IS USM',tags:[{it:'Fauna Etna',en:'Etna wildlife'},{it:'Tele-macro',en:'Tele-macro'},{it:'Uccelli',en:'Birds'}],
+  specs:[[{it:'Focale',en:'Focal length'},'100–400 mm'],[{it:'Apertura',en:'Aperture'},'f/5.6–8'],[{it:'Stabilizzatore',en:'Stabiliser'},{it:'Sì, 5,5 stop (+ IBIS)',en:'Yes, 5.5 stops (+ IBIS)'}],[{it:'Distanza min.',en:'Min. focus'},{it:'0,88 m (200) · ≈1,05 m (400)',en:'0.88 m (200) · ≈1.05 m (400)'}],[{it:'Ingrandimento',en:'Magnification'},{it:'0,41× (400 mm)',en:'0.41× (400 mm)'}],[{it:'Filtro',en:'Filter'},'67 mm']],
+  uses:[[{it:'Fauna (volpi, lucertole, asini)',en:'Wildlife (foxes, lizards, donkeys)'},{it:'400 mm · f/8 · 1/1000 · Servo · rilevamento animali',en:'400 mm · f/8 · 1/1000 · Servo · animal detection'}],[{it:'Tele-macro insetti diffidenti',en:'Tele-macro, skittish insects'},{it:'400 mm + tubo 13/18 mm · f/8–9 · 1/800',en:'400 mm + 13/18 mm tube · f/8–9 · 1/800'}],[{it:'Uccelli in volo',en:'Birds in flight'},{it:'1/2000 · Caso A · meccanico H+ 12 fps',en:'1/2000 · Case A · mechanical H+ 12 fps'}],[{it:'Paesaggio compresso Etna',en:'Compressed Etna landscape'},{it:'200–400 mm · f/8–11 · treppiede',en:'200–400 mm · f/8–11 · tripod'}]],
+  tips:[{it:'Già 0,41× a ~1 m: il tubo serve ad avvicinare e salire verso 0,5×',en:'Already 0.41× at ~1 m: the tube brings you closer and up towards 0.5×'},{it:'f/8 a 400 mm + tubo = f/11–12 effettivo: alza ISO',en:'f/8 at 400 mm + tube = f/11–12 effective: raise ISO'},{it:'Raynox DCR-250 sul filtro da 67 mm: oltre 2× ma distanza di lavoro ~11 cm',en:'Raynox DCR-250 on the 67 mm thread: over 2× but ~11 cm working distance'}]}
 ];
-
-/* ════════ OTTICHE: render ════════ */
 function renderLenses(){
-  const el=document.getElementById('lensList');
-  el.innerHTML=LENSES.map(l=>`
+  document.getElementById('lensList').innerHTML=LENSES.map(l=>`
    <div class="card">
     <div class="lens-h"><b>${l.name}</b></div>
-    <div>${l.tags.map((t,i)=>`<span class="tag ${i==0?'a':''}">${t}</span>`).join('')}</div>
-    <div class="specs">${Object.entries(l.specs).map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('')}</div>
-    <details><summary>Impostazioni per uso</summary><table class="kv">${l.uses.map(u=>`<tr><td>${u[0]}</td><td>${u[1]}</td></tr>`).join('')}</table></details>
-    <details><summary>Note sul campo</summary><ul class="tips">${l.tips.map(t=>`<li>${t}</li>`).join('')}</ul></details>
+    <div>${l.tags.map((t,i)=>`<span class="tag ${i==0?'a':''}">${T(t)}</span>`).join('')}</div>
+    <div class="specs">${l.specs.map(s=>`<div><span>${T(s[0])}</span><b>${T(s[1])}</b></div>`).join('')}</div>
+    <details><summary>${T({it:'Impostazioni per uso',en:'Settings by use'})}</summary><table class="kv">${l.uses.map(u=>`<tr><td>${T(u[0])}</td><td>${T(u[1])}</td></tr>`).join('')}</table></details>
+    <details><summary>${T({it:'Note sul campo',en:'Field notes'})}</summary><ul class="tips">${l.tips.map(t=>`<li>${T(t)}</li>`).join('')}</ul></details>
    </div>`).join('');
 }
 
 /* ════════ CALCOLATORE TUBI ════════
-   Modello lente sottile.
-   f_close = D_mfd / (2 + m + 1/m)  → focale efficace a distanza minima (ottiche a fuoco interno)
-   tubo e: m_near = m_max + e/f_close ; m_far = e/f
-   distanza sensore-soggetto D = f·(2 + m + 1/m)
-   Raynox DCR-250: +8 diottrie (f=125 mm): a infinito m = f/125, distanza dalla lente ≈125 mm
-*/
+   Lente sottile. f_close = D_mfd/(2+m+1/m) (focale efficace a distanza minima, fuoco interno)
+   tubo e: m_near = m_max + e/f_close ; m_far = e/f ; D = f·(2+m+1/m)
+   Raynox DCR-250 (+8 D, f=125 mm): a infinito m = f/125, soggetto a ~125 mm dalla lente */
 const CALC_LENS=[
  {id:'24240',l:'RF 24-240 @240',f:240,N0:6.3,D:500,m:0.26},
  {id:'100400',l:'RF 100-400 @400',f:400,N0:8,D:1050,m:0.41},
  {id:'50',l:'RF 50 f/1.8',f:50,N0:1.8,D:300,m:0.25}
 ];
 const ACC=[
- {id:'0',l:'Nessuno',e:0},{id:'13',l:'Tubo 13 mm',e:13},{id:'18',l:'Tubo 18 mm',e:18},
+ {id:'0',l:{it:'Nessuno',en:'None'},e:0},{id:'13',l:{it:'Tubo 13 mm',en:'13 mm tube'},e:13},{id:'18',l:{it:'Tubo 18 mm',en:'18 mm tube'},e:18},
  {id:'31',l:'13 + 18 mm',e:31},{id:'ray',l:'Raynox DCR-250',ray:true}
 ];
 const APS=[1.8,2.8,4,5.6,6.3,7.1,8,9,10,11,13,16];
-const S={lens:'24240',acc:'13',crop:true,subj:'fly',af:'4',drive:'H+'};
+const S={lens:'24240',acc:'13',crop:true,subj:'fly',af:'4',drive:'H+',flash:'0',preset:'macro',dec:'eq',coc:'std'};
 try{Object.assign(S,JSON.parse(localStorage.getItem('kitr5')||'{}'))}catch(e){}
 function save(){try{localStorage.setItem('kitr5',JSON.stringify(S))}catch(e){}}
-
 function apList(){const L=CALC_LENS.find(x=>x.id===S.lens);return APS.filter(a=>a>=L.N0-0.01)}
-
 function optics(focT){
-  const L=CALC_LENS.find(x=>x.id===S.lens), A=ACC.find(x=>x.id===S.acc);
+  const L=CALC_LENS.find(x=>x.id===S.lens),A=ACC.find(x=>x.id===S.acc);
   const fClose=L.D/(2+L.m+1/L.m);
   let mNear,mFar,DNear,DFar,wd=null;
-  if(A.ray){
-    // Raynox DCR-250 (+8 D, f=125 mm). Con l'obiettivo a infinito m = f/125 e il soggetto a ~125 mm dalla lente.
-    // Ghiera verso la minima: sulle ottiche a fuoco interno la focale efficace cala → m ≈ m_max + f_close/125.
-    mFar=L.f/125; mNear=L.m+fClose/125;
-    const uL=0.8*L.D; wd=[125*uL/(125+uL),125];
-  }else if(A.e===0){
-    mNear=L.m; mFar=0; DNear=L.D; DFar=Infinity;
-  }else{
-    mNear=L.m+A.e/fClose; mFar=A.e/L.f;
-    DNear=fClose*(2+mNear+1/mNear); DFar=L.f*(2+mFar+1/mFar);
-  }
-  const t=focT/100;
-  let m,D,fT=fClose+(L.f-fClose)*t;
-  if(A.ray){ m=Math.exp(Math.log(mNear)+(Math.log(mFar)-Math.log(mNear))*t); D=null; }
-  else if(A.e===0){ m=t>=0.999?0:Math.exp(Math.log(mNear)+(Math.log(0.01)-Math.log(mNear))*t); D=m>0?fT*(2+m+1/m):Infinity; }
-  else { m=Math.exp(Math.log(mNear)+(Math.log(mFar)-Math.log(mNear))*t); D=fT*(2+m+1/m); }
-  let wdNow=null; if(A.ray) wdNow=wd[0]+(wd[1]-wd[0])*t;
-  return {L,A,m,D,mNear,mFar,DNear,DFar,wdNow};
+  if(A.ray){mFar=L.f/125;mNear=L.m+fClose/125;const uL=0.8*L.D;wd=[125*uL/(125+uL),125]}
+  else if(A.e===0){mNear=L.m;mFar=0;DNear=L.D;DFar=Infinity}
+  else{mNear=L.m+A.e/fClose;mFar=A.e/L.f;DNear=fClose*(2+mNear+1/mNear);DFar=L.f*(2+mFar+1/mFar)}
+  const t=focT/100,fT=fClose+(L.f-fClose)*t;let m,D;
+  if(A.ray){m=Math.exp(Math.log(mNear)+(Math.log(mFar)-Math.log(mNear))*t);D=null}
+  else if(A.e===0){m=t>=0.999?0:Math.exp(Math.log(mNear)+(Math.log(0.01)-Math.log(mNear))*t);D=m>0?fT*(2+m+1/m):Infinity}
+  else{m=Math.exp(Math.log(mNear)+(Math.log(mFar)-Math.log(mNear))*t);D=fT*(2+m+1/m)}
+  return {L,A,m,D,mNear,mFar,DNear,DFar,wdNow:A.ray?wd[0]+(wd[1]-wd[0])*t:null};
 }
-const C_COC=0.019; // mm, criterio severo per 45 MP
+const C_COC=0.019;
 function dof(N,m){return m<=0?Infinity:2*C_COC*N*(1+m)/(m*m)}
-function fmtD(mm){if(mm==null)return'—';if(!isFinite(mm))return'∞';return mm>=995?(mm/1000).toFixed(2).replace('.',',')+' m':Math.round(mm/10)+' cm'}
-function fmtMM(x){if(!isFinite(x))return'∞';return x<1?x.toFixed(2).replace('.',',')+' mm':x<10?x.toFixed(1).replace('.',',')+' mm':Math.round(x)+' mm'}
+function fmtD(mm){if(mm==null)return'—';if(!isFinite(mm))return'∞';return mm>=995?nf(mm/1000,2)+' m':Math.round(mm/10)+' cm'}
+function fmtMM(x){if(!isFinite(x))return'∞';return x<1?nf(x,2)+' mm':x<10?nf(x,1)+' mm':Math.round(x)+' mm'}
 function nStd(n){const s=[2.8,3.2,3.5,4,4.5,5,5.6,6.3,7.1,8,9,10,11,13,14,16,18,20,22,25,29,32];return s.reduce((a,b)=>Math.abs(b-n)<Math.abs(a-n)?b:a)}
-
 function seg(id,items,cur,cb,rec){
   const el=document.getElementById(id);
-  el.innerHTML=items.map(i=>`<button data-v="${i.id}" class="${i.id===cur?'on':''} ${i.id===rec?'rec':''}">${i.l}</button>`).join('');
-  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);save();updAll()});
+  el.innerHTML=items.map(i=>`<button data-v="${i.id}" class="${i.id===cur?'on':''} ${i.id===rec?'rec':''}">${T(i.l)}</button>`).join('');
+  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);save();renderAll()});
 }
-
 function updTubi(){
   seg('segLens',CALC_LENS,S.lens,v=>{S.lens=v});
   seg('segAcc',ACC,S.acc,v=>{S.acc=v});
-  seg('segCrop',[{id:'1',l:'Attivo'},{id:'0',l:'Pieno formato'}],S.crop?'1':'0',v=>{S.crop=v==='1'});
-  const aps=apList(); const slAp=document.getElementById('slAp');
-  slAp.max=aps.length-1; if(+slAp.value>aps.length-1) slAp.value=aps.length-1;
-  const N=aps[+slAp.value]; document.getElementById('vAp').textContent='f/'+N;
+  seg('segCrop',[{id:'1',l:{it:'Attivo',en:'On'}},{id:'0',l:{it:'Pieno formato',en:'Full frame'}}],S.crop?'1':'0',v=>{S.crop=v==='1'});
+  const aps=apList(),slAp=document.getElementById('slAp');
+  slAp.max=aps.length-1;if(+slAp.value>aps.length-1)slAp.value=aps.length-1;
+  const N=aps[+slAp.value];document.getElementById('vAp').textContent='f/'+N;
   const focT=+document.getElementById('slFoc').value;
-  document.getElementById('vFoc').textContent=focT==0?'minima':focT==100?'infinito':focT+'%';
-  const o=optics(focT); const m=o.m;
-  const Neff=N*(1+m); const lost=2*Math.log2(1+m);
-  const sensW=S.crop?22.5:36, sensH=S.crop?15:24;
-  const d=dof(N,m);
-  const airy=1.34*Neff; // µm
+  document.getElementById('vFoc').textContent=focT==0?T({it:'minima',en:'minimum'}):focT==100?T({it:'infinito',en:'infinity'}):focT+'%';
+  const o=optics(focT),m=o.m,Neff=N*(1+m),lost=2*Math.log2(1+m);
+  const sW=S.crop?22.5:36,sH=S.crop?15:24,d=dof(N,m),airy=1.34*Neff;
   const cards=[
-   ['Ingrandimento',m>0?m.toFixed(2).replace('.',',')+'×':'—',S.crop?'equiv. ritaglio '+(m*1.6).toFixed(2).replace('.',',')+'×':'1:1 = 1,00×',true],
-   [o.A.ray?'Distanza lente–soggetto':'Distanza dal sensore',o.A.ray?Math.round(o.wdNow)+' mm':fmtD(o.D),o.A.ray?'misurata dalla lente Raynox':'range '+fmtD(o.DNear)+' → '+fmtD(o.DFar)],
-   ['Campo inquadrato',m>0?fmtMM(sensW/m)+' × '+fmtMM(sensH/m):'—',S.crop?'ritaglio 1.6× (17 MP)':'pieno formato (45 MP)'],
-   ['Profondità di campo',fmtMM(d),'CdC 0,019 mm (45 MP)'],
-   ['Diaframma effettivo','f/'+nStd(Neff),lost>0.05?'−'+lost.toFixed(1).replace('.',',')+' stop di luce':'nessuna perdita'],
-   ['Diffrazione',Neff>=16?'Forte':Neff>=11?'Visibile':'Trascurabile','Airy '+airy.toFixed(1).replace('.',',')+' µm · pixel 4,4 µm']
+   [{it:'Ingrandimento',en:'Magnification'},m>0?nf(m,2)+'×':'—',S.crop?T({it:'equiv. ritaglio ',en:'crop equivalent '})+nf(m*1.6,2)+'×':'1:1 = 1'+(LANG==='it'?',':'.')+'00×',true],
+   [o.A.ray?{it:'Distanza lente–soggetto',en:'Lens-to-subject distance'}:{it:'Distanza dal sensore',en:'Distance from sensor'},o.A.ray?Math.round(o.wdNow)+' mm':fmtD(o.D),o.A.ray?T({it:'misurata dalla lente Raynox',en:'measured from the Raynox lens'}):'range '+fmtD(o.DNear)+' → '+fmtD(o.DFar)],
+   [{it:'Campo inquadrato',en:'Field of view'},m>0?fmtMM(sW/m)+' × '+fmtMM(sH/m):'—',S.crop?T({it:'ritaglio 1.6× (17 MP)',en:'1.6× crop (17 MP)'}):T({it:'pieno formato (45 MP)',en:'full frame (45 MP)'})],
+   [{it:'Profondità di campo',en:'Depth of field'},fmtMM(d),T({it:'CdC 0,019 mm (45 MP)',en:'CoC 0.019 mm (45 MP)'})],
+   [{it:'Diaframma effettivo',en:'Effective aperture'},'f/'+nStd(Neff),lost>0.05?'−'+nf(lost,1)+T({it:' stop di luce',en:' stops of light'}):T({it:'nessuna perdita',en:'no loss'})],
+   [{it:'Diffrazione',en:'Diffraction'},T(Neff>=16?{it:'Forte',en:'Strong'}:Neff>=11?{it:'Visibile',en:'Visible'}:{it:'Trascurabile',en:'Negligible'}),'Airy '+nf(airy,1)+' µm · pixel '+nf(4.4,1)+' µm']
   ];
-  document.getElementById('tubeOut').innerHTML=cards.map(c=>`<div class="o ${c[3]?'hl':''}"><span>${c[0]}</span><b>${c[1]}</b><small>${c[2]}</small></div>`).join('');
-  const notes=[];
-  if(o.A.ray&&S.lens==='50') notes.push('Raynox su 50 mm: guadagno modesto e distanza di lavoro minima. Meglio i tubi.');
-  if(o.A.ray&&S.lens==='100400') notes.push('Raynox sul 100-400 a 400 mm: >3×, PdC sotto il decimo di mm. Solo soggetti fermi, flash o focus bracketing.');
-  if(o.A.ray&&o.mFar>o.mNear) notes.push('Su questo zoom a fuoco interno il Raynox rende di più con la ghiera <strong>a infinito</strong>: ≈'+o.mFar.toFixed(2).replace('.',',')+'×. Ruotando verso la minima la focale efficace cala e l’ingrandimento scende (stima).');
-  if(o.A.ray) notes.push('Il Raynox lavora su distanza di lavoro quasi fissa (~10–13 cm): la ghiera di fuoco cambia poco, si mette a fuoco avanzando/arretrando.');
-  if(!o.A.ray&&o.A.e>0&&S.lens==='100400') notes.push('Tele-macro: tieni la ghiera verso la distanza minima. Verso infinito il tubo fa guadagnare poco (≈'+(o.mFar).toFixed(2).replace('.',',')+'×) ma permette soggetti a diversi metri.');
-  if(!o.A.ray&&o.A.e>0&&S.lens==='24240') notes.push('Con il tubo non si mette più a fuoco all’infinito: oltre ~'+fmtD(o.DFar)+' tutto è sfocato.');
-  if(Neff>=11) notes.push('Diaframma effettivo f/'+nStd(Neff)+': la diffrazione ammorbidisce i 45 MP. Se puoi, apri di uno stop e usa il focus bracketing.');
-  if(S.lens==='50'&&o.A.e>0) notes.push('Sul 50 mm i tubi danno molto ingrandimento ma la distanza scende a pochi cm: rischio di ombra dell’obiettivo sul soggetto, usa il Godox iM30.');
-  document.getElementById('tubeNotes').innerHTML=notes.map(n=>`<div class="callout">${n}</div>`).join('');
-  // confronto
-  const rows=ACC.map(a=>{const sv=S.acc;S.acc=a.id;let near=optics(0);if(a.ray){const far=optics(100);if(far.m>near.m)near=far}S.acc=sv;
-    const dist=a.ray?Math.round(near.wdNow)+' mm*':fmtD(near.D);
-    return `<tr><td>${a.l}</td><td>${near.m.toFixed(2).replace('.',',')}× · ${dist} · PdC ${fmtMM(dof(8,near.m))}</td></tr>`}).join('');
-  document.getElementById('cmpTable').innerHTML=`<tr><td style="color:var(--amber)">${CALC_LENS.find(x=>x.id===S.lens).l} · a distanza minima</td><td style="color:var(--dim)">ingrand. · distanza · PdC a f/8</td></tr>`+rows+`<tr><td colspan="2" style="color:var(--dim);font-family:inherit;font-size:11px">* distanza dalla lente Raynox</td></tr>`;
+  document.getElementById('tubeOut').innerHTML=cards.map(c=>`<div class="o ${c[3]?'hl':''}"><span>${T(c[0])}</span><b>${c[1]}</b><small>${c[2]}</small></div>`).join('');
+  const n=[];
+  if(o.A.ray&&o.mFar>o.mNear)n.push(T({it:'Su questo zoom a fuoco interno il Raynox rende di più con la ghiera <strong>a infinito</strong>: ≈',en:'On this internal-focus zoom the Raynox gives most with the ring <strong>at infinity</strong>: ≈'})+nf(o.mFar,2)+T({it:'×. Verso la minima la focale efficace cala e l’ingrandimento scende (stima).',en:'×. Towards minimum the effective focal length drops and so does magnification (estimate).'}));
+  if(o.A.ray&&S.lens==='50')n.push(T({it:'Raynox su 50 mm: guadagno modesto e distanza di lavoro minima. Meglio i tubi.',en:'Raynox on 50 mm: modest gain and tiny working distance. Tubes are better.'}));
+  if(o.A.ray&&S.lens==='100400')n.push(T({it:'Raynox sul 100-400 a 400 mm: oltre 2×, PdC di decimi di mm. Solo soggetti fermi, flash o focus bracketing.',en:'Raynox on the 100-400 at 400 mm: over 2×, tenths of a mm of DoF. Static subjects, flash or focus bracketing only.'}));
+  if(o.A.ray)n.push(T({it:'Il Raynox lavora a distanza quasi fissa (~10–13 cm): si mette a fuoco avanzando e arretrando col corpo.',en:'The Raynox works at a near-fixed distance (~10–13 cm): focus by rocking your body forward and back.'}));
+  if(!o.A.ray&&o.A.e>0&&S.lens==='100400')n.push(T({it:'Tele-macro: tieni la ghiera verso la distanza minima. Verso infinito il tubo aggiunge poco (≈',en:'Tele-macro: keep the ring near minimum distance. Towards infinity the tube adds little (≈'})+nf(o.mFar,2)+T({it:'×) ma permette soggetti a diversi metri.',en:'×) but allows subjects several metres away.'}));
+  if(!o.A.ray&&o.A.e>0&&S.lens==='24240')n.push(T({it:'Con il tubo non si mette più a fuoco all’infinito: oltre ~',en:'With the tube infinity focus is lost: beyond ~'})+fmtD(o.DFar)+T({it:' tutto è sfocato.',en:' everything is out of focus.'}));
+  if(S.lens==='50'&&o.A.e>0)n.push(T({it:'Sul 50 mm i tubi danno molto ingrandimento ma pochi cm di distanza: rischio di ombra dell’obiettivo, usa il flash.',en:'On the 50 mm tubes give lots of magnification but only a few cm of distance: risk of lens shadow, use flash.'}));
+  if(Neff>=11)n.push(T({it:'Diaframma effettivo f/',en:'Effective aperture f/'})+nStd(Neff)+T({it:': la diffrazione ammorbidisce i 45 MP. Apri di uno stop e usa il focus bracketing.',en:': diffraction softens the 45 MP. Open up one stop and use focus bracketing.'}));
+  document.getElementById('tubeNotes').innerHTML=n.map(x=>`<div class="callout">${x}</div>`).join('');
+  const rows=ACC.map(a=>{const sv=S.acc;S.acc=a.id;let r=optics(0);if(a.ray){const f=optics(100);if(f.m>r.m)r=f}S.acc=sv;
+    return `<tr><td>${T(a.l)}</td><td>${nf(r.m,2)}× · ${a.ray?Math.round(r.wdNow)+' mm*':fmtD(r.D)} · ${T({it:'PdC',en:'DoF'})} ${fmtMM(dof(8,r.m))}</td></tr>`}).join('');
+  document.getElementById('cmpTable').innerHTML=`<tr><td style="color:var(--amber)">${CALC_LENS.find(x=>x.id===S.lens).l}</td><td style="color:var(--dim)">${T({it:'max ingrand. · distanza · PdC a f/8',en:'max magn. · distance · DoF at f/8'})}</td></tr>`+rows+`<tr><td colspan="2" style="color:var(--dim);font-family:inherit;font-size:11px">${T({it:'* distanza dalla lente Raynox',en:'* distance from the Raynox lens'})}</td></tr>`;
   return o;
 }
 
 /* ════════ SIMULATORE ════════ */
 const SH=[100,125,160,200,250,320,400,500,640,800,1000,1250,1600,2000,2500,3200,4000,8000];
 const ISO=[100,200,400,800,1600,3200,6400,12800];
-const SUBJ=[{id:'fly',l:'Insetto in volo'},{id:'perch',l:'Insetto posato'},{id:'flower',l:'Fiore / statico'}];
+const SUBJ=[{id:'fly',l:{it:'Insetto in volo',en:'Insect in flight'}},{id:'perch',l:{it:'Insetto posato',en:'Perched insect'}},{id:'flower',l:{it:'Fiore / statico',en:'Flower / static'}}];
 const AF=[
- {id:'one',l:'One-Shot',d:'Singolo punto + BBF. Per soggetti fermi e focus bracketing.'},
- {id:'A',l:'Servo · Caso A',d:'La R5 adatta automaticamente il tracking. Buon default in volo.'},
- {id:'1',l:'Caso 1',d:'Impostazione versatile multiuso.'},
- {id:'2',l:'Caso 2',d:'Continua a inseguire ignorando ostacoli: utile tra steli ed erba.'},
- {id:'3',l:'Caso 3',d:'Aggancia subito soggetti che entrano nel punto AF.'},
- {id:'4',l:'Caso 4',d:'Soggetti che accelerano/frenano di colpo: il più adatto agli insetti in volo.'}
+ {id:'one',l:'One-Shot',d:{it:'Punto singolo + BBF. Per soggetti fermi e focus bracketing.',en:'Single point + BBF. For static subjects and focus bracketing.'}},
+ {id:'A',l:{it:'Servo · Caso A',en:'Servo · Case A'},d:{it:'La R5 adatta da sola il tracking. Buon default in volo.',en:'The R5 adapts tracking automatically. Good default in flight.'}},
+ {id:'1',l:{it:'Caso 1',en:'Case 1'},d:{it:'Impostazione versatile multiuso.',en:'Versatile multi-purpose setting.'}},
+ {id:'2',l:{it:'Caso 2',en:'Case 2'},d:{it:'Continua a inseguire ignorando ostacoli: utile tra steli ed erba.',en:'Keeps tracking, ignoring obstacles: useful through stems and grass.'}},
+ {id:'3',l:{it:'Caso 3',en:'Case 3'},d:{it:'Aggancia subito soggetti che entrano nel punto AF.',en:'Instantly locks onto subjects entering the AF point.'}},
+ {id:'4',l:{it:'Caso 4',en:'Case 4'},d:{it:'Soggetti che accelerano o frenano di colpo: il più adatto agli insetti in volo.',en:'Subjects that suddenly accelerate or stop: best for insects in flight.'}}
 ];
 const DRIVE=[
- {id:'1',l:'Singolo',d:'Un solo fotogramma: bene per soggetti fermi.'},
- {id:'H',l:'Mecc. H 8 fps',d:'Otturatore meccanico, nessuna distorsione, flash utilizzabile.'},
- {id:'H+',l:'Mecc. H+ 12 fps',d:'Meccanico/prima tendina elettronica: niente rolling shutter sulle ali, flash OK. Scelta consigliata in volo.'},
- {id:'E',l:'Elettr. 20 fps',d:'Più fotogrammi ma lettura sensore lenta: ali e battito distorti (rolling shutter). Flash non utilizzabile.'}
+ {id:'1',l:{it:'Singolo',en:'Single'},d:{it:'Un fotogramma: bene per soggetti fermi.',en:'One frame: fine for static subjects.'}},
+ {id:'H',l:{it:'Mecc. H 8 fps',en:'Mech. H 8 fps'},d:{it:'Otturatore meccanico, nessuna distorsione, flash utilizzabile.',en:'Mechanical shutter, no distortion, flash usable.'}},
+ {id:'H+',l:{it:'Mecc. H+ 12 fps',en:'Mech. H+ 12 fps'},d:{it:'Meccanico o prima tendina elettronica: niente rolling shutter sulle ali, flash OK. Consigliato in volo.',en:'Mechanical or electronic first curtain: no rolling shutter on wings, flash OK. Recommended in flight.'}},
+ {id:'E',l:{it:'Elettr. 20 fps',en:'Electr. 20 fps'},d:{it:'Più fotogrammi ma lettura lenta del sensore: ali deformate (rolling shutter). Flash non utilizzabile.',en:'More frames but slow sensor readout: distorted wings (rolling shutter). Flash cannot be used.'}}
 ];
-function recFor(subj){return subj==='fly'?{af:'4',dr:'H+',sh:2000}:subj==='perch'?{af:'one',dr:'H',sh:640}:{af:'one',dr:'1',sh:250}}
-
-function setM(id,pct,c){const e=document.getElementById(id);e.style.width=Math.max(2,pct)+'%';e.style.background={g:'#4fae7d',w:'#d69a2d',d:'#d9564f'}[c]}
+const FLASH=[{id:'0',l:{it:'Nessuno',en:'None'}},{id:'im30',l:'Godox iM30'},{id:'nw700',l:'Neewer NW700'}];
+const XSYNC=200;
+function recFor(s){return s==='fly'?{af:'4',dr:'H+',sh:2000}:s==='perch'?{af:'one',dr:'H',sh:640}:{af:'one',dr:'1',sh:250}}
+function setM(id,p,c){const e=document.getElementById(id);e.style.width=Math.max(2,p)+'%';e.style.background={g:'#4fae7d',w:'#d69a2d',d:'#d9564f'}[c]}
 function setB(id,t,c){const e=document.getElementById(id);e.textContent=t;e.className='badge '+c}
-
 function drawBee(x,cx,cy,s){
   x.fillStyle='rgba(190,225,255,.28)';x.strokeStyle='rgba(160,200,240,.55)';x.lineWidth=.6;
   [[-10,-5,-.25],[10,-5,.25]].forEach(([dx,dy,a])=>{x.beginPath();x.ellipse(cx+dx*s,cy+dy*s,9*s,4.5*s,a,0,7);x.fill();x.stroke()});
@@ -362,9 +371,8 @@ function drawBee(x,cx,cy,s){
 }
 function bg(x,c1,c2){const g=x.createLinearGradient(0,0,84,60);g.addColorStop(0,c1);g.addColorStop(1,c2);x.fillStyle=g;x.fillRect(0,0,84,60);
   [[12,44,5],[66,12,7],[40,54,4]].forEach(([a,b,r])=>{x.globalAlpha=.4;x.fillStyle='#2a4a1a';x.beginPath();x.arc(a,b,r,0,7);x.fill()});x.globalAlpha=1}
-function drawMotion(den,s,speed){const x=document.getElementById('cvMo').getContext('2d');x.clearRect(0,0,84,60);bg(x,'#121a0c','#1e2c12');
-  const tr=Math.max(0,Math.round((12-Math.log2(den/100)*1.9)*speed));
-  for(let t=tr;t>0;t--){x.globalAlpha=.12/Math.sqrt(t);drawBee(x,42-t*2.2,30,s)}x.globalAlpha=1;drawBee(x,42,30,s)}
+function drawMotion(trails,s){const x=document.getElementById('cvMo').getContext('2d');x.clearRect(0,0,84,60);bg(x,'#121a0c','#1e2c12');
+  for(let t=trails;t>0;t--){x.globalAlpha=.12/Math.sqrt(t);drawBee(x,42-t*2.2,30,s)}x.globalAlpha=1;drawBee(x,42,30,s)}
 function drawDof(d,s){const x=document.getElementById('cvDof').getContext('2d');x.clearRect(0,0,84,60);bg(x,'#0e1808','#16220c');
   x.strokeStyle='rgba(70,130,40,.5)';x.lineWidth=1.5;x.beginPath();x.moveTo(42,60);x.lineTo(42,24);x.stroke();
   for(let p=0;p<6;p++){const a=p*Math.PI/3;x.fillStyle='#c03828';x.beginPath();x.ellipse(42+Math.cos(a)*8,24+Math.sin(a)*8,3.5,2.5,a,0,7);x.fill()}
@@ -380,111 +388,159 @@ function updSim(o){
   const r=recFor(S.subj);
   seg('segAF',AF,S.af,v=>{S.af=v},r.af);
   seg('segDrive',DRIVE,S.drive,v=>{S.drive=v},r.dr);
-  document.getElementById('afDesc').textContent=AF.find(a=>a.id===S.af).d;
-  document.getElementById('drDesc').textContent=DRIVE.find(a=>a.id===S.drive).d;
-  const aps=apList();const sl=document.getElementById('slAp2');sl.max=aps.length-1;if(+sl.value>aps.length-1)sl.value=aps.length-1;
+  seg('segFlash',FLASH,S.flash,v=>{S.flash=v});
+  document.getElementById('afDesc').textContent=T(AF.find(a=>a.id===S.af).d);
+  document.getElementById('drDesc').textContent=T(DRIVE.find(a=>a.id===S.drive).d);
+  const aps=apList(),sl=document.getElementById('slAp2');sl.max=aps.length-1;if(+sl.value>aps.length-1)sl.value=aps.length-1;
   const den=SH[+document.getElementById('slSh').value],N=aps[+sl.value],iso=ISO[+document.getElementById('slIso').value];
   document.getElementById('vSh').textContent='1/'+den+' s';document.getElementById('vAp2').textContent='f/'+N;document.getElementById('vIso').textContent=iso;
   const m=Math.max(0.03,o.m);
-  document.getElementById('simSetup').textContent=o.L.l+' · '+o.A.l+' · '+m.toFixed(2).replace('.',',')+'×';
-  // velocità richiesta: cresce con ingrandimento e tipo soggetto
-  const speed=S.subj==='fly'?1:S.subj==='perch'?0.45:0.2;
-  const need=(S.subj==='fly'?2000:S.subj==='perch'?640:200)*Math.max(.6,Math.min(1.6,m/0.35));
-  const ratio=den/need;
-  let ms,ml,mt;
-  if(ratio>=2){ms=100;ml='Perfetto';mt='Movimento completamente congelato'}
-  else if(ratio>=1){ms=85;ml='Ottimo';mt='Nitido, micro-mosso solo sulle ali'}
-  else if(ratio>=.6){ms=58;ml='Al limite';mt='Mosso visibile alle massime dimensioni'}
-  else if(ratio>=.3){ms=30;ml='Mosso';mt='Serve almeno 1/'+Math.round(need/10)*10}
-  else{ms=8;ml='Inutilizzabile';mt='Serve almeno 1/'+Math.round(need/10)*10}
-  const mc=ms>70?'g':ms>40?'w':'d';setB('bMo',ml,mc);document.getElementById('sMo').textContent=mt;setM('mMo',ms,mc);
-  drawMotion(den/ (need/2000),Math.max(.4,Math.min(1,m/.5)),speed);
-  // PdC
+  document.getElementById('simSetup').textContent=o.L.l+' · '+T(o.A.l)+' · '+nf(m,2)+'×';
+  const fl=S.flash,flOn=fl!=='0',elec=S.drive==='E';
+  const flFires=flOn&&!elec&&(den<=XSYNC||fl==='nw700');
+  const hss=flOn&&!elec&&fl==='nw700'&&den>XSYNC;
+  const speed=S.subj==='fly'?1:S.subj==='perch'?.45:.2;
+  const need=(S.subj==='fly'?2000:S.subj==='perch'?640:200)*Math.max(.6,Math.min(1.6,m/.35));
+  let ratio=den/need,ms,ml,mt;
+  const flashFreeze=flFires&&!hss;
+  if(flashFreeze&&S.subj!=='fly')ratio=Math.max(ratio,2);
+  else if(flashFreeze&&S.subj==='fly')ratio=Math.max(ratio,.9);
+  if(ratio>=2){ms=100;ml={it:'Perfetto',en:'Perfect'};mt=flashFreeze&&den<need?{it:'Congelato dal lampo (flash dominante)',en:'Frozen by the flash burst (flash-dominant)'}:{it:'Movimento completamente congelato',en:'Motion fully frozen'}}
+  else if(ratio>=1){ms=85;ml={it:'Ottimo',en:'Great'};mt={it:'Nitido, micro-mosso solo sulle ali',en:'Sharp, slight blur on wings only'}}
+  else if(ratio>=.85&&flashFreeze){ms=72;ml={it:'Buono',en:'Good'};mt={it:'Solo se il flash domina la luce ambiente',en:'Only if flash overpowers ambient light'}}
+  else if(ratio>=.6){ms=58;ml={it:'Al limite',en:'Borderline'};mt={it:'Mosso visibile a piena risoluzione',en:'Visible blur at full resolution'}}
+  else{ms=ratio>=.3?30:8;ml=ratio>=.3?{it:'Mosso',en:'Blurred'}:{it:'Inutilizzabile',en:'Unusable'};mt={it:'Serve almeno 1/',en:'Needs at least 1/'};mt={it:mt.it+Math.round(need/10)*10,en:mt.en+Math.round(need/10)*10}}
+  const mc=ms>70?'g':ms>40?'w':'d';setB('bMo',T(ml),mc);document.getElementById('sMo').textContent=T(mt);setM('mMo',ms,mc);
+  drawMotion(Math.max(0,Math.round((12-Math.log2(Math.max(1,ratio*2000)/100)*1.9)*speed)),Math.max(.4,Math.min(1,m/.5)));
   const d=dof(N,m),Neff=N*(1+m);let ds,dt;
-  if(Neff>=16){ds=40;dt='Diffrazione forte (f/'+nStd(Neff)+' effettivo)'}
-  else if(d<1){ds=28;dt='Critica: molti scatti fuori fuoco, usa focus bracketing'}
-  else if(d<2){ds=55;dt='Stretta: serve tecnica precisa'}
-  else if(d<6){ds=80;dt='Buona per insetti interi'}
-  else{ds=90;dt='Ampia: grande margine'}
-  if(Neff>=11&&Neff<16){ds=Math.min(ds,62);dt+=' · diffrazione visibile'}
-  const dc=ds>65?'g':ds>45?'w':'d';setB('bDof',fmtMM(d),dc);document.getElementById('sDof').textContent=dt;setM('mDof',ds,dc);
+  if(Neff>=16){ds=40;dt={it:'Diffrazione forte (f/'+nStd(Neff)+' effettivo)',en:'Strong diffraction (f/'+nStd(Neff)+' effective)'}}
+  else if(d<1){ds=28;dt={it:'Critica: usa il focus bracketing',en:'Critical: use focus bracketing'}}
+  else if(d<2){ds=55;dt={it:'Stretta: serve tecnica precisa',en:'Narrow: precise technique needed'}}
+  else if(d<6){ds=80;dt={it:'Buona per insetti interi',en:'Good for whole insects'}}
+  else{ds=90;dt={it:'Ampia: grande margine',en:'Wide: plenty of margin'}}
+  if(Neff>=11&&Neff<16){ds=Math.min(ds,62);dt={it:dt.it+' · diffrazione visibile',en:dt.en+' · visible diffraction'}}
+  const dc=ds>65?'g':ds>45?'w':'d';setB('bDof',fmtMM(d),dc);document.getElementById('sDof').textContent=T(dt);setM('mDof',ds,dc);
   drawDof(d,Math.max(.3,Math.min(1,m/.5)));
-  // rumore
   let ns,nl,nt;
-  if(iso<=400){ns=4;nl='Impercettibile';nt='Qualità piena per stock'}
-  else if(iso<=800){ns=10;nl='Minimo';nt='Ottimo per stock'}
-  else if(iso<=1600){ns=22;nl='Lieve';nt='Ok stock, LrC Denoise se serve'}
-  else if(iso<=3200){ns=42;nl='Moderato';nt='DxO PureRAW 6 · DeepPRIME XD3S'}
-  else if(iso<=6400){ns=65;nl='Marcato';nt='PureRAW 6 obbligatorio prima di LrC'}
-  else{ns=85;nl='Forte';nt='Solo se indispensabile'}
-  const nc=ns<20?'g':ns<50?'w':'d';setB('bNr',nl,nc);document.getElementById('sNr').textContent=nt;setM('mNr',ns,nc);drawNoise(iso);
-  // punteggio
+  if(iso<=400){ns=4;nl={it:'Impercettibile',en:'Invisible'};nt={it:'Qualità piena per stock',en:'Full stock quality'}}
+  else if(iso<=800){ns=10;nl={it:'Minimo',en:'Minimal'};nt={it:'Ottimo per stock',en:'Great for stock'}}
+  else if(iso<=1600){ns=22;nl={it:'Lieve',en:'Slight'};nt={it:'Ok stock, Denoise LrC se serve',en:'OK for stock, LrC Denoise if needed'}}
+  else if(iso<=3200){ns=42;nl={it:'Moderato',en:'Moderate'};nt={it:'DxO PureRAW 6 · DeepPRIME XD3S',en:'DxO PureRAW 6 · DeepPRIME XD3S'}}
+  else if(iso<=6400){ns=65;nl={it:'Marcato',en:'Marked'};nt={it:'PureRAW 6 obbligatorio prima di LrC',en:'PureRAW 6 required before LrC'}}
+  else{ns=85;nl={it:'Forte',en:'Heavy'};nt={it:'Solo se indispensabile',en:'Only if unavoidable'}}
+  const nc=ns<20?'g':ns<50?'w':'d';setB('bNr',T(nl),nc);document.getElementById('sNr').textContent=T(nt);setM('mNr',ns,nc);drawNoise(iso);
   const afQ={fly:{one:20,A:85,'1':60,'2':70,'3':72,'4':100},perch:{one:100,A:70,'1':65,'2':60,'3':60,'4':60},flower:{one:100,A:50,'1':55,'2':50,'3':50,'4':50}}[S.subj][S.af];
   const drQ={fly:{'1':15,H:60,'H+':100,E:65},perch:{'1':70,H:100,'H+':90,E:75},flower:{'1':100,H:90,'H+':80,E:85}}[S.subj][S.drive];
-  const tot=Math.round(ms*.35+(100-ns*.85)*.2+ds*.2+afQ*.15+drQ*.1);
+  let tot=Math.round(ms*.35+(100-ns*.85)*.2+ds*.2+afQ*.15+drQ*.1);
+  const tips=[];
+  if(flOn&&elec){tot-=20;tips.push(T({it:'<strong>Il flash non scatta con l’otturatore elettronico</strong> (né con il focus bracketing): passa a meccanico',en:'<strong>Flash will not fire with the electronic shutter</strong> (nor with focus bracketing): switch to mechanical'}))}
+  if(fl==='im30'&&!elec&&den>XSYNC){tot-=15;tips.push(T({it:'iM30 oltre <strong>1/200</strong> (sincro meccanica R5): banda nera. Non ha HSS',en:'iM30 above <strong>1/200</strong> (R5 mechanical sync): black band. It has no HSS'}))}
+  if(hss)tips.push(T({it:'NW700 in <strong>HSS</strong>: funziona, ma la potenza utile cala di 1–2 stop e il lampo non congela più',en:'NW700 in <strong>HSS</strong>: works, but usable power drops 1–2 stops and the burst no longer freezes motion'}));
+  if(ms<70)tips.push(T({it:'Porta il tempo ad <strong>almeno 1/',en:'Set shutter to <strong>at least 1/'})+(Math.ceil(need/100)*100)+'</strong>');
+  if(N<7.1&&S.subj!=='flower')tips.push(T({it:'Chiudi a <strong>f/8</strong>: più PdC sul corpo',en:'Stop down to <strong>f/8</strong>: more DoF on the body'}));
+  if(Neff>=11)tips.push(T({it:'Diaframma effettivo f/',en:'Effective aperture f/'})+nStd(Neff)+T({it:': <strong>non chiudere oltre f/8</strong> con tubi',en:': <strong>don’t stop down past f/8</strong> with tubes'}));
+  if(iso>=3200)tips.push('ISO '+iso+T({it:': passa i RAW in <strong>PureRAW 6</strong> prima di LrC',en:': run RAWs through <strong>PureRAW 6</strong> before LrC'}));
+  if(flFires&&iso>800)tips.push(T({it:'Col flash puoi scendere a <strong>ISO 200–400</strong>',en:'With flash you can drop to <strong>ISO 200–400</strong>'}));
+  if(S.af!==r.af)tips.push(T({it:'AF consigliato: ',en:'Recommended AF: '})+'<strong>'+T(AF.find(a=>a.id===r.af).l)+'</strong>');
+  if(elec&&S.subj==='fly')tips.push(T({it:'<strong>Rolling shutter</strong> in elettronico: ali deformate',en:'<strong>Rolling shutter</strong> on electronic: distorted wings'}));
+  else if(S.drive!==r.dr)tips.push(T({it:'Raffica consigliata: ',en:'Recommended drive: '})+'<strong>'+T(DRIVE.find(a=>a.id===r.dr).l)+'</strong>');
+  if(S.subj==='flower'&&S.af==='one'&&!flOn)tips.push(T({it:'PdC estesa: <strong>focus bracketing 7 scatti, incremento 1</strong>',en:'Extended DoF: <strong>focus bracketing 7 shots, step 1</strong>'}));
+  tot=Math.max(0,Math.min(100,tot));
   document.getElementById('scoreN').textContent=tot;
   const col=tot>=75?'#4fae7d':tot>=50?'#d69a2d':'#d9564f';
   const rf=document.getElementById('ringFill');rf.style.strokeDashoffset=125.66*(1-tot/100);rf.style.stroke=col;
   document.getElementById('scoreBox').style.borderLeftColor=col;
-  const tips=[];
-  if(ms<70)tips.push('Porta il tempo ad <strong>almeno 1/'+(Math.ceil(need/100)*100)+'</strong>');
-  if(N<7.1&&S.subj!=='flower')tips.push('Chiudi a <strong>f/8</strong>: più PdC sul corpo dell’insetto');
-  if(Neff>=11)tips.push('Diaframma effettivo f/'+nStd(Neff)+': <strong>non chiudere oltre f/8</strong> con tubi');
-  if(iso>=3200)tips.push('ISO '+iso+': passa i RAW in <strong>PureRAW 6</strong> prima di LrC');
-  if(S.af!==r.af)tips.push('AF consigliato: <strong>'+AF.find(a=>a.id===r.af).l+'</strong>');
-  if(S.drive==='E'&&S.subj==='fly')tips.push('<strong>Rolling shutter</strong> con elettronico: le ali escono deformate');
-  if(S.drive!==r.dr&&!(S.drive==='E'&&S.subj==='fly'))tips.push('Raffica consigliata: <strong>'+DRIVE.find(a=>a.id===r.dr).l+'</strong>');
-  if(S.subj==='flower'&&S.af==='one')tips.push('Per la PdC estesa: <strong>focus bracketing 7 scatti, passo 1</strong> (otturatore elettronico)');
-  document.getElementById('scoreTxt').innerHTML=tot>=85&&tips.length<=1?'<strong>Configurazione ottimale ✓</strong> '+tips.join(' · '):tips.join(' · ')||'Parametri nella norma.';
+  document.getElementById('scoreTxt').innerHTML=(tot>=85&&tips.length<=1?'<strong>'+T({it:'Configurazione ottimale ✓',en:'Optimal setup ✓'})+'</strong> ':'')+(tips.join(' · ')||T({it:'Parametri nella norma.',en:'Settings look fine.'}));
+}
+
+/* ════════ NOTTE ════════ */
+const NAPS=[4,5.6,8,11],HAPS=[4,5.6,8,11,16];
+const DEC=[{id:'eq',l:{it:'Equatore celeste (sud)',en:'Celestial equator (south)'},k:1},{id:'mid',l:{it:'Media (45°)',en:'Mid (45°)'},k:1/Math.cos(Math.PI/4)},{id:'pole',l:{it:'Vicino al polo (nord)',en:'Near the pole (north)'},k:1/Math.cos(70*Math.PI/180)}];
+function updNight(){
+  const f=+document.getElementById('slNf').value,N=NAPS[+document.getElementById('slNa').value];
+  document.getElementById('vNf').textContent=f+' mm';document.getElementById('vNa').textContent='f/'+N;
+  seg('segDec',DEC,S.dec,v=>{S.dec=v});
+  const k=DEC.find(x=>x.id===S.dec).k,p=4.39;
+  const npf=(35*N+30*p)/f*k,strict=npf/2,r500=500/f*k;
+  const iso=Math.round(6400*Math.pow(npf/20,-1)/100)*100;
+  const cards=[[{it:'NPF',en:'NPF'},nf(npf,1)+' s',{it:'web e stampe fino ad A3',en:'web and prints up to A3'},true],[{it:'Rigoroso',en:'Strict'},nf(strict,1)+' s',{it:'crop 100% / grande formato',en:'100% crop / large print'}],[{it:'Regola del 500',en:'500 rule'},nf(r500,1)+' s',{it:'obsoleta a 45 MP: scie visibili',en:'outdated at 45 MP: visible trails'}],[{it:'ISO di partenza',en:'Starting ISO'},String([1600,3200,6400,12800].reduce((a,b)=>Math.abs(Math.log(b/iso))<Math.abs(Math.log(a/iso))?b:a)),{it:'cielo buio, senza Luna',en:'dark sky, no Moon'}]];
+  document.getElementById('npfOut').innerHTML=cards.map(c=>`<div class="o ${c[3]?'hl':''}"><span>${T(c[0])}</span><b>${c[1]}</b><small>${T(c[2])}</small></div>`).join('');
+  const hf=+document.getElementById('slHf').value,ha=HAPS[+document.getElementById('slHa').value];
+  document.getElementById('vHf').textContent=hf+' mm';document.getElementById('vHa').textContent='f/'+ha;
+  seg('segCoc',[{id:'std',l:{it:'Standard (0,03 mm)',en:'Standard (0.03 mm)'}},{id:'hi',l:{it:'Severo 45 MP (0,019 mm)',en:'Strict 45 MP (0.019 mm)'}}],S.coc,v=>{S.coc=v});
+  const c=S.coc==='hi'?0.019:0.03,H=hf*hf/(ha*c)+hf;
+  const hc=[[{it:'Iperfocale',en:'Hyperfocal'},fmtD(H),{it:'metti a fuoco qui',en:'focus here'},true],[{it:'Nitido da',en:'Sharp from'},fmtD(H/2),{it:'fino all’infinito',en:'to infinity'}],[{it:'Diffrazione',en:'Diffraction'},T(ha>=16?{it:'Forte',en:'Strong'}:ha>=11?{it:'Visibile',en:'Visible'}:{it:'Trascurabile',en:'Negligible'}),ha>=11?{it:'preferisci f/8 + iperfocale',en:'prefer f/8 + hyperfocal'}:{it:'ok a 45 MP',en:'fine at 45 MP'}]];
+  document.getElementById('hypOut').innerHTML=hc.map(x=>`<div class="o ${x[3]?'hl':''}"><span>${T(x[0])}</span><b>${x[1]}</b><small>${T(x[2])}</small></div>`).join('');
+}
+const FLASH_INFO={
+ title:{it:'Flash sulla R5',en:'Flash on the R5'},
+ units:[
+  {n:'Godox iM30',k:{it:'Mini flash manuale · NG 15 · contatto singolo',en:'Manual mini flash · GN 15 · single contact'},
+   rows:[[{it:'Modalità',en:'Mode'},{it:'Solo manuale (niente TTL, niente HSS)',en:'Manual only (no TTL, no HSS)'}],[{it:'Tempo max',en:'Max shutter'},{it:'1/200 meccanico · 1/250 prima tendina elettronica',en:'1/200 mechanical · 1/250 electronic first curtain'}],[{it:'Macro con tubi',en:'Macro with tubes'},{it:'1/8–1/16 di potenza, diffusore, a 15–30 cm',en:'1/8–1/16 power, diffuser, at 15–30 cm'}],[{it:'Esposizione',en:'Exposure'},{it:'M · 1/200 · f/8 · ISO 200 → regola la potenza dall’istogramma',en:'M · 1/200 · f/8 · ISO 200 → adjust power from the histogram'}]]},
+  {n:'Neewer NW700-C',k:{it:'Speedlite TTL · NG 60 · HSS fino a 1/8000',en:'TTL speedlite · GN 60 · HSS up to 1/8000'}},
+ ],
+ nw:[[{it:'Modalità',en:'Mode'},{it:'E-TTL per partire, poi manuale per serie coerenti',en:'E-TTL to start, then manual for consistent series'}],[{it:'Macro',en:'Macro'},{it:'Testa inclinata in avanti + softbox piccolo o diffusore a cupola',en:'Head tilted forward + small softbox or dome diffuser'}],[{it:'Fill in pieno sole',en:'Fill flash in full sun'},{it:'HSS · −1 / −1⅔ EV di compensazione flash',en:'HSS · −1 / −1⅔ EV flash compensation'}],[{it:'Fauna con 100-400',en:'Wildlife with 100-400'},{it:'Zoom testa 200 mm · solo schiarita occhi, −2 EV',en:'Head zoom 200 mm · catchlight fill only, −2 EV'}]],
+ tips:[{it:'<strong>Otturatore elettronico = niente flash.</strong> Il focus bracketing richiede l’elettronico: col flash niente bracketing in fotocamera, bracketing a mano spostando il corpo.',en:'<strong>Electronic shutter = no flash.</strong> Focus bracketing requires electronic: with flash, no in-camera bracketing, do it by hand by moving the body.'},{it:'In macro la durata del lampo a bassa potenza (1/8–1/16) è molto breve: è il lampo a congelare, non il tempo.',en:'In macro the flash duration at low power (1/8–1/16) is very short: the burst freezes motion, not the shutter speed.'},{it:'Sfondo nero: tempo 1/200, f/11, ISO 100 → la luce ambiente sparisce, resta solo il soggetto illuminato.',en:'Black background: 1/200, f/11, ISO 100 → ambient disappears, only the lit subject remains.'},{it:'Sfondo naturale: alza ISO o apri finché l’ambiente è a −1 EV, poi il flash fa da schiarita.',en:'Natural background: raise ISO or open up until ambient sits at −1 EV, then flash acts as fill.'}]
+};
+function updFlash(){
+  const F=FLASH_INFO,u=F.units;
+  document.getElementById('flashBox').innerHTML=`<h3 style="margin-top:0">${T(F.title)}</h3>
+   <div class="grid g2">
+    <div><b style="color:var(--white)">${u[0].n}</b><div class="hint">${T(u[0].k)}</div><table class="kv">${u[0].rows.map(r=>`<tr><td>${T(r[0])}</td><td>${T(r[1])}</td></tr>`).join('')}</table></div>
+    <div><b style="color:var(--white)">${u[1].n}</b><div class="hint">${T(u[1].k)}</div><table class="kv">${F.nw.map(r=>`<tr><td>${T(r[0])}</td><td>${T(r[1])}</td></tr>`).join('')}</table></div>
+   </div><ul class="tips">${F.tips.map(t=>`<li>${T(t)}</li>`).join('')}</ul>`;
 }
 
 /* ════════ PRESET ════════ */
 const PRESETS=[
- {id:'macro',k:'Macro tubi',em:'🐝',t:'Macro insetti con tubi (a mano)',s:'RF 24-240 @240 + tubo 13 mm · oppure 100-400 + tubo',
-  rows:[['Modo','M + ISO Auto (max 3200)'],['Tempo / diaframma','1/640 minimo · f/8'],['Area AF','Punto singolo · One-Shot + BBF'],['Ritaglio','1.6× attivo'],['Otturatore','Elettronico (obbligatorio per bracketing)'],['Focus bracketing','7 scatti · incremento 1 · Esposizione uniforme OFF'],['MF elettronico','One-Shot → attiva ingrandimento'],['Peaking','Rosso · Bassa']],
-  tips:['ISO Auto si blocca quando premi AF-ON in One-Shot','Il bracketing scatta tutta la serie con una sola pressione, a prescindere dalla raffica','Sviluppa prima i RAW, esporta TIFF 16 bit, poi stacking (Photoshop o Luminar Neo)']},
- {id:'volo',k:'Volo',em:'🦋',t:'Insetti in volo',s:'RF 24-240 @240 o 100-400 @400 · distanza ≥1 m',
-  rows:[['Modo','M + ISO Auto (max 6400)'],['Tempo / diaframma','1/2000–1/2500 · f/8'],['AF','Servo · Caso 4 (o A) · Zona flessibile piccola'],['Rilevamento','Animali · Occhi ON'],['Raffica','H+ 12 fps meccanico (no rolling shutter)'],['Ritaglio','1.6× opzionale per AF più fitto'],['Pre-focus','Metti a fuoco sul fiore, attendi l’arrivo']],
-  tips:['Evita i 20 fps elettronici: le ali si deformano','Luce laterale dietro il soggetto = ali traslucide','Con ISO > 3200 PureRAW 6 prima della selezione']},
- {id:'fauna',k:'Fauna',em:'🦊',t:'Fauna Etna',s:'RF 100-400 · lucertole, volpi, asini, mucche',
-  rows:[['Modo','Av f/8 o M + ISO Auto (max 6400)'],['Tempo','1/1000 animali fermi · 1/2000 in movimento'],['AF','Servo · Caso A · Tutto il frame con tracking'],['Rilevamento','Animali · Occhi ON'],['Raffica','H+ 12 fps meccanico'],['Stabilizzatore','IS ottico ON (coordinato con IBIS)'],['Esposizione','Valutativa · +1/3 su pelo scuro, −1/3 su soggetti chiari']],
-  tips:['Lucertole: tubo 13 mm + 400 mm, ti avvicini a ~1 m senza spaventarle','Serie coerente “Fauna Etna” per il portfolio']},
- {id:'paes',k:'Paesaggio',em:'🌋',t:'Paesaggio Etna / costa',s:'RF 14-35 · RF 100-400 per compressioni',
-  rows:[['Modo','Av · f/8–f/11 · ISO 100'],['Supporto','Treppiede · IS OFF su treppiede · autoscatto 2 s'],['Esposizione','ETTR: istogramma a destra senza clipping'],['Bracketing','AEB ±2 EV (otturatore meccanico o prima tendina, NON elettronico)'],['AF','One-Shot · punto singolo a 1/3 della scena'],['Livella','Elettronica ON']],
-  tips:['Fumo e cenere dell’Etna: Dehaze in LrC, non in fotocamera','Mare mosso: 1/2–2 s per acqua setosa (filtro ND)']},
- {id:'notte',k:'Notturno',em:'✨',t:'Notturno / Via Lattea',s:'RF 14-35 @14 · f/4',
-  rows:[['Modo','M · f/4 · 10–15 s · ISO 3200–6400'],['Fuoco','MF con ingrandimento ×10 su stella luminosa'],['Riduzione rumore lunga esposizione','OFF (si fa in PureRAW)'],['Bilanciamento bianco','3800–4200 K'],['Autoscatto','2 s o telecomando'],['IBIS','OFF su treppiede']],
-  tips:['Regola NPF: a 14 mm su R5 circa 12–13 s per stelle puntiformi','Eruzione notturna: abbassa a ISO 800–1600 e 2–4 s per non bruciare la lava']},
- {id:'street',k:'Street',em:'🏙',t:'Street / ritratto',s:'RF 50 f/1.8 STM · RF 14-35',
-  rows:[['Modo','Av · f/5.6 (street) · f/2–2.8 (ritratto)'],['ISO','Auto · tempo minimo 1/250'],['AF','Servo · Rilevamento persone · Occhi ON'],['Otturatore','Elettronico silenzioso (luce naturale)'],['Raffica','H 8 fps'],['Notte','f/1.8–2.2 · ISO fino a 6400']],
-  tips:['50 mm senza IS ottico: IBIS attivo','B&N: scatta in colore RAW, converti in LrC']}
+ {id:'macro',k:{it:'Macro tubi',en:'Tube macro'},em:'🐝',t:{it:'Macro insetti con tubi (a mano)',en:'Insect macro with tubes (handheld)'},s:{it:'RF 24-240 @240 + tubo 13 mm · oppure 100-400 + tubo',en:'RF 24-240 @240 + 13 mm tube · or 100-400 + tube'},
+  rows:[[{it:'Modo',en:'Mode'},{it:'M + ISO Auto (max 3200)',en:'M + Auto ISO (max 3200)'}],[{it:'Tempo / diaframma',en:'Shutter / aperture'},{it:'1/640 minimo · f/8',en:'1/640 minimum · f/8'}],[{it:'Area AF',en:'AF area'},{it:'Punto singolo · One-Shot + BBF',en:'Single point · One-Shot + BBF'}],[{it:'Ritaglio',en:'Crop'},{it:'1.6× attivo',en:'1.6× on'}],[{it:'Otturatore',en:'Shutter'},{it:'Elettronico (obbligatorio per bracketing)',en:'Electronic (required for bracketing)'}],[{it:'Focus bracketing',en:'Focus bracketing'},{it:'7 scatti · incremento 1 · Esposizione uniforme OFF',en:'7 shots · step 1 · Uniform exposure OFF'}],[{it:'MF elettronico',en:'Electronic MF'},{it:'One-Shot → attiva ingrandimento',en:'One-Shot → enable magnification'}],[{it:'Peaking',en:'Peaking'},{it:'Rosso · Bassa',en:'Red · Low'}]],
+  tips:[{it:'ISO Auto si blocca quando premi AF-ON in One-Shot',en:'Auto ISO locks when you press AF-ON in One-Shot'},{it:'Il bracketing scatta tutta la serie con una pressione, qualunque sia la raffica',en:'Bracketing fires the whole series with one press, whatever the drive mode'},{it:'Sviluppa prima i RAW, esporta TIFF 16 bit, poi stacking',en:'Develop RAWs first, export 16-bit TIFF, then stack'}]},
+ {id:'raynox',k:'Raynox',em:'🔬',t:{it:'Raynox DCR-250 (oltre 1:1)',en:'Raynox DCR-250 (beyond 1:1)'},s:{it:'RF 24-240 @240 a infinito (~1,9×) · 100-400 @400 (~2–3×)',en:'RF 24-240 @240 at infinity (~1.9×) · 100-400 @400 (~2–3×)'},
+  rows:[[{it:'Montaggio',en:'Mounting'},{it:'Clip universale 52–67 mm sul filtro',en:'Universal 52–67 mm snap-on clip on the filter thread'}],[{it:'Ghiera',en:'Focus ring'},{it:'Verso infinito per il massimo ingrandimento',en:'Towards infinity for maximum magnification'}],[{it:'Modo',en:'Mode'},{it:'M · 1/200 · f/8 (≈ f/22 effettivo)',en:'M · 1/200 · f/8 (≈ f/22 effective)'}],[{it:'Luce',en:'Light'},{it:'Flash diffuso (iM30 1/8 o NW700 TTL), ISO 200–400',en:'Diffused flash (iM30 1/8 or NW700 TTL), ISO 200–400'}],[{it:'Otturatore',en:'Shutter'},{it:'Meccanico (col flash)',en:'Mechanical (with flash)'}],[{it:'Messa a fuoco',en:'Focusing'},{it:'MF fissa · avanza e arretra col corpo · raffica H',en:'Fixed MF · rock forward and back · burst H'}],[{it:'Senza flash',en:'Without flash'},{it:'Elettronico + bracketing 10–15 scatti, incremento 1, treppiede',en:'Electronic + bracketing 10–15 shots, step 1, tripod'}]],
+  tips:[{it:'Distanza di lavoro ~10–13 cm dalla lente: avvicinati piano',en:'Working distance ~10–13 cm from the lens: approach slowly'},{it:'PdC di decimi di mm: punta all’occhio, accetta il resto sfocato o fai stacking',en:'Tenths of a mm of DoF: aim for the eye, accept the rest soft or stack'},{it:'Ritaglio 1.6× inutile qui: l’ingrandimento c’è già',en:'1.6× crop pointless here: magnification is already there'}]},
+ {id:'volo',k:{it:'Volo',en:'Flight'},em:'🦋',t:{it:'Insetti in volo',en:'Insects in flight'},s:{it:'RF 24-240 @240 o 100-400 @400 · distanza ≥1 m',en:'RF 24-240 @240 or 100-400 @400 · distance ≥1 m'},
+  rows:[[{it:'Modo',en:'Mode'},{it:'M + ISO Auto (max 6400)',en:'M + Auto ISO (max 6400)'}],[{it:'Tempo / diaframma',en:'Shutter / aperture'},'1/2000–1/2500 · f/8'],['AF',{it:'Servo · Caso 4 (o A) · Zona flessibile piccola',en:'Servo · Case 4 (or A) · small Flexible Zone'}],[{it:'Rilevamento',en:'Detection'},{it:'Animali · Occhi ON',en:'Animals · Eyes ON'}],[{it:'Raffica',en:'Drive'},{it:'H+ 12 fps meccanico',en:'H+ 12 fps mechanical'}],[{it:'Pre-focus',en:'Pre-focus'},{it:'Fuoco sul fiore, attendi l’arrivo',en:'Focus on the flower, wait for the arrival'}]],
+  tips:[{it:'Evita i 20 fps elettronici: le ali si deformano',en:'Avoid 20 fps electronic: wings get distorted'},{it:'Controluce laterale = ali traslucide',en:'Side backlight = translucent wings'},{it:'ISO > 3200: PureRAW 6 prima della selezione',en:'ISO > 3200: PureRAW 6 before culling'}]},
+ {id:'fauna',k:{it:'Fauna',en:'Wildlife'},em:'🦊',t:{it:'Fauna Etna',en:'Etna wildlife'},s:{it:'RF 100-400 · lucertole, volpi, asini, mucche',en:'RF 100-400 · lizards, foxes, donkeys, cows'},
+  rows:[[{it:'Modo',en:'Mode'},{it:'Av f/8 o M + ISO Auto (max 6400)',en:'Av f/8 or M + Auto ISO (max 6400)'}],[{it:'Tempo',en:'Shutter'},{it:'1/1000 fermi · 1/2000 in movimento',en:'1/1000 still · 1/2000 moving'}],['AF',{it:'Servo · Caso A · tutto il frame con tracking',en:'Servo · Case A · whole-frame tracking'}],[{it:'Rilevamento',en:'Detection'},{it:'Animali · Occhi ON',en:'Animals · Eyes ON'}],[{it:'Raffica',en:'Drive'},{it:'H+ 12 fps meccanico',en:'H+ 12 fps mechanical'}],[{it:'Esposizione',en:'Exposure'},{it:'+1/3 su pelo scuro · −1/3 su soggetti chiari',en:'+1/3 on dark fur · −1/3 on light subjects'}]],
+  tips:[{it:'Lucertole: tubo 13 mm + 400 mm, ti avvicini a ~1 m',en:'Lizards: 13 mm tube + 400 mm, get to ~1 m'},{it:'Serie coerente “Fauna Etna” per il portfolio',en:'Consistent “Etna wildlife” series for the portfolio'}]},
+ {id:'paes',k:{it:'Paesaggio',en:'Landscape'},em:'🌋',t:{it:'Paesaggio Etna / costa',en:'Etna / coast landscape'},s:{it:'RF 14-35 · RF 100-400 per compressioni',en:'RF 14-35 · RF 100-400 for compression'},
+  rows:[[{it:'Modo',en:'Mode'},'Av · f/8–f/11 · ISO 100'],[{it:'Supporto',en:'Support'},{it:'Treppiede · IS OFF · autoscatto 2 s',en:'Tripod · IS OFF · 2 s self-timer'}],[{it:'Fuoco',en:'Focus'},{it:'Iperfocale (scheda Notte·Flash)',en:'Hyperfocal (Night·Flash tab)'}],[{it:'Esposizione',en:'Exposure'},{it:'ETTR senza clipping',en:'ETTR without clipping'}],[{it:'Bracketing',en:'Bracketing'},{it:'AEB ±2 EV (meccanico o prima tendina, NON elettronico)',en:'AEB ±2 EV (mechanical or first curtain, NOT electronic)'}],[{it:'Livella',en:'Level'},{it:'Elettronica ON',en:'Electronic ON'}]],
+  tips:[{it:'Fumo e cenere dell’Etna: Dehaze in LrC, non in fotocamera',en:'Etna smoke and ash: Dehaze in LrC, not in camera'},{it:'Mare: 1/2–2 s per acqua setosa (filtro ND)',en:'Sea: 1/2–2 s for silky water (ND filter)'}]},
+ {id:'notte',k:{it:'Notturno',en:'Night'},em:'✨',t:{it:'Notturno / Via Lattea',en:'Night / Milky Way'},s:{it:'RF 14-35 @14 · f/4',en:'RF 14-35 @14 · f/4'},
+  rows:[[{it:'Modo',en:'Mode'},{it:'M · f/4 · tempo NPF (≈19 s; rigoroso ≈10 s) · ISO 3200–6400',en:'M · f/4 · NPF time (≈19 s; strict ≈10 s) · ISO 3200–6400'}],[{it:'Fuoco',en:'Focus'},{it:'MF con ingrandimento ×10 su stella luminosa',en:'MF with ×10 magnification on a bright star'}],[{it:'NR lunghe esposizioni',en:'Long exposure NR'},{it:'OFF (si fa in PureRAW)',en:'OFF (done in PureRAW)'}],[{it:'Bilanciamento bianco',en:'White balance'},'3800–4200 K'],[{it:'Scatto',en:'Release'},{it:'Autoscatto 2 s o telecomando',en:'2 s self-timer or remote'}],['IBIS',{it:'OFF su treppiede',en:'OFF on tripod'}]],
+  tips:[{it:'Calcola il tempo esatto nella scheda Notte·Flash',en:'Work out the exact time in the Night·Flash tab'},{it:'Eruzione notturna: ISO 800–1600 e 2–4 s per non bruciare la lava',en:'Night eruption: ISO 800–1600 and 2–4 s to avoid blowing out the lava'}]},
+ {id:'street',k:'Street',em:'🏙',t:{it:'Street / ritratto',en:'Street / portrait'},s:'RF 50 f/1.8 STM · RF 14-35',
+  rows:[[{it:'Modo',en:'Mode'},{it:'Av · f/5.6 street · f/2–2.8 ritratto',en:'Av · f/5.6 street · f/2–2.8 portrait'}],['ISO',{it:'Auto · tempo minimo 1/250',en:'Auto · minimum shutter 1/250'}],['AF',{it:'Servo · persone · Occhi ON',en:'Servo · people · Eyes ON'}],[{it:'Otturatore',en:'Shutter'},{it:'Elettronico silenzioso (luce naturale)',en:'Silent electronic (natural light)'}],[{it:'Raffica',en:'Drive'},'H 8 fps'],[{it:'Notte',en:'Night'},{it:'f/1.8–2.2 · ISO fino a 6400',en:'f/1.8–2.2 · ISO up to 6400'}]],
+  tips:[{it:'50 mm senza IS ottico: IBIS attivo',en:'50 mm has no optical IS: IBIS on'},{it:'B&N: scatta a colori in RAW, converti in LrC',en:'B&W: shoot colour RAW, convert in LrC'}]}
 ];
-function chkKey(){return 'kitr5chk_'+S.preset}
+const BASE=[[{it:'Messa a fuoco',en:'Focusing'},{it:'Back Button Focus: mezza pressione = esposizione · AF-ON = esposizione + AF',en:'Back Button Focus: half-press = metering · AF-ON = metering + AF'}],[{it:'Personalizza pulsanti',en:'Customise buttons'},{it:'C.Fn pag. 5',en:'C.Fn page 5'}],[{it:'Focus bracketing',en:'Focus bracketing'},{it:'Menu AF (richiede otturatore elettronico)',en:'AF menu (requires electronic shutter)'}],[{it:'Peaking',en:'Peaking'},{it:'Menu AF pag. 4–5 · Rosso, Bassa',en:'AF menu pages 4–5 · Red, Low'}],[{it:'Formato',en:'Format'},{it:'RAW (CR3), non C-RAW per stock e stampa',en:'RAW (CR3), not C-RAW for stock and print'}],[{it:'Stabilizzazione',en:'Stabilisation'},{it:'IS ottico + IBIS coordinati in automatico; ottiche senza IS: solo IBIS (menu)',en:'Optical IS + IBIS coordinate automatically; non-IS lenses: IBIS only (menu)'}]];
 function updPreset(){
-  S.preset=S.preset||'macro';
-  seg('segPreset',PRESETS.map(p=>({id:p.id,l:p.em+' '+p.k})),S.preset,v=>{S.preset=v});
-  const p=PRESETS.find(x=>x.id===S.preset);
-  let done={};try{const raw=JSON.parse(localStorage.getItem(chkKey())||'{}');if(Date.now()-(raw.ts||0)<12*3600e3)done=raw.d||{}}catch(e){}
-  document.getElementById('presetBox').innerHTML=`<div class="preset-h"><span class="em">${p.em}</span><div><b>${p.t}</b><small>${p.s}</small></div></div>`+
-   p.rows.map((r,i)=>`<label class="check ${done[i]?'done':''}"><input type="checkbox" data-i="${i}" ${done[i]?'checked':''}><span><b style="color:var(--dim);font-weight:500">${r[0]}:</b> ${r[1]}</span></label>`).join('')+
-   `<ul class="tips">${p.tips.map(t=>`<li>${t}</li>`).join('')}</ul>`;
-  document.querySelectorAll('#presetBox input').forEach(c=>c.onchange=()=>{done[c.dataset.i]=c.checked;c.parentElement.classList.toggle('done',c.checked);try{localStorage.setItem(chkKey(),JSON.stringify({ts:Date.now(),d:done}))}catch(e){}});
+  if(!PRESETS.find(p=>p.id===S.preset))S.preset='macro';
+  seg('segPreset',PRESETS.map(p=>({id:p.id,l:p.em+' '+T(p.k)})),S.preset,v=>{S.preset=v});
+  const p=PRESETS.find(x=>x.id===S.preset),key='kitr5chk_'+p.id;
+  let done={};try{const raw=JSON.parse(localStorage.getItem(key)||'{}');if(Date.now()-(raw.ts||0)<12*3600e3)done=raw.d||{}}catch(e){}
+  document.getElementById('presetBox').innerHTML=`<div class="preset-h"><span class="em">${p.em}</span><div><b>${T(p.t)}</b><small>${T(p.s)}</small></div></div>`+
+   p.rows.map((r,i)=>`<label class="check ${done[i]?'done':''}"><input type="checkbox" data-i="${i}" ${done[i]?'checked':''}><span><em>${T(r[0])}:</em> ${T(r[1])}</span></label>`).join('')+
+   `<ul class="tips">${p.tips.map(t=>`<li>${T(t)}</li>`).join('')}</ul>`;
+  document.querySelectorAll('#presetBox input').forEach(c=>c.onchange=()=>{done[c.dataset.i]=c.checked;c.parentElement.classList.toggle('done',c.checked);try{localStorage.setItem(key,JSON.stringify({ts:Date.now(),d:done}))}catch(e){}});
+  document.getElementById('baseBox').innerHTML=`<h3 style="margin-top:0">${T({it:'Configurazione base sempre attiva',en:'Always-on base setup'})}</h3><table class="kv">${BASE.map(r=>`<tr><td>${T(r[0])}</td><td>${T(r[1])}</td></tr>`).join('')}</table>`;
 }
 
 /* ════════ GLUE ════════ */
-function updAll(){const o=updTubi();updSim(o);updPreset()}
-['slAp','slFoc','slSh','slAp2','slIso'].forEach(id=>document.getElementById(id).addEventListener('input',updAll));
-document.getElementById('slAp').addEventListener('input',()=>{document.getElementById('slAp2').value=document.getElementById('slAp').value;updAll()});
-document.getElementById('slAp2').addEventListener('input',()=>{document.getElementById('slAp').value=document.getElementById('slAp2').value;updAll()});
+function renderAll(){renderLenses();const o=updTubi();updSim(o);updNight();updFlash();updPreset()}
+['slFoc','slSh','slIso','slNf','slNa','slHf','slHa'].forEach(id=>document.getElementById(id).addEventListener('input',renderAll));
+document.getElementById('slAp').addEventListener('input',()=>{document.getElementById('slAp2').value=document.getElementById('slAp').value;renderAll()});
+document.getElementById('slAp2').addEventListener('input',()=>{document.getElementById('slAp').value=document.getElementById('slAp2').value;renderAll()});
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
   scrollTo(0,0);try{localStorage.setItem('kitr5tab',b.dataset.t)}catch(e){}
 });
 try{const t=localStorage.getItem('kitr5tab');if(t){const b=document.querySelector(`#tabs button[data-t="${t}"]`);b&&b.click()}}catch(e){}
-renderLenses();updAll();
+applyStatic();renderAll();
 
-/* PWA */
 let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;const b=document.getElementById('installBtn');b.style.display='block';b.onclick=async()=>{dp.prompt();await dp.userChoice;b.style.display='none'}});
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
 </script>

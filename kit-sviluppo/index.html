@@ -26,7 +26,9 @@ header{position:sticky;top:0;z-index:20;background:rgba(12,12,12,.94);backdrop-f
 header svg{width:34px;height:34px;flex-shrink:0}
 .brand b{display:block;color:var(--white);font-size:15px;letter-spacing:.06em}
 .brand span{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber)}
-#installBtn{margin-left:auto;display:none;background:var(--amber);color:#111;border:0;border-radius:3px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.hbtns{margin-left:auto;display:flex;gap:6px}
+#installBtn{display:none;background:var(--amber);color:#111;border:0;border-radius:3px;padding:7px 12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+#langBtn{background:transparent;color:var(--amber);border:1px solid var(--amber);border-radius:3px;padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:var(--mono)}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(16,16,16,.97);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
 nav.tabs button{background:none;border:0;color:var(--dim);padding:9px 4px 10px;font-size:10.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit}
 nav.tabs button .ic{font-size:18px;line-height:1}
@@ -39,12 +41,12 @@ h3{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber)
 .card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:14px;margin-bottom:12px}
 .grid{display:grid;gap:12px}
 @media(min-width:720px){.g2{grid-template-columns:1fr 1fr}}
-.flow{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.flow{border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .step{display:flex;gap:12px;padding:12px 14px;background:var(--bg2);border-bottom:1px solid var(--line)}
 .step:last-child{border-bottom:0}
 .step .n{width:26px;height:26px;border-radius:50%;background:rgba(200,129,58,.15);color:var(--amber);font-family:var(--mono);font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step b{color:var(--white);display:block;font-size:14px}
-.step p{font-size:12.5px;color:var(--text)}
+.step p{font-size:12.5px}
 .step small{color:var(--dim);font-size:11.5px}
 .seg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
 .seg button{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:4px;padding:6px 10px;font-size:12px;cursor:pointer;font-family:inherit}
@@ -54,8 +56,8 @@ table.dv td{padding:7px 4px;border-bottom:1px solid var(--line);vertical-align:t
 table.dv td:first-child{color:var(--dim);white-space:nowrap;padding-right:10px}
 table.dv td:nth-child(2){color:var(--amber);font-family:var(--mono);font-size:12px;white-space:nowrap;padding-right:10px}
 table.dv td.neg{color:var(--blue)}
-table.dv td:last-child{color:var(--text)}
-@media(max-width:560px){table.dv tr{display:grid;grid-template-columns:auto 1fr;gap:0 10px;border-bottom:1px solid var(--line);padding:6px 0}table.dv td{border:0;padding:1px 0}table.dv td:last-child{grid-column:1/-1;font-size:12px;color:var(--dim)}}
+table.dv td.wrap{white-space:normal;font-family:inherit;color:var(--text)}
+@media(max-width:560px){table.dv tr{display:grid;grid-template-columns:auto 1fr;gap:0 10px;border-bottom:1px solid var(--line);padding:6px 0}table.dv td{border:0;padding:1px 0}table.dv td:nth-child(3){grid-column:1/-1;font-size:12px;color:var(--dim)}}
 .hsl{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:6px;margin-top:8px}
 .hsl div{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:7px 8px;font-size:11px}
 .hsl i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
@@ -65,12 +67,17 @@ table.dv td:last-child{color:var(--text)}
 ul.tips{list-style:none;margin-top:8px}
 ul.tips li{position:relative;padding-left:16px;margin:6px 0;font-size:13px}
 ul.tips li::before{content:"→";position:absolute;left:0;color:var(--amber);font-size:11px;top:1px}
-ul.tips strong,.callout strong{color:var(--amber-l)}
+ul.tips strong,.callout strong,.step strong{color:var(--amber-l)}
 .callout{border-left:2px solid var(--amber);background:rgba(200,129,58,.07);padding:10px 12px;font-size:12.5px;margin:10px 0;border-radius:0 4px 4px 0}
+.callout a,.linkcard{color:var(--amber)}
+.linkcard{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--amber);border-radius:6px;padding:12px 14px;margin-bottom:12px;text-decoration:none}
+.linkcard b{color:var(--white);display:block}
+.linkcard small{color:var(--dim)}
+.linkcard .ar{margin-left:auto;font-size:18px}
 code{font-family:var(--mono);font-size:11.5px;background:var(--bg3);padding:1px 5px;border-radius:3px;color:var(--white)}
 .ctl{display:flex;align-items:center;gap:10px;margin:6px 0}
 .ctl label{font-size:12px;color:var(--dim);width:118px;flex-shrink:0}
-.ctl input{flex:1;accent-color:var(--amber);height:28px}
+.ctl input[type=range]{flex:1;accent-color:var(--amber);height:28px}
 .ctl b{font-family:var(--mono);font-size:12px;color:var(--white);min-width:38px;text-align:right;font-weight:500}
 .strip-row{display:flex;align-items:center;gap:8px;margin-top:8px}
 .strip-row span{font-size:11px;color:var(--dim);width:80px;text-align:right;flex-shrink:0}
@@ -84,7 +91,6 @@ code{font-family:var(--mono);font-size:11.5px;background:var(--bg3);padding:1px 
 .zones .z b{font-family:var(--mono);font-size:11px;min-width:36px;color:var(--white);font-weight:500}
 .pbtn{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
 .pbtn button{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:4px;padding:5px 9px;font-size:11.5px;cursor:pointer;font-family:inherit}
-.pbtn button:hover{border-color:var(--amber)}
 details.acc{background:var(--bg2);border:1px solid var(--line);border-radius:6px;margin-bottom:8px}
 details.acc summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;gap:10px;align-items:center}
 details.acc summary::-webkit-details-marker{display:none}
@@ -96,8 +102,7 @@ details.acc[open] summary::after{content:"–"}
 details.acc .body{padding:0 14px 12px 48px;font-size:13px}
 .recipe{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:10px}
 .recipe b{color:var(--white);font-size:13px;display:block;margin-bottom:3px}
-.recipe code{display:inline-block;margin:2px 0}
-.recipe p{font-size:12px;color:var(--text);margin-top:4px}
+.recipe p{font-size:12px;margin-top:4px}
 footer{text-align:center;color:var(--dim);font-size:11px;letter-spacing:1px;padding:24px 16px}
 footer a{color:var(--amber);text-decoration:none}
 </style>
@@ -106,95 +111,63 @@ footer a{color:var(--amber);text-decoration:none}
 
 <header>
   <svg viewBox="0 0 60 60" aria-hidden="true"><g transform="translate(30,30)" fill="none" stroke="#C8813A" stroke-width="2"><ellipse rx="25" ry="8.5"/><ellipse rx="25" ry="8.5" transform="rotate(60)"/><ellipse rx="25" ry="8.5" transform="rotate(120)"/></g><g fill="#C8813A"><circle cx="55" cy="30" r="2.2"/><circle cx="5" cy="30" r="2.2"/><circle cx="30" cy="30" r="4.2"/></g></svg>
-  <div class="brand"><b>Kit Sviluppo</b><span>Lightroom · ON1</span></div>
-  <button id="installBtn">Installa</button>
+  <div class="brand"><b data-en="Editing Kit">Kit Sviluppo</b><span>Lightroom · ON1</span></div>
+  <div class="hbtns"><button id="installBtn" data-en="Install">Installa</button><button id="langBtn" aria-label="Language">EN</button></div>
 </header>
 
 <main>
 
-<!-- ═════════ WORKFLOW ═════════ -->
 <section class="tab on" id="t-flow">
-  <h2>Workflow RAW R5</h2>
-  <p class="lead">Dalla scheda alla stampa: ordine delle operazioni e quale software usare quando.</p>
-  <div class="flow">
-    <div class="step"><div class="n">1</div><div><b>Import in Lightroom Classic</b><p>CR3 originali. Preset di import “Base R5”: profilo ottico ON, rimozione aberrazione cromatica ON, profilo Adobe Neutral o Camera Neutral.</p><small>Process Version: la più recente (Versione 6)</small></div></div>
-    <div class="step"><div class="n">2</div><div><b>Culling</b><p>Excire Foto: punteggio estetico solo come filtro negativo, poi selezione manuale. In LrC flag P/X, confronto 1:1.</p><small>Seleziona prima di sviluppare o denoisare</small></div></div>
-    <div class="step"><div class="n">3</div><div><b>Riduzione rumore — due binari</b><p><strong style="color:var(--amber-l)">DxO PureRAW 6 · DeepPRIME XD3S</strong> per macro e notturni sopra ISO 1600 → DNG lineare accanto al CR3.<br><strong style="color:var(--amber-l)">Denoise di LrC</strong> per paesaggio/giorno e ISO bassi: ora è nel pannello Dettaglio, non crea più un DNG separato.</p></div></div>
-    <div class="step"><div class="n">4</div><div><b>Sviluppo globale in LrC</b><p>Base → Curva → Colore/HSL → Dettaglio → Maschere AI (Cielo, Soggetto, Intervallo). Valori per genere nella scheda Lightroom.</p></div></div>
-    <div class="step"><div class="n">5</div><div><b>Rifinitura in ON1 Photo RAW 2026</b><p>Modifica in → ON1 come plugin, TIFF 16 bit ProPhoto RGB. Maschere di luminosità + AI Soggetto per lavoro chirurgico su insetti e texture.</p></div></div>
-    <div class="step"><div class="n">6</div><div><b>Focus stacking (se serve)</b><p>Sviluppa i RAW della serie, esporta TIFF 16 bit, impila in Photoshop (Allinea + Fondi automaticamente livelli) o Luminar Neo.</p></div></div>
-    <div class="step"><div class="n">7</div><div><b>Export</b><p>Preset per destinazione: web, stock, stampa Saal Digital. Nitidezza di output separata da quella di sviluppo.</p></div></div>
-  </div>
-  <h3>Regole fisse</h3>
-  <ul class="tips">
-    <li><strong>Sincronizza</strong> lo sviluppo su una serie, ma mai il ritaglio né le maschere AI (vanno ricalcolate per foto).</li>
-    <li><strong>Bilanciamento del bianco</strong> su RAW: conta la coerenza della serie. Mai il contagocce sui petali bianchi: non sono un grigio neutro.</li>
-    <li><strong>Before/After</strong>: tasto <code>\</code>. Clipping: <code>Alt</code> mentre trascini Bianchi/Neri.</li>
-    <li><strong>Lettura metadati</strong>: aggiorna cartella per cartella, non in blocco (LrC usa i timestamp come cache).</li>
-  </ul>
+  <h2 data-en="R5 RAW workflow">Workflow RAW R5</h2>
+  <p class="lead" data-en="From card to print: order of operations and which software to use when.">Dalla scheda alla stampa: ordine delle operazioni e quale software usare quando.</p>
+  <div class="flow" id="flow"></div>
+  <h3 data-en="Fixed rules">Regole fisse</h3>
+  <ul class="tips" id="rules"></ul>
 </section>
 
-<!-- ═════════ LIGHTROOM ═════════ -->
 <section class="tab" id="t-lr">
   <h2>Lightroom Classic</h2>
-  <p class="lead">Valori di partenza per CR3 della R5. Sono intervalli: parti dal centro e regola sull’immagine.</p>
+  <p class="lead" data-en="Starting values for R5 CR3 files. They are ranges: start from the middle and adjust to the image.">Valori di partenza per CR3 della R5. Sono intervalli: parti dal centro e regola sull’immagine.</p>
+  <a class="linkcard" href="https://apps.fotolapissable.it/preset-vault/" target="_blank" rel="noopener"><span style="font-size:22px">🗂</span><span><b>Preset Vault</b><small data-en="The 18 fotolapissable XMP presets, ready to install in LrC">I 18 preset XMP fotolapissable, pronti da installare in LrC</small></span><span class="ar">↗</span></a>
   <div class="seg" id="segGenre"></div>
   <div class="card" id="genreBox"></div>
 </section>
 
-<!-- ═════════ ON1 ═════════ -->
 <section class="tab" id="t-on1">
-  <h2>ON1 Photo RAW 2026 · Maschere</h2>
-  <p class="lead">Maschere di luminosità e combinazione con AI Soggetto per macro di insetti. Simulatori sulla scala tonale 0–255.</p>
-
+  <h2 data-en="ON1 Photo RAW 2026 · Masks">ON1 Photo RAW 2026 · Maschere</h2>
+  <p class="lead" data-en="Luminosity masks and their combination with AI Subject for insect macro. Simulators on the 0–255 tonal scale.">Maschere di luminosità e combinazione con AI Soggetto per macro di insetti. Simulatori sulla scala tonale 0–255.</p>
   <div class="card">
-    <h3 style="margin-top:0">Simulatore · Intervallo di luminosità + AI Soggetto</h3>
-    <div class="ctl"><label>AI Soggetto attiva</label><input type="checkbox" id="aiOn" checked style="flex:0;width:18px"></div>
-    <div class="ctl"><label>Confidenza AI</label><input type="range" id="aiConf" min="50" max="100" value="85"><b id="aiConfV"></b></div>
-    <div class="ctl"><label>Luminosità min</label><input type="range" id="lMin" min="0" max="254" value="60"><b id="lMinV"></b></div>
-    <div class="ctl"><label>Luminosità max</label><input type="range" id="lMax" min="1" max="255" value="155"><b id="lMaxV"></b></div>
-    <div class="ctl"><label>Sfumatura</label><input type="range" id="lFt" min="0" max="60" value="20"><b id="lFtV"></b></div>
-    <div class="strip-row"><span>Toni</span><div class="strip" id="stTone"></div></div>
-    <div class="strip-row"><span>Luminosità</span><div class="strip" id="stLum"></div></div>
-    <div class="strip-row"><span style="color:var(--white)">Risultato</span><div class="strip" id="stRes"></div></div>
-    <div class="scale"><span>0 nero</span><span>255 bianco</span></div>
-    <h3>Zone dell’ape incluse</h3>
+    <h3 style="margin-top:0" data-en="Simulator · Luminosity range + AI Subject">Simulatore · Intervallo di luminosità + AI Soggetto</h3>
+    <div class="ctl"><label data-en="AI Subject on">AI Soggetto attiva</label><input type="checkbox" id="aiOn" checked style="accent-color:var(--amber);width:18px;height:18px"></div>
+    <div class="ctl"><label data-en="AI confidence">Confidenza AI</label><input type="range" id="aiConf" min="50" max="100" value="85"><b id="aiConfV"></b></div>
+    <div class="ctl"><label data-en="Luminosity min">Luminosità min</label><input type="range" id="lMin" min="0" max="254" value="60"><b id="lMinV"></b></div>
+    <div class="ctl"><label data-en="Luminosity max">Luminosità max</label><input type="range" id="lMax" min="1" max="255" value="155"><b id="lMaxV"></b></div>
+    <div class="ctl"><label data-en="Feather">Sfumatura</label><input type="range" id="lFt" min="0" max="60" value="20"><b id="lFtV"></b></div>
+    <div class="strip-row"><span data-en="Tones">Toni</span><div class="strip" id="stTone"></div></div>
+    <div class="strip-row"><span data-en="Luminosity">Luminosità</span><div class="strip" id="stLum"></div></div>
+    <div class="strip-row"><span style="color:var(--white)" data-en="Result">Risultato</span><div class="strip" id="stRes"></div></div>
+    <div class="scale"><span data-en="0 black">0 nero</span><span data-en="255 white">255 bianco</span></div>
+    <h3 data-en="Bee zones included">Zone dell’ape incluse</h3>
     <div class="zones" id="zones"></div>
     <div class="pbtn" id="presetBtns"></div>
   </div>
-
-  <h3>Ricette per zona anatomica</h3>
+  <h3 data-en="Recipes by anatomical zone">Ricette per zona anatomica</h3>
   <div class="grid g2" id="recipes"></div>
-
-  <h3>Casi d’uso</h3>
+  <h3 data-en="Use cases">Casi d’uso</h3>
   <div class="seg" id="segCase"></div>
   <div class="card" id="caseBox"></div>
-
-  <h3>Procedura in ON1 passo-passo</h3>
+  <h3 data-en="Step by step in ON1">Procedura in ON1 passo-passo</h3>
   <div id="steps"></div>
-
-  <h3>Combinazioni avanzate</h3>
-  <ul class="tips">
-    <li><strong>Luminosità + Gradiente</strong>: effetto solo sui toni scelti e nella direzione del gradiente (es. ali superiori più chiare).</li>
-    <li><strong>Luminosità invertita</strong>: “Inverti maschera” tratta tutto ciò che è fuori range, senza ridefinire i valori.</li>
-    <li><strong>Livelli multipli</strong>: 3–4 livelli locali con range diversi — ombre (Texture), mezzetinte (Chiarezza), luci (abbassa Bianchi).</li>
-    <li><strong>Sovrapposizioni tra range</strong> non sono errori: la sfumatura gestisce la transizione. Controlla sempre con <code>Mostra maschera</code>.</li>
-  </ul>
+  <h3 data-en="Advanced combinations">Combinazioni avanzate</h3>
+  <ul class="tips" id="combos"></ul>
 </section>
 
-<!-- ═════════ EXPORT ═════════ -->
 <section class="tab" id="t-exp">
-  <h2>Export per destinazione</h2>
-  <p class="lead">Preset di esportazione da creare una volta in LrC.</p>
+  <h2 data-en="Export by destination">Export per destinazione</h2>
+  <p class="lead" data-en="Export presets to create once in LrC.">Preset di esportazione da creare una volta in LrC.</p>
   <div class="card"><table class="dv" id="expTable"></table></div>
   <h3>Note</h3>
-  <ul class="tips">
-    <li><strong>Inter-app</strong> (LrC ↔ ON1/Photoshop/stacking): TIFF 16 bit ProPhoto RGB, nessuna nitidezza di output.</li>
-    <li><strong>Super Risoluzione</strong>: 45 MP → ~180 MP. Solo per ritagli forti o stampe grandi.</li>
-    <li><strong>Filigrana</strong>: logo fotolapissable PNG trasparente, angolo, opacità 60–80%. Mai sulle immagini per stock.</li>
-    <li><strong>Metadati</strong>: Copyright e Autore “Michele Cipriano”, sito fotolapissable.it. Rimuovi GPS per siti sensibili (nidi, specie protette).</li>
-    <li><strong>Soft proofing</strong> (<code>Ctrl+Alt+P</code>) con il profilo ICC di Saal Digital prima di ordinare stampe.</li>
-  </ul>
+  <ul class="tips" id="expNotes"></ul>
 </section>
 
 </main>
@@ -206,114 +179,161 @@ footer a{color:var(--amber);text-decoration:none}
   <button data-t="t-exp"><span class="ic">⇪</span>Export</button>
 </nav>
 
-<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a></footer>
+<footer>fotolapissable · Michele Cipriano · <a href="https://apps.fotolapissable.it">apps.fotolapissable.it</a> · <a href="https://apps.fotolapissable.it/kit-r5/">Kit R5</a></footer>
 
 <script>
 const $=id=>document.getElementById(id);
-const C={r:'#e74c3c',o:'#e67e22',y:'#f1c40f',g:'#27ae60',a:'#1abc9c',b:'#2980b9',p:'#8e44ad',m:'#d35486'};
-const GENRES=[
- {id:'base',l:'Base R5',
-  rows:[['Esposizione','0','ETTR in ripresa: parti da 0'],['Contrasto','+10','Lieve; il resto con la curva'],['Luci','−30…−70','Ampia latitudine del CR3'],['Ombre','+20…+50','Sensore pulito fino a +50'],['Bianchi','+5…+20','Alt+trascina fino al clipping'],['Neri','−10…−25','Alt+trascina'],['Texture','+15…+30','I 45 MP la reggono'],['Chiarezza','+5…+20','Oltre crea aloni'],['Vividezza','+10…+25','Meglio della Saturazione'],['Saturazione','0','Lavora per canale in HSL']],
-  extra:`<h3>Dettaglio · nitidezza e rumore</h3><table class="dv">
-  <tr><td>Fattore</td><td>50–80</td><td>60 default con ottiche RF</td></tr>
-  <tr><td>Raggio</td><td>0,8–1,0</td><td>Pixel piccolo → raggio basso</td></tr>
-  <tr><td>Dettaglio</td><td>25–40</td><td>Alto accentua il rumore</td></tr>
-  <tr><td>Mascheratura</td><td>40–70</td><td>Alt+trascina: solo sui bordi, mai su cielo e bokeh</td></tr>
-  <tr><td>Luminanza NR</td><td>10–40</td><td>Sopra ISO 1600: Denoise (pannello Dettaglio) o PureRAW 6</td></tr>
-  <tr><td>Colore NR</td><td>25</td><td>Default</td></tr></table>
-  <div class="callout"><strong>Profilo ottico</strong>: ON sempre. RF 24-240 a 24 mm ha distorsione a barilotto marcata; RF 14-35 sulle architetture → Trasformazione Auto o Guidata.</div>`},
- {id:'paes',l:'Paesaggio',
-  rows:[['Esposizione','+0,3…+0,7','Notturni Etna: valuta scena per scena'],['Luci','−60…−90','Abbassa senza paura'],['Ombre','+30…+60','Terreno lavico'],['Bianchi','+10…+30','Nuvole brillanti'],['Neri','−20…−40','Lava: neri profondi'],['Texture','+25…+40','Rocce, cortecce, lava'],['Chiarezza','+10…+25','Attenzione al cielo'],['Vividezza','+20…+35',''],['Dehaze','+15…+30','Fumo e foschia Etna'],['Curva','S lieve','Ombre +5–10, luci −5–10']],
-  hsl:[['Rossi',C.r,5,10,0],['Arancio',C.o,5,15,5],['Gialli',C.y,8,10,5],['Verdi',C.g,-5,15,5],['Acqua',C.a,0,10,0],['Blu cielo',C.b,8,20,-10],['Viola',C.p,0,0,0],['Magenta',C.m,0,5,0]],
-  tips:['<strong>Maschera Cielo</strong>: Esposizione −0,3, Luci −30, Dehaze +10','<strong>Polarizzatore simulato</strong>: maschera cielo → Saturazione Blu +25, Luminanza Blu −15','<strong>Notturno</strong>: dopo il denoise Texture alta per le stelle, Chiarezza bassa','<strong>Color grading</strong>: mezzitoni caldi (tinta 30–40, sat. 8–12), ombre fredde (tinta 220, sat. 5–8)']},
- {id:'flora',l:'Flora & Macro',
-  rows:[['Esposizione','+0,2…+0,5','La luce coperta sottoespone'],['Luci','−30…−60','Petali chiari'],['Ombre','+20…+40',''],['Texture (soggetto)','+20…+35','Con maschera Soggetto'],['Chiarezza (sfondo)','−5…−15','Bokeh più morbido'],['Vividezza','+20…+35','']],
-  hsl:[['Rossi',C.r,-5,15,5],['Arancio',C.o,0,20,5],['Gialli',C.y,5,15,5],['Verdi foglie',C.g,-8,20,10],['Magenta',C.m,-10,20,5],['Viola',C.p,-5,15,0],['Ciano',C.a,0,10,5],['Blu',C.b,0,5,0]],
-  tips:['<strong>Soggetto AI</strong>: Texture +20, Chiarezza +10; inverti per lo sfondo: Chiarezza −10, Nitidezza −20','<strong>Fiori bianchi</strong>: WB da un neutro vero della scena o dallo scatto con cartoncino grigio, mai dal petalo','<strong>Rugiada</strong>: maschera Intervallo luminanza sulle gocce, Contrasto +15','<strong>Preset macro</strong>: varianti tubo 13 mm / sole / coperto / PureRAW vs RAW nativo']},
- {id:'street',l:'Street',
-  rows:[['Esposizione','−0,3…+0,3',''],['Contrasto','+20…+40','Più del paesaggio'],['Luci','−30…−60','Luci artificiali'],['Ombre','0…−20','Look duro; +20 per reportage'],['Neri','−30…−60',''],['Chiarezza','+20…+40','Muri, asfalto, volti'],['Vividezza','−10…0','O +20 per colore vivace'],['Curva','S forte','Neri sollevati a 10–15']],
-  tips:['<strong>B&N</strong>: Rossi +20, Arancio +30, Verdi −10, Blu −20; Grana 25–40, dimensione 30–40','<strong>Vignettatura</strong>: −15…−25, punto medio 50, sfumatura 80','<strong>ISO alti</strong> (3200–12800): Denoise o PureRAW 6 sulle foto scelte','<strong>Ritaglio</strong>: al 50% restano ~11 MP, sufficienti per web e A4']},
- {id:'food',l:'Food',
-  rows:[['Temperatura','5200–5800 K','Caldo = appetitoso'],['Esposizione','+0,3…+0,8','Luminoso'],['Luci','−20…−50','Salse e superfici lucide'],['Ombre','+20…+40',''],['Bianchi','+10…+25','Piatti bianchi'],['Neri','−10…−25','Mai cupo'],['Texture','+20…+35','Crosta, consistenza'],['Chiarezza','+10…+20',''],['Vividezza','+15…+30','']],
-  hsl:[['Rossi',C.r,-8,20,5],['Arancio',C.o,-5,15,8],['Gialli',C.y,5,10,5],['Verdi erbe',C.g,-5,20,10],['Magenta',C.m,-5,-10,0],['Blu sfondo',C.b,0,-10,5]],
-  tips:['<strong>Cartoncino grigio</strong> nel primo scatto → contagocce → Sincronizza WB sul set','<strong>Luci gialle di sala</strong>: WB sulla tovaglia, poi Saturazione Gialli −','<strong>Soggetto AI sul piatto</strong>: Texture +20, Chiarezza +15; sfondo Esposizione −0,3']}
+let LANG='it';
+try{LANG=localStorage.getItem('fl_lang')||((navigator.language||'it').toLowerCase().startsWith('it')?'it':'en')}catch(e){}
+const T=o=>o==null?'':typeof o==='string'?o:(o[LANG]??o.it);
+function applyStatic(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-en]').forEach(el=>{if(el.dataset.it===undefined)el.dataset.it=el.innerHTML;el.innerHTML=LANG==='en'?el.dataset.en:el.dataset.it});
+  $('langBtn').textContent=LANG==='it'?'EN':'IT';
+}
+$('langBtn').onclick=()=>{LANG=LANG==='it'?'en':'it';try{localStorage.setItem('fl_lang',LANG)}catch(e){}applyStatic();renderAll()};
+const li=a=>a.map(t=>`<li>${T(t)}</li>`).join('');
+
+/* ═════ WORKFLOW ═════ */
+const FLOW=[
+ [{it:'Import in Lightroom Classic',en:'Import into Lightroom Classic'},{it:'CR3 originali. Preset di import “Base R5”: profilo ottico ON, rimozione aberrazione cromatica ON, profilo Adobe Neutral o Camera Neutral.',en:'Original CR3s. “Base R5” import preset: lens profile ON, remove chromatic aberration ON, Adobe Neutral or Camera Neutral profile.'},{it:'Process Version: la più recente (Versione 6)',en:'Process Version: latest (Version 6)'}],
+ [{it:'Culling',en:'Culling'},{it:'Excire Foto: punteggio estetico solo come filtro negativo, poi selezione manuale. In LrC flag P/X, confronto 1:1.',en:'Excire Foto: aesthetic score as a negative filter only, then manual selection. In LrC P/X flags, 1:1 compare.'},{it:'Seleziona prima di sviluppare o denoisare',en:'Select before developing or denoising'}],
+ [{it:'Riduzione rumore — due binari',en:'Noise reduction — two tracks'},{it:'<strong>DxO PureRAW 6 · DeepPRIME XD3S</strong> per macro e notturni sopra ISO 1600 → DNG lineare accanto al CR3.<br><strong>Denoise di LrC</strong> per paesaggio/giorno e ISO bassi: ora è nel pannello Dettaglio e non crea più un DNG separato.',en:'<strong>DxO PureRAW 6 · DeepPRIME XD3S</strong> for macro and night above ISO 1600 → linear DNG next to the CR3.<br><strong>LrC Denoise</strong> for landscape/daylight and low ISO: now in the Detail panel, no separate DNG anymore.'},''],
+ [{it:'Sviluppo globale in LrC',en:'Global development in LrC'},{it:'Base → Curva → Colore/HSL → Dettaglio → Maschere AI (Cielo, Soggetto, Intervallo). Valori per genere nella scheda Lightroom.',en:'Basic → Curve → Colour/HSL → Detail → AI masks (Sky, Subject, Range). Values by genre in the Lightroom tab.'},''],
+ [{it:'Rifinitura in ON1 Photo RAW 2026',en:'Finishing in ON1 Photo RAW 2026'},{it:'Modifica in → ON1 come plugin, TIFF 16 bit ProPhoto RGB. Maschere di luminosità + AI Soggetto per lavoro chirurgico su insetti e texture.',en:'Edit In → ON1 as a plugin, 16-bit ProPhoto RGB TIFF. Luminosity masks + AI Subject for surgical work on insects and textures.'},''],
+ [{it:'Focus stacking (se serve)',en:'Focus stacking (if needed)'},{it:'Sviluppa i RAW della serie, esporta TIFF 16 bit, impila in Photoshop (Allinea + Fondi automaticamente livelli) o Luminar Neo.',en:'Develop the series RAWs, export 16-bit TIFF, stack in Photoshop (Auto-Align + Auto-Blend Layers) or Luminar Neo.'},''],
+ [{it:'Export',en:'Export'},{it:'Preset per destinazione: web, stock, stampa Saal Digital. Nitidezza di output separata da quella di sviluppo.',en:'Presets by destination: web, stock, Saal Digital prints. Output sharpening separate from development sharpening.'},'']
 ];
-function sign(v){return v>0?'+'+v:''+v}
-function renderGenre(id){
-  const g=GENRES.find(x=>x.id===id);
-  $('segGenre').innerHTML=GENRES.map(x=>`<button class="${x.id===id?'on':''}" data-v="${x.id}">${x.l}</button>`).join('');
-  $('segGenre').querySelectorAll('button').forEach(b=>b.onclick=()=>{renderGenre(b.dataset.v);try{localStorage.setItem('kitsv_genre',b.dataset.v)}catch(e){}});
-  let h=`<table class="dv">${g.rows.map(r=>`<tr><td>${r[0]}</td><td class="${/^[−-]/.test(r[1])?'neg':''}">${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table>`;
-  if(g.hsl)h+=`<h3>HSL</h3><div class="hsl">${g.hsl.map(c=>`<div><b><i style="background:${c[1]}"></i>${c[0]}</b><p><span>Tinta</span><span>${sign(c[2])}</span></p><p><span>Sat</span><span>${sign(c[3])}</span></p><p><span>Lum</span><span>${sign(c[4])}</span></p></div>`).join('')}</div>`;
-  if(g.tips)h+=`<h3>Maschere e tecniche</h3><ul class="tips">${g.tips.map(t=>`<li>${t}</li>`).join('')}</ul>`;
-  if(g.extra)h+=g.extra;
+const RULES=[
+ {it:'<strong>Sincronizza</strong> lo sviluppo su una serie, ma mai il ritaglio né le maschere AI (vanno ricalcolate per foto).',en:'<strong>Sync</strong> development across a series, but never the crop or AI masks (they must be recomputed per photo).'},
+ {it:'<strong>Bilanciamento del bianco</strong> su RAW: conta la coerenza della serie. Mai il contagocce sui petali bianchi: non sono un grigio neutro.',en:'<strong>White balance</strong> on RAW: series consistency matters. Never use the dropper on white petals: they are not neutral grey.'},
+ {it:'<strong>Before/After</strong>: tasto <code>\\</code>. Clipping: <code>Alt</code> mentre trascini Bianchi/Neri.',en:'<strong>Before/After</strong>: <code>\\</code> key. Clipping: <code>Alt</code> while dragging Whites/Blacks.'},
+ {it:'<strong>Lettura metadati</strong>: aggiorna cartella per cartella, non in blocco (LrC usa i timestamp come cache).',en:'<strong>Metadata refresh</strong>: folder by folder, not in bulk (LrC uses timestamps as a cache).'}
+];
+function renderFlow(){
+  $('flow').innerHTML=FLOW.map((s,i)=>`<div class="step"><div class="n">${i+1}</div><div><b>${T(s[0])}</b><p>${T(s[1])}</p>${s[2]?`<small>${T(s[2])}</small>`:''}</div></div>`).join('');
+  $('rules').innerHTML=li(RULES);
+}
+
+/* ═════ LIGHTROOM ═════ */
+const C={r:'#e74c3c',o:'#e67e22',y:'#f1c40f',g:'#27ae60',a:'#1abc9c',b:'#2980b9',p:'#8e44ad',m:'#d35486'};
+const L=(it,en)=>({it,en});
+const N={exp:L('Esposizione','Exposure'),con:L('Contrasto','Contrast'),hi:L('Luci','Highlights'),sh:L('Ombre','Shadows'),wh:L('Bianchi','Whites'),bl:L('Neri','Blacks'),tx:'Texture',cl:L('Chiarezza','Clarity'),vi:L('Vividezza','Vibrance'),sa:L('Saturazione','Saturation'),dh:'Dehaze',cu:L('Curva','Curve'),te:L('Temperatura','Temperature')};
+const GENRES=[
+ {id:'base',l:L('Base R5','R5 base'),
+  rows:[[N.exp,'0',L('ETTR in ripresa: parti da 0','ETTR when shooting: start at 0')],[N.con,'+10',L('Lieve; il resto con la curva','Light; the rest with the curve')],[N.hi,'−30…−70',L('Ampia latitudine del CR3','Wide CR3 latitude')],[N.sh,'+20…+50',L('Sensore pulito fino a +50','Clean sensor up to +50')],[N.wh,'+5…+20',L('Alt+trascina fino al clipping','Alt+drag up to clipping')],[N.bl,'−10…−25',L('Alt+trascina','Alt+drag')],[N.tx,'+15…+30',L('I 45 MP la reggono','The 45 MP handle it')],[N.cl,'+5…+20',L('Oltre crea aloni','More creates halos')],[N.vi,'+10…+25',L('Meglio della Saturazione','Better than Saturation')],[N.sa,'0',L('Lavora per canale in HSL','Work per channel in HSL')]],
+  extra:[L('Dettaglio · nitidezza e rumore','Detail · sharpening and noise'),[[L('Fattore','Amount'),'50–80',L('60 default con ottiche RF','60 default with RF lenses')],[L('Raggio','Radius'),'0,8–1,0',L('Pixel piccolo → raggio basso','Small pixel → low radius')],[L('Dettaglio','Detail'),'25–40',L('Alto accentua il rumore','High boosts noise')],[L('Mascheratura','Masking'),'40–70',L('Alt+trascina: solo sui bordi, mai su cielo e bokeh','Alt+drag: edges only, never sky or bokeh')],[L('Luminanza NR','Luminance NR'),'10–40',L('Sopra ISO 1600: Denoise (pannello Dettaglio) o PureRAW 6','Above ISO 1600: Denoise (Detail panel) or PureRAW 6')],[L('Colore NR','Colour NR'),'25',L('Default','Default')]],L('<strong>Profilo ottico</strong>: sempre ON. RF 24-240 a 24 mm ha distorsione a barilotto marcata; RF 14-35 sulle architetture → Trasformazione Auto o Guidata.','<strong>Lens profile</strong>: always ON. RF 24-240 at 24 mm has strong barrel distortion; RF 14-35 on architecture → Transform Auto or Guided.')]},
+ {id:'paes',l:L('Paesaggio','Landscape'),
+  rows:[[N.exp,'+0,3…+0,7',L('Notturni Etna: scena per scena','Etna nights: scene by scene')],[N.hi,'−60…−90',L('Abbassa senza paura','Pull down freely')],[N.sh,'+30…+60',L('Terreno lavico','Lava ground')],[N.wh,'+10…+30',L('Nuvole brillanti','Bright clouds')],[N.bl,'−20…−40',L('Lava: neri profondi','Lava: deep blacks')],[N.tx,'+25…+40',L('Rocce, cortecce, lava','Rocks, bark, lava')],[N.cl,'+10…+25',L('Attenzione al cielo','Careful with the sky')],[N.vi,'+20…+35',''],[N.dh,'+15…+30',L('Fumo e foschia Etna','Etna smoke and haze')],[N.cu,L('S lieve','Gentle S'),L('Ombre +5–10, luci −5–10','Shadows +5–10, highlights −5–10')]],
+  hsl:[[L('Rossi','Reds'),C.r,5,10,0],[L('Arancio','Oranges'),C.o,5,15,5],[L('Gialli','Yellows'),C.y,8,10,5],[L('Verdi','Greens'),C.g,-5,15,5],[L('Acqua','Aqua'),C.a,0,10,0],[L('Blu cielo','Sky blue'),C.b,8,20,-10],[L('Viola','Purple'),C.p,0,0,0],['Magenta',C.m,0,5,0]],
+  tips:[L('<strong>Maschera Cielo</strong>: Esposizione −0,3, Luci −30, Dehaze +10','<strong>Sky mask</strong>: Exposure −0.3, Highlights −30, Dehaze +10'),L('<strong>Polarizzatore simulato</strong>: maschera cielo → Saturazione Blu +25, Luminanza Blu −15','<strong>Simulated polariser</strong>: sky mask → Blue saturation +25, Blue luminance −15'),L('<strong>Notturno</strong>: dopo il denoise Texture alta per le stelle, Chiarezza bassa','<strong>Night</strong>: after denoise, high Texture for stars, low Clarity'),L('<strong>Color grading</strong>: mezzitoni caldi (tinta 30–40, sat. 8–12), ombre fredde (tinta 220, sat. 5–8)','<strong>Colour grading</strong>: warm midtones (hue 30–40, sat 8–12), cool shadows (hue 220, sat 5–8)')]},
+ {id:'flora',l:L('Flora & Macro','Flora & Macro'),
+  rows:[[N.exp,'+0,2…+0,5',L('La luce coperta sottoespone','Overcast light underexposes')],[N.hi,'−30…−60',L('Petali chiari','Light petals')],[N.sh,'+20…+40',''],[L('Texture (soggetto)','Texture (subject)'),'+20…+35',L('Con maschera Soggetto','With Subject mask')],[L('Chiarezza (sfondo)','Clarity (background)'),'−5…−15',L('Bokeh più morbido','Softer bokeh')],[N.vi,'+20…+35','']],
+  hsl:[[L('Rossi','Reds'),C.r,-5,15,5],[L('Arancio','Oranges'),C.o,0,20,5],[L('Gialli','Yellows'),C.y,5,15,5],[L('Verdi foglie','Leaf greens'),C.g,-8,20,10],['Magenta',C.m,-10,20,5],[L('Viola','Purple'),C.p,-5,15,0],[L('Ciano','Cyan'),C.a,0,10,5],[L('Blu','Blue'),C.b,0,5,0]],
+  tips:[L('<strong>Soggetto AI</strong>: Texture +20, Chiarezza +10; inverti per lo sfondo: Chiarezza −10, Nitidezza −20','<strong>AI Subject</strong>: Texture +20, Clarity +10; invert for background: Clarity −10, Sharpness −20'),L('<strong>Fiori bianchi</strong>: WB da un neutro vero della scena o dal cartoncino grigio, mai dal petalo','<strong>White flowers</strong>: WB from a true neutral or the grey card, never the petal'),L('<strong>Rugiada</strong>: maschera Intervallo luminanza sulle gocce, Contrasto +15','<strong>Dew</strong>: Luminance Range mask on the drops, Contrast +15'),L('<strong>Preset macro</strong> nel Preset Vault: tubo 13 mm sole/coperto, PureRAW vs RAW nativo','<strong>Macro presets</strong> in Preset Vault: 13 mm tube sun/overcast, PureRAW vs native RAW')]},
+ {id:'street',l:'Street',
+  rows:[[N.exp,'−0,3…+0,3',''],[N.con,'+20…+40',L('Più del paesaggio','More than landscape')],[N.hi,'−30…−60',L('Luci artificiali','Artificial lights')],[N.sh,'0…−20',L('Look duro; +20 per reportage','Hard look; +20 for reportage')],[N.bl,'−30…−60',''],[N.cl,'+20…+40',L('Muri, asfalto, volti','Walls, asphalt, faces')],[N.vi,'−10…0',L('O +20 per colore vivace','Or +20 for vivid colour')],[N.cu,L('S forte','Strong S'),L('Neri sollevati a 10–15','Blacks lifted to 10–15')]],
+  tips:[L('<strong>B&N</strong>: Rossi +20, Arancio +30, Verdi −10, Blu −20; Grana 25–40, dimensione 30–40','<strong>B&W</strong>: Reds +20, Oranges +30, Greens −10, Blues −20; Grain 25–40, size 30–40'),L('<strong>Vignettatura</strong>: −15…−25, punto medio 50, sfumatura 80','<strong>Vignette</strong>: −15…−25, midpoint 50, feather 80'),L('<strong>ISO alti</strong> (3200–12800): Denoise o PureRAW 6 sulle foto scelte','<strong>High ISO</strong> (3200–12800): Denoise or PureRAW 6 on selected shots'),L('<strong>Ritaglio</strong>: al 50% restano ~11 MP, sufficienti per web e A4','<strong>Crop</strong>: at 50% ~11 MP remain, enough for web and A4')]},
+ {id:'food',l:'Food',
+  rows:[[N.te,'5200–5800 K',L('Caldo = appetitoso','Warm = appetising')],[N.exp,'+0,3…+0,8',L('Luminoso','Bright')],[N.hi,'−20…−50',L('Salse e superfici lucide','Sauces and glossy surfaces')],[N.sh,'+20…+40',''],[N.wh,'+10…+25',L('Piatti bianchi','White plates')],[N.bl,'−10…−25',L('Mai cupo','Never gloomy')],[N.tx,'+20…+35',L('Crosta, consistenza','Crust, texture')],[N.cl,'+10…+20',''],[N.vi,'+15…+30','']],
+  hsl:[[L('Rossi','Reds'),C.r,-8,20,5],[L('Arancio','Oranges'),C.o,-5,15,8],[L('Gialli','Yellows'),C.y,5,10,5],[L('Verdi erbe','Herb greens'),C.g,-5,20,10],['Magenta',C.m,-5,-10,0],[L('Blu sfondo','Background blue'),C.b,0,-10,5]],
+  tips:[L('<strong>Cartoncino grigio</strong> nel primo scatto → contagocce → Sincronizza WB sul set','<strong>Grey card</strong> in the first shot → dropper → Sync WB across the set'),L('<strong>Luci gialle di sala</strong>: WB sulla tovaglia, poi Saturazione Gialli −','<strong>Yellow room lights</strong>: WB on the tablecloth, then Yellow saturation −'),L('<strong>Soggetto AI sul piatto</strong>: Texture +20, Chiarezza +15; sfondo Esposizione −0,3','<strong>AI Subject on the dish</strong>: Texture +20, Clarity +15; background Exposure −0.3')]}
+];
+const sign=v=>v>0?'+'+v:''+v;
+const dec=s=>LANG==='en'?String(s).replace(/(\d),(\d)/g,'$1.$2'):s;
+let GID='base';
+function renderGenre(){
+  const g=GENRES.find(x=>x.id===GID);
+  $('segGenre').innerHTML=GENRES.map(x=>`<button class="${x.id===GID?'on':''}" data-v="${x.id}">${T(x.l)}</button>`).join('');
+  $('segGenre').querySelectorAll('button').forEach(b=>b.onclick=()=>{GID=b.dataset.v;try{localStorage.setItem('kitsv_genre',GID)}catch(e){}renderGenre()});
+  const row=r=>`<tr><td>${T(r[0])}</td><td class="${/^[−-]/.test(T(r[1]))?'neg':''}">${dec(T(r[1]))}</td><td>${T(r[2])}</td></tr>`;
+  let h=`<table class="dv">${g.rows.map(row).join('')}</table>`;
+  if(g.hsl)h+=`<h3>HSL</h3><div class="hsl">${g.hsl.map(c=>`<div><b><i style="background:${c[1]}"></i>${T(c[0])}</b><p><span>${T(L('Tinta','Hue'))}</span><span>${sign(c[2])}</span></p><p><span>Sat</span><span>${sign(c[3])}</span></p><p><span>Lum</span><span>${sign(c[4])}</span></p></div>`).join('')}</div>`;
+  if(g.tips)h+=`<h3>${T(L('Maschere e tecniche','Masks and techniques'))}</h3><ul class="tips">${li(g.tips)}</ul>`;
+  if(g.extra)h+=`<h3>${T(g.extra[0])}</h3><table class="dv">${g.extra[1].map(row).join('')}</table><div class="callout">${T(g.extra[2])}</div>`;
   $('genreBox').innerHTML=h;
 }
 
-/* ═════ ON1 simulatore ═════ */
+/* ═════ ON1 ═════ */
 const CELLS=40;
 ['stTone','stLum','stRes'].forEach(id=>{$(id).innerHTML='<i></i>'.repeat(CELLS)});
 [...$('stTone').children].forEach((c,i)=>{const v=Math.round(i/(CELLS-1)*255);c.style.background=`rgb(${v},${v},${v})`});
-const ZONES=[['Corpo scuro',100,.95,'#EF9F27'],['Occhio composto',150,.9,'#1D9E75'],['Ali traslucide',210,.75,'#7F77DD'],['Polline',215,.7,'#D85A30'],['Fondo (fiore)',130,0,'#888780']];
-$('zones').innerHTML=ZONES.map((z,i)=>`<div class="z"><span>${z[0]}</span><div><i id="zf${i}" style="background:${z[3]}"></i></div><b id="zv${i}"></b></div>`).join('');
+const ZONES=[[L('Corpo scuro','Dark body'),100,.95,'#EF9F27'],[L('Occhio composto','Compound eye'),150,.9,'#1D9E75'],[L('Ali traslucide','Translucent wings'),210,.75,'#7F77DD'],[L('Polline','Pollen'),215,.7,'#D85A30'],[L('Fondo (fiore)','Background (flower)'),130,0,'#888780']];
 function mv(l,mn,mx,ft){if(l>=mn&&l<=mx)return 1;if(ft>0&&l<mn&&l>=mn-ft)return(l-(mn-ft))/ft;if(ft>0&&l>mx&&l<=mx+ft)return 1-(l-mx)/ft;return 0}
-function g(a){const v=Math.round(20+a*220);return`rgb(${v},${v},${Math.round(v*.97)})`}
+const gr=a=>{const v=Math.round(20+a*220);return`rgb(${v},${v},${Math.round(v*.97)})`};
 function calc(){
   let mn=+$('lMin').value,mx=+$('lMax').value;if(mx<=mn){mx=mn+1;$('lMax').value=mx}
   const ft=+$('lFt').value,ai=$('aiOn').checked,conf=+$('aiConf').value/100;
-  $('lMinV').textContent=mn;$('lMaxV').textContent=mx;$('lFtV').textContent=ft;$('aiConfV').textContent=Math.round(conf*100)+'%';
-  $('aiConf').disabled=!ai;
-  const L=$('stLum').children,R=$('stRes').children;
-  for(let i=0;i<CELLS;i++){const v=mv(Math.round(i/(CELLS-1)*255),mn,mx,ft);L[i].style.background=g(v);R[i].style.background=g(ai?v*conf:v)}
+  $('lMinV').textContent=mn;$('lMaxV').textContent=mx;$('lFtV').textContent=ft;$('aiConfV').textContent=Math.round(conf*100)+'%';$('aiConf').disabled=!ai;
+  const Lc=$('stLum').children,R=$('stRes').children;
+  for(let i=0;i<CELLS;i++){const v=mv(Math.round(i/(CELLS-1)*255),mn,mx,ft);Lc[i].style.background=gr(v);R[i].style.background=gr(ai?v*conf:v)}
   ZONES.forEach((z,i)=>{const p=Math.round(mv(z[1],mn,mx,ft)*(ai?z[2]:1)*100);$('zf'+i).style.width=p+'%';$('zv'+i).textContent=p+'%'});
 }
-const PRE=[['Corpo',85,60,155,20],['Occhi composti',90,110,190,25],['Ali',80,170,245,20],['Polline',85,190,240,15],['Solo ombre',85,0,80,30],['Solo luci',85,160,255,30]];
-$('presetBtns').innerHTML=PRE.map((p,i)=>`<button data-i="${i}">${p[0]}</button>`).join('');
-$('presetBtns').querySelectorAll('button').forEach(b=>b.onclick=()=>{const p=PRE[b.dataset.i];$('aiConf').value=p[1];$('lMin').value=p[2];$('lMax').value=p[3];$('lFt').value=p[4];calc()});
+const PRE=[[L('Corpo','Body'),85,60,155,20],[L('Occhi composti','Compound eyes'),90,110,190,25],[L('Ali','Wings'),80,170,245,20],[L('Polline','Pollen'),85,190,240,15],[L('Solo ombre','Shadows only'),85,0,80,30],[L('Solo luci','Highlights only'),85,160,255,30]];
+const RECIPES=[
+ [L('Corpo · torace · addome','Body · thorax · abdomen'),'Min 60 — Max 155 — Feather 20',L('Texture +45, Chiarezza +20, Contrasto +10: struttura chitinosa','Texture +45, Clarity +20, Contrast +10: chitin structure')],
+ [L('Occhi composti','Compound eyes'),'Min 110 — Max 190 — Feather 25',L('Texture +55, Chiarezza +25, Bianchi +8. Dopo PureRAW la Texture regge fino a +60','Texture +55, Clarity +25, Whites +8. After PureRAW Texture holds up to +60')],
+ [L('Ali traslucide','Translucent wings'),'Min 170 — Max 245 — Feather 20',L('Luci −25, Chiarezza +10: recupera le venature. Niente Texture sulle zone speculari','Highlights −25, Clarity +10: recovers veins. No Texture on specular areas')],
+ [L('Polline / corbicule','Pollen / pollen baskets'),'Min 190 — Max 240 — Feather 15',L('Saturazione HSL Gialli +20, Esposizione +0,2','HSL Yellow saturation +20, Exposure +0.2')]
+];
+const CASES=[
+ {l:L('Ali metalliche','Metallic wings'),t:L('Coleotteri, ali riflettenti','Beetles, reflective wings'),zone:L('Luci: <code>Min 170 — Max 245 — Sfum. 25</code>. Colpisce le venature speculari, esclude le ombre tra le nervature.','Highlights: <code>Min 170 — Max 245 — Feather 25</code>. Hits the specular veins, excludes shadows between them.'),adj:L('<code>Luci −25</code>, <code>Bianchi +10</code>, <code>Chiarezza +15</code>. Niente Texture: su zone speculari diventa plastica.','<code>Highlights −25</code>, <code>Whites +10</code>, <code>Clarity +15</code>. No Texture: it looks plastic on specular areas.'),tip:L('Con il flash diretto il centro delle ali tende a bruciare: questa maschera abbassa solo i picchi.','With direct flash the wing centres tend to blow: this mask pulls down only the peaks.')},
+ {l:L('Mimetico su foglia','Camouflaged on leaf'),t:L('Mantidi, cavallette, lucertole','Mantises, grasshoppers, lizards'),zone:L('Soggetto: <code>Min 80 — Max 155 — Sfum. 20</code>. Fondo: duplica, inverti, <code>Min 140 — Max 200</code>.','Subject: <code>Min 80 — Max 155 — Feather 20</code>. Background: duplicate, invert, <code>Min 140 — Max 200</code>.'),adj:L('Soggetto: Tinta HSL +8 verso il giallo, Saturazione +10. Fondo: Saturazione −15, Chiarezza −10.','Subject: HSL Hue +8 towards yellow, Saturation +10. Background: Saturation −15, Clarity −10.'),tip:L('Le mezzetinte di soggetto e fondo si sovrappongono: qui l’AI Soggetto fa la differenza.','Subject and background midtones overlap: AI Subject makes the difference here.')},
+ {l:L('Occhio composto','Compound eye'),t:L('Micro-struttura degli omatidi','Ommatidia micro-structure'),zone:L('<code>Min 110 — Max 190 — Sfum. 30</code>.','<code>Min 110 — Max 190 — Feather 30</code>.'),adj:L('<code>Texture +45</code>, <code>Chiarezza +20</code>, <code>Contrasto +15</code>, <code>Bianchi +8</code>. Evita nitidezza eccessiva.','<code>Texture +45</code>, <code>Clarity +20</code>, <code>Contrast +15</code>, <code>Whites +8</code>. Avoid excess sharpening.'),tip:L('Partendo dal DNG di PureRAW 6 (XD3S) la micro-struttura è già pulita.','Starting from the PureRAW 6 (XD3S) DNG the micro-structure is already clean.')},
+ {l:L('Ape su fiore','Bee on flower'),t:L('Separare insetto e petali','Separate insect and petals'),zone:L('Ape <code>Min 70 — Max 160 — Sfum. 20</code> · Petali <code>Min 150 — Max 230 — Sfum. 25</code>.','Bee <code>Min 70 — Max 160 — Feather 20</code> · Petals <code>Min 150 — Max 230 — Feather 25</code>.'),adj:L('Ape: Esposizione +0,3, Gialli +15, Texture +30. Petali: Chiarezza −10, Saturazione −8.','Bee: Exposure +0.3, Yellows +15, Texture +30. Petals: Clarity −10, Saturation −8.'),tip:L('La sovrapposizione 150–160 è voluta: la sfumatura raccorda.','The 150–160 overlap is intended: the feather blends it.')}
+];
+let CI=0;
+function renderCase(){
+  $('segCase').innerHTML=CASES.map((c,j)=>`<button class="${CI==j?'on':''}" data-i="${j}">${T(c.l)}</button>`).join('');
+  $('segCase').querySelectorAll('button').forEach(b=>b.onclick=()=>{CI=+b.dataset.i;renderCase()});
+  const c=CASES[CI];
+  $('caseBox').innerHTML=`<p style="color:var(--dim);font-size:12px;margin-bottom:8px">${T(c.t)}</p><table class="dv"><tr><td>${T(L('Zona','Zone'))}</td><td colspan="2" class="wrap">${T(c.zone)}</td></tr><tr><td>${T(L('Regolazioni','Adjustments'))}</td><td colspan="2" class="wrap">${T(c.adj)}</td></tr></table><div class="callout">${T(c.tip)}</div>`;
+}
+const STEPS=[
+ [L('Livello base AI Soggetto','Base AI Subject layer'),L('Il perimetro dell’insetto','The insect outline'),[L('<code>Regolazioni locali</code> → <code>+</code> → <code>Maschera</code> → <code>Mascheratura AI</code> → <code>Soggetto</code>.','<code>Local Adjustments</code> → <code>+</code> → <code>Mask</code> → <code>AI Masking</code> → <code>Subject</code>.'),L('<code>Mostra maschera</code>: corpo bianco, fondo nero, ali grigio medio (incluse in parte).','<code>Show mask</code>: white body, black background, mid-grey wings (partly included).'),L('Non correggere ancora le ali: ci pensa la luminosità al passo 2.','Don’t fix the wings yet: luminosity handles them in step 2.')]],
+ [L('Aggiungi Intervallo di luminosità','Add Luminosity Range'),L('Secondo strato nella stessa maschera','Second layer in the same mask'),[L('Nel pannello Maschera: <code>Aggiungi</code> → <code>Intervallo di luminosità</code> (non un nuovo livello).','In the Mask panel: <code>Add</code> → <code>Luminosity Range</code> (not a new layer).'),L('Corpo: <code>Min 60 — Max 155 — Sfum. 20</code>.','Body: <code>Min 60 — Max 155 — Feather 20</code>.'),L('Modalità tra strati: <code>Interseca</code> (AND logico). Ali (180+) e fondo restano esclusi.','Mode between layers: <code>Intersect</code> (logical AND). Wings (180+) and background stay out.')]],
+ [L('Rifinisci col pennello','Refine with the brush'),L('Antenne, setole, bordi','Antennae, bristles, edges'),[L('Pennello <code>Aggiungi</code>, 8–12 px, flusso 40%, più passate leggere.','<code>Add</code> brush, 8–12 px, 40% flow, several light passes.'),L('Pennello <code>Cancella</code> sulle zone di fondo incluse per errore.','<code>Erase</code> brush on background areas included by mistake.')]],
+ [L('Duplica per ogni zona','Duplicate for each zone'),L('Corpo, occhi, polline','Body, eyes, pollen'),[L('Duplica il livello e cambia solo il range (vedi Ricette).','Duplicate the layer and change only the range (see Recipes).'),L('Ogni zona riceve le sue regolazioni senza uscire dal perimetro AI.','Each zone gets its own adjustments without leaving the AI outline.')]],
+ [L('Livello fondo invertito','Inverted background layer'),L('Bokeh che arretra','Receding bokeh'),[L('Nuovo livello → AI Soggetto → <code>Inverti maschera</code>.','New layer → AI Subject → <code>Invert mask</code>.'),L('Chiarezza −15, Saturazione −10, lieve spostamento verso teal.','Clarity −15, Saturation −10, slight shift towards teal.'),L('Senza range di luminosità: deve agire su tutto il fondo.','No luminosity range: it must affect the whole background.')]]
+];
+const COMBOS=[L('<strong>Luminosità + Gradiente</strong>: effetto solo sui toni scelti e nella direzione del gradiente.','<strong>Luminosity + Gradient</strong>: effect only on chosen tones and in the gradient direction.'),L('<strong>Luminosità invertita</strong>: “Inverti maschera” tratta tutto ciò che è fuori range.','<strong>Inverted luminosity</strong>: “Invert mask” treats everything outside the range.'),L('<strong>Livelli multipli</strong>: ombre (Texture), mezzetinte (Chiarezza), luci (abbassa Bianchi).','<strong>Multiple layers</strong>: shadows (Texture), midtones (Clarity), highlights (pull Whites).'),L('<strong>Sovrapposizioni tra range</strong> non sono errori: la sfumatura gestisce la transizione. Controlla con <code>Mostra maschera</code>.','<strong>Overlapping ranges</strong> are not errors: feathering handles the transition. Check with <code>Show mask</code>.')];
+function renderON1(){
+  $('zones').innerHTML=ZONES.map((z,i)=>`<div class="z"><span>${T(z[0])}</span><div><i id="zf${i}" style="background:${z[3]}"></i></div><b id="zv${i}"></b></div>`).join('');
+  $('presetBtns').innerHTML=PRE.map((p,i)=>`<button data-i="${i}">${T(p[0])}</button>`).join('');
+  $('presetBtns').querySelectorAll('button').forEach(b=>b.onclick=()=>{const p=PRE[b.dataset.i];$('aiConf').value=p[1];$('lMin').value=p[2];$('lMax').value=p[3];$('lFt').value=p[4];calc()});
+  $('recipes').innerHTML=RECIPES.map(r=>`<div class="recipe"><b>${T(r[0])}</b><code>${LANG==='it'?r[1].replace('Feather','Sfum.'):r[1]}</code><p>${T(r[2])}</p></div>`).join('');
+  $('steps').innerHTML=STEPS.map((s,i)=>`<details class="acc" ${i==0?'open':''}><summary><span class="n">${i+1}</span><span><b>${T(s[0])}</b><small>${T(s[1])}</small></span></summary><div class="body"><ul class="tips">${li(s[2])}</ul></div></details>`).join('');
+  $('combos').innerHTML=li(COMBOS);
+  renderCase();calc();
+}
 ['lMin','lMax','lFt','aiConf','aiOn'].forEach(id=>$(id).addEventListener('input',calc));
 
-const RECIPES=[
- ['Corpo · torace · addome','Min 60 — Max 155 — Sfum. 20','Texture +45, Chiarezza +20, Contrasto +10: struttura chitinosa'],
- ['Occhi composti','Min 110 — Max 190 — Sfum. 25','Texture +55, Chiarezza +25, Bianchi +8. Dopo PureRAW la Texture regge fino a +60'],
- ['Ali traslucide','Min 170 — Max 245 — Sfum. 20','Luci −25, Chiarezza +10: recupera le venature. Niente Texture sulle zone speculari'],
- ['Polline / corbicule','Min 190 — Max 240 — Sfum. 15','Saturazione HSL Gialli +20, Esposizione +0,2']
+/* ═════ EXPORT ═════ */
+const EXP=[
+ [L('Web / social','Web / social'),L('JPEG 85–90 · lato lungo 2400–3000 px','JPEG 85–90 · long edge 2400–3000 px'),L('sRGB · nitidezza Schermo Standard','sRGB · Screen Standard sharpening')],
+ ['Instagram','JPEG 90 · 1080×1350 (4:5)',L('sRGB · Schermo Standard','sRGB · Screen Standard')],
+ [L('Portfolio (Pixieset, 500px, Behance)','Portfolio (Pixieset, 500px, Behance)'),L('JPEG 90–95 · lato lungo 4000 px','JPEG 90–95 · long edge 4000 px'),L('sRGB · Schermo Alta','sRGB · Screen High')],
+ [L('Stock (Adobe, Shutterstock, Alamy)','Stock (Adobe, Shutterstock, Alamy)'),L('JPEG 100 · risoluzione piena','JPEG 100 · full resolution'),L('sRGB · niente filigrana · keyword nei metadati','sRGB · no watermark · keywords in metadata')],
+ [L('Stampa Saal Digital','Saal Digital print'),L('JPEG 100 o TIFF 8 bit · 300 dpi nativi','JPEG 100 or 8-bit TIFF · native 300 dpi'),L('sRGB o Adobe RGB secondo il servizio · Opaca/Lucida Standard','sRGB or Adobe RGB per service · Matte/Glossy Standard')],
+ [L('Fine art grande formato','Large fine-art print'),L('TIFF 16 bit · 300 dpi · Super Ris. se serve','16-bit TIFF · 300 dpi · Super Res if needed'),L('Adobe RGB / ProPhoto · Opaca Alta','Adobe RGB / ProPhoto · Matte High')],
+ [L('Inter-app (ON1, PS, stacking)','Inter-app (ON1, PS, stacking)'),L('TIFF 16 bit','16-bit TIFF'),L('ProPhoto RGB · niente nitidezza','ProPhoto RGB · no sharpening')],
+ [L('Archivio master','Master archive'),'CR3 + DNG PureRAW + XMP','—']
 ];
-$('recipes').innerHTML=RECIPES.map(r=>`<div class="recipe"><b>${r[0]}</b><code>${r[1]}</code><p>${r[2]}</p></div>`).join('');
-
-const CASES=[
- {l:'Ali metalliche',t:'Coleotteri, ali riflettenti',zone:'Luci: <code>Min 170 — Max 245 — Sfum. 25</code>. Colpisce le venature speculari, esclude le ombre tra le nervature.',adj:'<code>Luci −25</code>, <code>Bianchi +10</code>, <code>Chiarezza +15</code>. Non toccare la Texture: su zone speculari diventa plastica.',tip:'Con il ring flash Godox iM30 il centro delle ali tende a bruciare: questa maschera abbassa solo i picchi.'},
- {l:'Mimetico su foglia',t:'Mantidi, cavallette, lucertole',zone:'Soggetto: <code>Min 80 — Max 155 — Sfum. 20</code>. Fondo: duplica, inverti, <code>Min 140 — Max 200</code>.',adj:'Soggetto: Tinta HSL +8 verso il giallo, Saturazione +10. Fondo: Saturazione −15, Chiarezza −10.',tip:'Le mezzetinte di soggetto e fondo si sovrappongono: qui l’AI Soggetto fa la differenza.'},
- {l:'Occhio composto',t:'Micro-struttura degli omatidi',zone:'<code>Min 110 — Max 190 — Sfum. 30</code>.',adj:'<code>Texture +45</code>, <code>Chiarezza +20</code>, <code>Contrasto +15</code>, <code>Bianchi +8</code>. Evita nitidezza eccessiva.',tip:'Partendo dal DNG di PureRAW 6 (XD3S) la micro-struttura è già pulita.'},
- {l:'Ape su fiore',t:'Separare insetto e petali',zone:'Ape <code>Min 70 — Max 160 — Sfum. 20</code> · Petali <code>Min 150 — Max 230 — Sfum. 25</code>.',adj:'Ape: Esposizione +0,3, Gialli +15, Texture +30. Petali: Chiarezza −10, Saturazione −8.',tip:'La sovrapposizione 150–160 è voluta: la sfumatura raccorda.'}
-];
-function renderCase(i){
-  $('segCase').innerHTML=CASES.map((c,j)=>`<button class="${i==j?'on':''}" data-i="${j}">${c.l}</button>`).join('');
-  $('segCase').querySelectorAll('button').forEach(b=>b.onclick=()=>renderCase(+b.dataset.i));
-  const c=CASES[i];
-  $('caseBox').innerHTML=`<p style="color:var(--dim);font-size:12px;margin-bottom:8px">${c.t}</p><table class="dv"><tr><td>Zona</td><td colspan="2" style="font-family:inherit;color:var(--text);white-space:normal">${c.zone}</td></tr><tr><td>Regolazioni</td><td colspan="2" style="font-family:inherit;color:var(--text);white-space:normal">${c.adj}</td></tr></table><div class="callout">${c.tip}</div>`;
+const EXPN=[L('<strong>Super Risoluzione</strong>: 45 MP → ~180 MP. Solo per ritagli forti o stampe grandi.','<strong>Super Resolution</strong>: 45 MP → ~180 MP. Only for heavy crops or large prints.'),L('<strong>Filigrana</strong>: logo fotolapissable PNG trasparente, angolo, opacità 60–80%. Mai sulle immagini per stock.','<strong>Watermark</strong>: transparent fotolapissable logo PNG, corner, 60–80% opacity. Never on stock images.'),L('<strong>Metadati</strong>: Copyright e Autore “Michele Cipriano”, sito fotolapissable.it. Rimuovi GPS per siti sensibili (nidi, specie protette).','<strong>Metadata</strong>: Copyright and Creator “Michele Cipriano”, website fotolapissable.it. Remove GPS for sensitive sites (nests, protected species).'),L('<strong>Soft proofing</strong> (<code>Ctrl+Alt+P</code>) con il profilo ICC di Saal Digital prima di ordinare stampe.','<strong>Soft proofing</strong> (<code>Ctrl+Alt+P</code>) with the Saal Digital ICC profile before ordering prints.')];
+function renderExp(){
+  $('expTable').innerHTML=EXP.map(e=>`<tr><td>${T(e[0])}</td><td class="wrap" style="color:var(--amber);font-family:var(--mono)">${T(e[1])}</td><td>${T(e[2])}</td></tr>`).join('');
+  $('expNotes').innerHTML=li(EXPN);
 }
 
-const STEPS=[
- ['Livello base AI Soggetto','Il perimetro dell’insetto',['<code>Regolazioni locali</code> → <code>+</code> → <code>Maschera</code> → <code>Mascheratura AI</code> → <code>Soggetto</code>.','<code>Mostra maschera</code>: corpo bianco, fondo nero, ali grigio medio (incluse in parte).','Non correggere ancora le ali: ci pensa la luminosità al passo 2.']],
- ['Aggiungi Intervallo di luminosità','Secondo strato nella stessa maschera',['Nel pannello Maschera: <code>Aggiungi</code> → <code>Intervallo di luminosità</code> (non un nuovo livello).','Corpo: <code>Min 60 — Max 155 — Sfum. 20</code>.','Modalità tra strati: <code>Interseca</code> (AND logico). Ali (180+) e fondo restano esclusi.']],
- ['Rifinisci col pennello','Antenne, setole, bordi',['Pennello <code>Aggiungi</code>, 8–12 px, flusso 40%, più passate leggere.','Pennello <code>Cancella</code> sulle zone di fondo incluse per errore.']],
- ['Duplica per ogni zona','Corpo, occhi, polline',['Duplica il livello e cambia solo il range (vedi Ricette).','Ogni zona riceve le sue regolazioni senza uscire dal perimetro AI.']],
- ['Livello fondo invertito','Bokeh che arretra',['Nuovo livello → AI Soggetto → <code>Inverti maschera</code>.','Chiarezza −15, Saturazione −10, lieve spostamento verso teal.','Senza range di luminosità: deve agire su tutto il fondo.']]
-];
-$('steps').innerHTML=STEPS.map((s,i)=>`<details class="acc" ${i==0?'open':''}><summary><span class="n">${i+1}</span><span><b>${s[0]}</b><small>${s[1]}</small></span></summary><div class="body"><ul class="tips">${s[2].map(t=>`<li>${t}</li>`).join('')}</ul></div></details>`).join('');
-
-/* ═════ EXPORT ═════ */
-const EXP=[['Web / social','JPEG 85–90 · lato lungo 2400–3000 px','sRGB · nitidezza Schermo Standard'],['Instagram','JPEG 90 · 1080×1350 (4:5)','sRGB · Schermo Standard'],['Portfolio (Pixieset, 500px, Behance)','JPEG 90–95 · lato lungo 4000 px','sRGB · Schermo Alta'],['Stock (Adobe, Shutterstock, Alamy)','JPEG 100 · risoluzione piena','sRGB · nessuna filigrana · keyword nei metadati'],['Stampa Saal Digital','JPEG 100 o TIFF 8 bit · 300 dpi nativi','sRGB o Adobe RGB secondo il servizio · Opaca/Lucida Standard'],['Fine art grande formato','TIFF 16 bit · 300 dpi · Super Ris. se serve','Adobe RGB / ProPhoto · Opaca Alta'],['Inter-app (ON1, PS, stacking)','TIFF 16 bit','ProPhoto RGB · nessuna nitidezza'],['Archivio master','CR3 + DNG PureRAW + XMP','—']];
-$('expTable').innerHTML=EXP.map(e=>`<tr><td>${e[0]}</td><td style="white-space:normal">${e[1]}</td><td>${e[2]}</td></tr>`).join('');
-
 /* ═════ glue ═════ */
+function renderAll(){renderFlow();renderGenre();renderON1();renderExp()}
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
   scrollTo(0,0);try{localStorage.setItem('kitsv_tab',b.dataset.t)}catch(e){}
 });
-let gid='base';try{gid=localStorage.getItem('kitsv_genre')||'base';const t=localStorage.getItem('kitsv_tab');if(t){const b=document.querySelector(`#tabs button[data-t="${t}"]`);b&&b.click()}}catch(e){}
-renderGenre(gid);renderCase(0);calc();
+try{GID=localStorage.getItem('kitsv_genre')||'base';const t=localStorage.getItem('kitsv_tab');if(t){const b=document.querySelector(`#tabs button[data-t="${t}"]`);b&&b.click()}}catch(e){}
+applyStatic();renderAll();
 
 let dp;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;const b=$('installBtn');b.style.display='block';b.onclick=async()=>{dp.prompt();await dp.userChoice;b.style.display='none'}});
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
